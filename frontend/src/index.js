@@ -8,29 +8,46 @@ import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import AdminDashboard from './pages/AdminDashboard';
 
-const checkIfLoggedIn = async ({ request }) => {
+// Send a POST request to check if the user is logged in. Redirect the user to /dashboard if already logged in
+const checkIfLoggedInOnHome = async () => {
   const res = await fetch("http://localhost:3001/checkifloggedin",
     {
       method: "POST",
       credentials: "include" 
     });
 
-    console.log(res)
+  const payload = await res.json();
   
-    if (res.isLoggedIn) {
-      console.log("is logged in")
-
-      // @TODO: Failing at CORS here
+    if (payload.isLoggedIn) {
       return redirect("/dashboard")
     } else {
-      console.log("not logged in")
       return 0
     }
 }
 
+// Send a POST request to check if the user is logged in. Redirect the user back to / if not logged in
+const checkIfLoggedInOnDash = async () => {
+  const res = await fetch("http://localhost:3001/checkifloggedin",
+    {
+      method: "POST",
+      credentials: "include" 
+    });
+
+
+  const payload = await res.json();
+  console.log(payload)
+
+  
+    if (payload.isLoggedIn) {
+      return 0
+    } else {
+      return redirect("/")
+    }
+}
+
 const router = createBrowserRouter([
-  { path: '/', element: <Home />, loader: checkIfLoggedIn },
-  { path: '/dashboard', element: <Dashboard /> },
+  { path: '/', element: <Home />, loader: checkIfLoggedInOnHome },
+  { path: '/dashboard', element: <Dashboard />, loader: checkIfLoggedInOnDash },
   { path: '/admin', element: <AdminDashboard /> }
 ])
 

@@ -63,6 +63,8 @@ const login = async (req, res) => {
 
 const checkIfLoggedIn = async (req, res) => {
 
+  console.log(req.cookies.authToken)
+
   // Check for an auth token in the request cookies
   if (!req.cookies || !req.cookies.authToken) {
     // FAIL Scenario 1 - No cookies / no authToken cookie sent

@@ -71,8 +71,7 @@ export default function Home() {
             {
               path: "localhost:3001/",
               age: 60*60,
-              sameSite: "none",
-              secure: true
+              sameSite: false
             });
 
           localStorage.setItem("username", body.username);
