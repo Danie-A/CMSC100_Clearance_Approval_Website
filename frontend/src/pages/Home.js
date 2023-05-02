@@ -1,13 +1,12 @@
 
 import { useState, useEffect } from 'react';
-import { useNavigate, useLoaderData } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Cookies from 'universal-cookie';
 
 export default function Home() {
 
   const navigate = useNavigate()
-  const isLoggedInLoaderData = useLoaderData()
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   
   // redirect when login is successful
@@ -46,7 +45,7 @@ export default function Home() {
   function logIn(e) {
     e.preventDefault();
 
-    // for validation goes here
+    // form validation goes here
 
     fetch("http://localhost:3001/login",
       {

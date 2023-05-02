@@ -6,9 +6,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
-import AdminDashboard from './pages/AdminDashboard';
 
-// Send a POST request to check if the user is logged in. Redirect the user to /dashboard if already logged in
+// Send a POST request to API to check if the user is logged in. Redirect the user to /dashboard if already logged in
 const checkIfLoggedInOnHome = async () => {
   const res = await fetch("http://localhost:3001/checkifloggedin",
     {
@@ -25,7 +24,7 @@ const checkIfLoggedInOnHome = async () => {
     }
 }
 
-// Send a POST request to check if the user is logged in. Redirect the user back to / if not logged in
+// Send a POST request to API to check if the user is logged in. Redirect the user back to / if not logged in
 const checkIfLoggedInOnDash = async () => {
   const res = await fetch("http://localhost:3001/checkifloggedin",
     {
@@ -35,11 +34,8 @@ const checkIfLoggedInOnDash = async () => {
 
 
   const payload = await res.json();
-  console.log(payload)
-
-  
     if (payload.isLoggedIn) {
-      return 0
+      return true
     } else {
       return redirect("/")
     }
@@ -47,8 +43,7 @@ const checkIfLoggedInOnDash = async () => {
 
 const router = createBrowserRouter([
   { path: '/', element: <Home />, loader: checkIfLoggedInOnHome },
-  { path: '/dashboard', element: <Dashboard />, loader: checkIfLoggedInOnDash },
-  { path: '/admin', element: <AdminDashboard /> }
+  { path: '/dashboard', element: <Dashboard />, loader: checkIfLoggedInOnDash }
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

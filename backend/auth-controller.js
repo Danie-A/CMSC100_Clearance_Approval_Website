@@ -6,15 +6,11 @@ import jwt from 'jsonwebtoken';
 const User = mongoose.model("User");
 
 const signUp = async (req, res) => {
-  console.log("Signing Up ...")
   const newuser = new User({
     name: req.body.name,
     email: req.body.email,
     password: req.body.password
   });
-
-  console.log("New user: ");
-  console.log(newuser);
 
   const result = await newuser.save();
 
@@ -41,11 +37,8 @@ const login = async (req, res) => {
    user.comparePassword(password, (err, isMatch) => {
     if (err || !isMatch) {
       // Scenario 2: FAIL - Wrong password
-      console.log("wrong password");
       return res.send({ success: false });
     }
-
-    console.log("Successfully logged in");
 
     // Scenario 3: SUCCESS - time to create a token
     const tokenPayload = {
@@ -63,9 +56,6 @@ const login = async (req, res) => {
 
 const checkIfLoggedIn = async (req, res) => {
 
-  console.log(req.cookies.authToken)
-
-  // Check for an auth token in the request cookies
   if (!req.cookies || !req.cookies.authToken) {
     // FAIL Scenario 1 - No cookies / no authToken cookie sent
     return res.send({ isLoggedIn: false });
