@@ -1,13 +1,16 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
+import { FaUserCircle, FaCheckSquare } from 'react-icons/fa';
 
 export default function Root() {
   const location = useLocation();
   return (
     <>
       <div className="header-container d-flex justify-content-between align-items-center">
-        <p className="header-text">📝 ClearMe</p>
+        <div className="header-text">
+          <p><FaCheckSquare size={24} color={'#5bc0de'} style={{ marginRight: '8px' }} />ClearMe</p>
+        </div>
         <div className="d-flex align-items-center">
-          <i className="bi bi-person-circle"></i>
+          <FaUserCircle size={24} color={'#5bc0de'} />
           <p className="mr-3 text-white account-name">Firstname Lastname</p>
           <button type="button" className="btn btn-info logout">Log Out</button>
         </div>

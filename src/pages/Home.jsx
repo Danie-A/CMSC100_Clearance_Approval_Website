@@ -1,7 +1,10 @@
 export default function Home() {
   return (
     <>
-      <p className="text">Home</p>
+      <div className="whole-container">
+        <p>You have no pending clearance application.</p>
+        <button type="button" class="btn btn-primary">Create Clearance Application</button>
+      </div>
     </>
   );
 }

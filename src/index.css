@@ -13,13 +13,13 @@ code {
 }
 
 nav {
-  background-color: #005b96;
+  background-color: #0275d8;
 
 }
 
 .header-container {
   display: flex;
-  background-color: #03396c;
+  background-color: #0d47a1;
   padding-top: 10px;
   /*main axis*/
   flex-direction: row;
@@ -29,9 +29,11 @@ nav {
 }
 
 .header-text {
+  display: flex;
+  flex-direction: row;
   font-weight: bold;
   font-size: 20px;
-  padding-top: 10px;
+  padding-top: 8px;
   padding-left: 30px;
   color: white;
   text-shadow: 2px 1px 1px rgba(0, 0, 0, 0.6);
@@ -45,6 +47,7 @@ nav {
 }
 
 .account-name {
+  padding-left: 10px;
   padding-right: 10px;
   padding-top: 8px;
 }
@@ -71,6 +74,16 @@ ol {
 
 nav ul li {
   padding: 8px;
+}
+
+.whole-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-left: 40px;
+  padding-top: 10px;
+  padding-right: 40px;
 }
 
 .text {
