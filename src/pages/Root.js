@@ -26,6 +26,9 @@ export default function Root() {
           <li className={`${location.pathname === "/notifications" ? "active" : ""}`}>
             <Link to="/notifications" className="nav-link">Notifications</Link>
           </li>
+          <li className={`${location.pathname === "/create-application" ? "active" : ""}`}>
+            <Link to="/create-application" className="nav-link">Create Application</Link>
+          </li>
         </ul>
       </nav>
       <Outlet />

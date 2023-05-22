@@ -6,6 +6,7 @@ import Root from "./pages/Root";
 import Applications from "./pages/Applications";
 import Notifications from "./pages/Notifications";
 import Home from './pages/Home';
+import CreateApplication from './pages/CreateApplication';
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "applications", element: <Applications /> },
       { path: "notifications", element: <Notifications /> },
+      { path: "create-application", element: <CreateApplication /> },
     ]
   },
 

@@ -1,3 +1,6 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
 export default function Home() {
 
   const renderHomeContent = (status) => {
@@ -12,7 +15,7 @@ export default function Home() {
       return (
         <>
           <p>You have no pending clearance application.</p>
-          <button type="button" class="btn btn-primary">Create Clearance Application</button>
+          <button type="button" class="btn btn-primary"><Link to="/create-application" className="nav-link">Create Clearance Application</Link></button>
         </>
       );
     }
@@ -21,7 +24,7 @@ export default function Home() {
   return (
     <>
       <div className="whole-container">
-        {renderHomeContent('Pending')}
+        {renderHomeContent('None')}
       </div>
     </>
   );
