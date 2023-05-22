@@ -17,6 +17,12 @@ nav {
 
 }
 
+h5 {
+  padding-top: 15px;
+  padding-bottom: 20px;
+  font-weight: 700;
+}
+
 .header-container {
   display: flex;
   background-color: #0d47a1;
@@ -100,4 +106,45 @@ input {
 
 .active {
   color: whitesmoke;
+}
+
+.table-colored {
+  background-color: white;
+}
+
+thead {
+  background-color: #0277bd;
+  /* Replace with your desired header color */
+  color: #ffffff;
+  /* Replace with your desired text color */
+
+}
+
+.notif-container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 30px;
+  width: 100%;
+}
+
+.notif-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+  padding: 15px;
+  padding-left: 30px;
+  gap: 1em;
+  background-color: #bbdefb;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.614);
+
+}
+
+.notifBtn {
+  margin-right: 20px;
+}
+
+.notif-item:hover {
+  background-color: white;
 }
