@@ -11,3 +11,80 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+nav {
+  background-color: #005b96;
+
+}
+
+.header-container {
+  display: flex;
+  background-color: #03396c;
+  padding-top: 10px;
+  /*main axis*/
+  flex-direction: row;
+  justify-content: flex-start;
+  /*cross axis*/
+  align-items: flex-start;
+}
+
+.header-text {
+  font-weight: bold;
+  font-size: 20px;
+  padding-top: 10px;
+  padding-left: 30px;
+  color: white;
+  text-shadow: 2px 1px 1px rgba(0, 0, 0, 0.6);
+}
+
+.logout {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #03396c;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.614);
+}
+
+.account-name {
+  padding-right: 10px;
+  padding-top: 8px;
+}
+
+
+.align-items-center {
+  padding-right: 10px;
+}
+
+
+ul {
+  color: #b3cde0;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+}
+
+ol {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+}
+
+nav ul li {
+  padding: 8px;
+}
+
+.text {
+  padding-left: 25px;
+}
+
+h4 {
+  margin-left: 25px;
+}
+
+input {
+  margin-bottom: 10px;
+}
+
+.active {
+  color: whitesmoke;
+}
