@@ -3,7 +3,7 @@
         "first_name": "Alice",
         "middle_name": "Marie",
         "last_name": "Williams",
-        "user_type": "approver_officer",
+        "user_type": "approver_clearanceOfficer",
         "email": "alice@example.com",
         "password": "alice123"
     },

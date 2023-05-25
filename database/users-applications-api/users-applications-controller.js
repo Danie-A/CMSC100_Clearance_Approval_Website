@@ -55,6 +55,29 @@ const applicationSchema = new mongoose.Schema({
 
 const Application = mongoose.model('Application', applicationSchema);
 
+const getStudents = async (req, res) => {
+    try {
+        const students = await User.find({ user_type: "student" });
+        res.send(students);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, error: "An error occurred while retrieving the students." });
+    }
+};
+
+const getApprovers = async (req, res) => {
+    try {
+        const approvers = await User.find({
+            user_type: { $in: ["approver_clearanceOfficer", "approver_adviser"] }
+        });
+        res.send(approvers);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, error: "An error occurred while retrieving the approvers." });
+    }
+};
+
+
 // const getSubjects = async (req, res) => {
 //     const subjects = await Subject.find({});
 //     res.send(subjects)
@@ -74,22 +97,83 @@ const Application = mongoose.model('Application', applicationSchema);
 //     res.send(subject)
 // }
 
-// // save new subject
-// const addSubject = async (req, res) => {
-//     const { code, title, desc, units, sem_offered } = req.body
+// addStudent
+const addStudent = async (req, res) => {
+    try {
+        const {
+            first_name,
+            middle_name,
+            last_name,
+            user_type,
+            email,
+            password,
+            student_number,
+        } = req.body;
 
-//     const newSubject = new Subject({ code, title, desc, units, sem_offered })
+        const newStudent = new User({
+            first_name,
+            middle_name,
+            last_name,
+            user_type,
+            email,
+            password,
+            student_number: student_number
+        });
 
-//     const result = await newSubject.save()
+        const savedStudent = await newStudent.save();
 
-//     if (result._id) {
-//         res.send({ success: true })
-//         console.log("SUCCESS")
-//     } else {
-//         res.send({ success: false })
-//         console.log("FALSE")
-//     }
-// }
+        if (savedStudent._id) {
+            res.status(200).json({ success: true });
+            console.log("SUCCESS");
+        } else {
+            res.status(500).json({ success: false });
+            console.log("FALSE");
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, error: "An error occurred while adding the student." });
+    }
+};
+
+// addApprover
+const addApprover = async (req, res) => {
+    try {
+        const {
+            first_name,
+            middle_name,
+            last_name,
+            user_type,
+            email,
+            password
+        } = req.body;
+
+        const newApprover = new User({
+            first_name,
+            middle_name,
+            last_name,
+            user_type,
+            email,
+            password
+        });
+
+        const savedApprover = await newApprover.save();
+
+        if (savedApprover._id) {
+            res.status(200).json({ success: true });
+            console.log("SUCCESS");
+        } else {
+            res.status(500).json({ success: false });
+            console.log("FALSE");
+        }
+    } catch (error) {
+        console.error(error);
+        res
+            .status(500)
+            .json({ success: false, error: "An error occurred while adding the approver." });
+    }
+};
+
+
 
 // // delete
 // const deleteSubject = async (req, res) => {
@@ -106,4 +190,4 @@ const Application = mongoose.model('Application', applicationSchema);
 // }
 
 
-// export { getSubjects, greetByPOST, getSubjectByCode, addSubject, deleteSubject };
+export { getStudents, getApprovers, addStudent, addApprover };
