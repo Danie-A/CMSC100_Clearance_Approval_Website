@@ -25,10 +25,10 @@ function ManageApprovers() {
   useEffect(() => {
     switch (sortBy) {
       case "name_asc":
-        setApproversList([...approversList].sort((a, b) => a.name.localeCompare(b.name)));
+        setApproversList((prevList) => [...prevList].sort((a, b) => a.name.localeCompare(b.name)));
         break;
       case "name_desc":
-        setApproversList([...approversList].sort((a, b) => b.name.localeCompare(a.name)));
+        setApproversList((prevList) => [...prevList].sort((a, b) => b.name.localeCompare(a.name)));
         break;
       default:
         break;

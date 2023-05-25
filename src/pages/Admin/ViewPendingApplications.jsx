@@ -49,16 +49,16 @@ function ViewPendingApplications() {
   useEffect(() => {
     switch (sortBy) {
       case "name_asc":
-        setStudentsList([...studentsList].sort((a, b) => a.name.localeCompare(b.name)));
+        setStudentsList((prevList) => [...prevList].sort((a, b) => a.name.localeCompare(b.name)));
         break;
       case "name_desc":
-        setStudentsList([...studentsList].sort((a, b) => b.name.localeCompare(a.name)));
+        setStudentsList((prevList) => [...prevList].sort((a, b) => b.name.localeCompare(a.name)));
         break;
       case "studNum_asc":
-        setStudentsList([...studentsList].sort((a, b) => b.studentNum.localeCompare(a.studentNum)));
+        setStudentsList((prevList) => [...prevList].sort((a, b) => b.studentNum.localeCompare(a.studentNum)));
         break;
       case "studNum_desc":
-        setStudentsList([...studentsList].sort((a, b) => a.studentNum.localeCompare(b.studentNum)));
+        setStudentsList((prevList) => [...prevList].sort((a, b) => a.studentNum.localeCompare(b.studentNum)));
         break;
       default:
         break;
