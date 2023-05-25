@@ -11,29 +11,23 @@
         "first_name": "Bob",
         "middle_name": "Thomas",
         "last_name": "Anderson",
-        "student_num": 202012345,
+        "student_number": 202012345,
         "user_type": "student",
         "email": "bob@example.com",
         "password": "bob123",
-        "applications": [
-            "#/applications/_id",
-            "#/applications/_id"
-        ],
-        "adviser": "#/_id"
+        "adviser": "#/_id",
+        "applications": []
     },
     {
         "first_name": "Danielle Lei",
         "middle_name": "Ramos",
         "last_name": "Araez",
-        "student_num": 202112345,
+        "student_number": 202112345,
         "user_type": "student",
         "email": "danie@danie.com",
         "password": "daniedanie",
-        "applications": [
-            "#/applications/_id",
-            "#/applications/_id"
-        ],
-        "adviser": "#/_id"
+        "adviser": "#/_id",
+        "applications": []
     },
     {
         "first_name": "John",
