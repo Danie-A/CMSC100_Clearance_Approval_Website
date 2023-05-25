@@ -2,6 +2,8 @@ import mongoose from 'mongoose';
 
 await mongoose.connect('mongodb://127.0.0.1:27017/ClearMe')
 
+// await mongoose.connect('mongodb+srv://jpsabile:VUNVL7QcJ2tYPbZr@jpsabile.nvysktb.mongodb.net/?retryWrites=true&w=majority')
+
 const User = mongoose.model('User', {
     first_name: String,
     middle_name: String,
@@ -174,20 +176,45 @@ const addApprover = async (req, res) => {
 };
 
 
+// edit approver
+const editApprover = async (req, res) => {
+    try {
+        const { approver, edited_approver_data } = req.body;
 
-// // delete
-// const deleteSubject = async (req, res) => {
-//     const { code } = req.body
+        const editedApprover = await User.findOneAndUpdate(
+            { approver },
+            { $set: edited_approver_data },
+            { new: true }
+        );
 
-//     const result = await Subject.deleteOne({ code })
+        if (editedApprover) {
+            res.status(200).json({ success: true, editedApprover });
+        } else {
+            res.status(404).json({ success: false, message: "Approver not found" });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, error: "An error occurred while editing the approver." });
+    }
+}
 
-//     if (result.deletedCount == 1) {
-//         res.send({ success: true })
-//     } else {
-//         res.send({ success: false })
-//     }
 
-// }
+// delete approver
+const deleteApprover = async (req, res) => {
+    const { approver } = req.body
+
+    const result = await User.deleteOne({ approver })
+
+    if (result.deletedCount == 1) {
+        res.send({ success: true })
+    } else {
+        res.send({ success: false })
+    }
+}
+
+let data = await User.find({ user_type: "approver_adviser" });
+console.log(data);
 
 
-export { getStudents, getApprovers, addStudent, addApprover };
+
+export { getStudents, getApprovers, addStudent, addApprover, deleteApprover };
