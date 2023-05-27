@@ -24,7 +24,7 @@ export default function Dashboard() {
 
   return (
     <>
-      Welcome to the dashboard, {username} !<br />
+      Welcome to the dashboard, {username}!<br />
 
       <button onClick={logout}>Log Out</button>
     </>

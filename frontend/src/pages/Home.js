@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
@@ -18,9 +17,7 @@ export default function Home() {
 
   function signUp(e) {
     e.preventDefault();
-
     // form validation goes here 
-
     fetch("http://localhost:3001/signup",
       {
         method: "POST",
@@ -28,13 +25,12 @@ export default function Home() {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          name: document.getElementById("s-fname").value,
+          fname: document.getElementById("s-fname").value,
           mname: document.getElementById("s-mname").value,
           lname: document.getElementById("s-lname").value,
           sno: document.getElementById("s-sno").value,
           email: document.getElementById("s-email").value,
           password: document.getElementById("s-password").value
-
         })
       })
       .then(response => response.json())
@@ -77,6 +73,7 @@ export default function Home() {
               sameSite: false
             });
 
+
           localStorage.setItem("username", body.username);
         }
         else { alert("Log in failed") }
@@ -84,7 +81,7 @@ export default function Home() {
   }
 
 
-  // [] change s-name to s-fname 
+  // [/] change s-name to s-fname 
   // [] @up.edu.ph email validation
   // [] User to Student schema
 
@@ -92,7 +89,7 @@ export default function Home() {
     <>
       <h1>Sign Up</h1>
       <form id="sign-up">
-        <input id="s-name" placeholder="First Name" />
+        <input id="s-fname" placeholder="First Name" />
         <input id="s-mname" placeholder="Middle Name" />
         <input id="s-lname" placeholder="Last Name" />
         <input id="s-sno" placeholder="Student Number" />
@@ -103,8 +100,8 @@ export default function Home() {
 
       <h1>Log In</h1>
       <form id="log-in">
-        <input id="l-email" placeholder="email" />
-        <input id="l-password" type="password" placeholder="password" />
+        <input id="l-email" placeholder="Email" />
+        <input id="l-password" type="password" placeholder="Password" />
         <button onClick={logIn}>Log In</button>
       </form>
     </>

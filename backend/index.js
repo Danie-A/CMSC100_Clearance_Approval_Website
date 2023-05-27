@@ -24,7 +24,7 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS,POST");
   res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers,Access-Control-Allow-Methods,Origin,Accept,Content-Type,X-Requested-With,Cookie");
-  res.setHeader("Access-Control-Allow-Credentials","true");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
   next();
 });
 
@@ -32,4 +32,4 @@ app.use((req, res, next) => {
 setUpRoutes(app);
 
 // start server
-app.listen(3001, () => { console.log("API listening to port 3001 ")});
+app.listen(3001, () => { console.log("API listening to port 3001 ") });
