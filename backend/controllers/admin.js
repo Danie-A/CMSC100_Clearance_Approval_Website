@@ -177,7 +177,7 @@ const checkIfLoggedInApprover = async (req, res) => {
 
     if (user) {
       // SUCCESS Scenario - User is found
-      return res.send({ isLoggedIn: true });
+      return res.send({ isLoggedIn: true, userType: user.type });
     } else {
       // FAIL Scenario 2 - Token is valid but user id not found
       return res.send({ isLoggedIn: false });

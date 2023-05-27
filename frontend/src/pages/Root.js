@@ -5,9 +5,23 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLoaderData } from "react-router-dom";
 
 export default function Root() {
+
+    const viewMyInfo = async () => {
+        await fetch("http://localhost:3001/view-student-info", {
+            method: "POST",
+            credentials: "include",
+        })
+            .then((response) => response.json())
+            .then((body) => {
+                console.log(body);
+            });
+    };
+
     const location = useLocation();
 
     const username = localStorage.getItem("username");
+    const userType = localStorage.getItem("userType");
+
     const [isLoggedIn, setIsLoggedIn] = useState(useLoaderData());
     const navigate = useNavigate();
 
@@ -27,28 +41,9 @@ export default function Root() {
     }
     // root is clearme logo and the navbar:
     // if user different navbar
-
-    // if admin different navbar
-
-    // if approver clearance officer different navbar
-
-    // if approver adviser different navbar
-
-    // show 'dashboard' from auth_lec
-
-    return (
-        <>
-            <div className="header-container d-flex justify-content-between align-items-center">
-                <div className="header-text">
-                    <p><FaCheckSquare size={24} color={'#5bc0de'} style={{ marginRight: '8px' }} />ClearMe</p>
-                </div>
-                <div className="d-flex align-items-center">
-                    <FaUserCircle size={24} color={'#5bc0de'} />
-                    <p className="mr-3 text-white account-name">{username}</p>
-                    <button type="button" onClick={logout} className="btn btn-info logout">Log Out</button>
-                </div>
-            </div >
-            <nav>
+    function renderNavBar() {
+        if (userType === "student") {
+            return <nav>
                 <ul>
                     <li className={`${location.pathname === "/" ? "active" : ""}`}>
                         <Link to="/student" className="nav-link">Home</Link>
@@ -64,6 +59,40 @@ export default function Root() {
                     </li>
                 </ul>
             </nav>
+        } else if (userType === "admin") {
+            return <nav>
+                <ul>
+                    <li className={`${location.pathname === "/admin" ? "active" : ""}`}>
+                        <Link to="/admin" className="nav-link">View Pending Applications</Link>
+                    </li>
+                    <li className={`${location.pathname === "/admin/manage-approvers" ? "active" : ""}`}>
+                        <Link to="/admin/manage-approvers" className="nav-link">Manage Approvers</Link>
+                    </li>
+                </ul>
+            </nav>
+
+        }
+
+    }
+
+    // if approver clearance officer different navbar
+
+    // if approver adviser different navbar
+
+
+    return (
+        <>
+            <div className="header-container d-flex justify-content-between align-items-center">
+                <div className="header-text">
+                    <p><FaCheckSquare size={24} color={'#5bc0de'} style={{ marginRight: '8px' }} />ClearMe</p>
+                </div>
+                <div className="d-flex align-items-center">
+                    <FaUserCircle size={24} color={'#5bc0de'} />
+                    <p className="mr-3 text-white account-name">{username}</p>
+                    <button type="button" onClick={logout} className="btn btn-info logout">Log Out</button>
+                </div>
+            </div >
+            {renderNavBar()}
             <Outlet />
         </>
     );
