@@ -12,6 +12,19 @@ export default function Root() {
     const [isLoggedIn, setIsLoggedIn] = useState(useLoaderData());
     const navigate = useNavigate();
 
+    const [openApplication, setOpenApplication] = useState('');
+
+    useEffect(() => {
+        fetch("http://localhost:3001/view-student-info", {
+            method: "POST",
+            credentials: "include",
+        })
+            .then((response) => response.json())
+            .then((body) => {
+                setOpenApplication(body.open_application);
+            });
+    }, []);
+
     useEffect(() => {
         if (!isLoggedIn) {
             navigate("/");
@@ -30,6 +43,18 @@ export default function Root() {
     // if user different navbar
     function renderNavBar() {
         if (userType === "student") {
+            function showApplicationButton() {
+                if (openApplication) {
+                    return <li className={`${location.pathname === "/student/view-application" ? "active" : ""}`}>
+                        <Link to="/student/view-application" className="nav-link">View Application</Link>
+                    </li>
+                } else {
+                    return <li className={`${location.pathname === "/student/create-application" ? "active" : ""}`}>
+                        <Link to="/student/create-application" className="nav-link">Create Application</Link>
+                    </li>
+
+                }
+            }
             return <nav>
                 <ul>
                     <li className={`${location.pathname === "/student" ? "active" : ""}`}>
@@ -41,9 +66,7 @@ export default function Root() {
                     <li className={`${location.pathname === "/student/notifications" ? "active" : ""}`}>
                         <Link to="/student/notifications" className="nav-link">Notifications</Link>
                     </li>
-                    <li className={`${location.pathname === "/student/create-application" ? "active" : ""}`}>
-                        <Link to="/student/create-application" className="nav-link">Create Application</Link>
-                    </li>
+                    {showApplicationButton()}
                 </ul>
             </nav>
         } else if (userType === "admin") {

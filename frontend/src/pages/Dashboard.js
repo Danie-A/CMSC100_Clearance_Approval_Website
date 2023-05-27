@@ -13,7 +13,7 @@ export default function Dashboard() {
       });
   };
 
-  const [openApplication, setStudentId] = useState('');
+  const [openApplication, setOpenApplication] = useState('');
 
   useEffect(() => {
     fetch("http://localhost:3001/view-student-info", {
@@ -22,7 +22,7 @@ export default function Dashboard() {
     })
       .then((response) => response.json())
       .then((body) => {
-        setStudentId(body.open_application);
+        setOpenApplication(body.open_application);
       });
   }, []);
 

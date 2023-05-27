@@ -155,4 +155,15 @@ thead {
     flex-direction: column;
     align-content: flex-start;
     justify-content: flex-start;
+    padding-left: 40px;
 }
+
+/* .btn-primary {
+    background-color: #404252;
+    border: none;
+}
+
+.btn-primary:hover {
+    transition: 0.3s;
+    background-color: #101223;
+} */

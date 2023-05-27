@@ -21,7 +21,6 @@ export default function CreateApplication() {
 
         var applicationDocu = { // create subject object to be passed to body
             studentId: studentId,
-            current_step: 1,
             github_link: link,
         }
 
