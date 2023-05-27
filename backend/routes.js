@@ -1,4 +1,4 @@
-import { signUp, login, checkIfLoggedIn } from "./auth-controller.js";
+import { signUp, login, checkIfLoggedIn } from "./controllers/auth-controller.js";
 import { addStudentAccount, createApplication, submitStep1 } from "./controllers/student.js";
 import { getPendingApplications, approveStudentAccount, rejectStudentAccount, addApproverAccount, editApproverAccount, deleteApproverAccount } from "./controllers/admin.js";
 import { getPendingApplicationsByAdviser } from "./controllers/approver.js";
