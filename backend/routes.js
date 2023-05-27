@@ -6,6 +6,7 @@ import {
   rejectStudentAccount,
   getAllApprovers,
   addApproverAccount,
+  loginApprover, checkIfLoggedInApprover,
   editApproverAccount,
   deleteApproverAccount,
 } from "./controllers/admin.js";
@@ -31,6 +32,8 @@ const setUpRoutes = (app) => {
   app.post("/reject-student-account", rejectStudentAccount);
   app.get("/get-all-approvers", getAllApprovers);
   app.post("/add-approver", addApproverAccount);
+  app.post("/login-approver", loginApprover);
+  app.post("/checkifloggedinapprover", checkIfLoggedInApprover);
   app.post("/edit-approver", editApproverAccount);
   app.post("/delete-approver", deleteApproverAccount);
 

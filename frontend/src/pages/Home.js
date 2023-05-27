@@ -10,7 +10,7 @@ export default function Home() {
   // redirect when login is successful
   useEffect(() => {
     if (isLoggedIn) {
-      navigate("/dashboard");
+      navigate("/student");
     }
   }, [isLoggedIn, navigate]);
 
@@ -41,7 +41,7 @@ export default function Home() {
       });
   }
 
-  function logIn(e) {
+  function logInStudent(e) {
     e.preventDefault();
 
     // form validation goes here
@@ -52,8 +52,8 @@ export default function Home() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: document.getElementById("l-email").value,
-        password: document.getElementById("l-password").value,
+        email: document.getElementById("ls-email").value,
+        password: document.getElementById("ls-password").value,
       }),
     })
       .then((response) => response.json())
@@ -75,13 +75,45 @@ export default function Home() {
       });
   }
 
-  // [/] change s-name to s-fname
+  function logInApprover(e) {
+    e.preventDefault();
+
+    // form validation goes here
+
+    fetch("http://localhost:3001/login-approver", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: document.getElementById("la-email").value,
+        password: document.getElementById("la-password").value,
+      }),
+    })
+      .then((response) => response.json())
+      .then((body) => {
+        if (body.success) {
+          setIsLoggedIn(true);
+          // successful log in. store the token as a cookie
+          const cookies = new Cookies();
+          cookies.set("authToken", body.token, {
+            path: "localhost:3001/",
+            age: 60 * 60,
+            sameSite: false,
+          });
+
+          localStorage.setItem("username", body.username);
+        } else {
+          alert("Log in failed");
+        }
+      });
+  }
+
   // [] @up.edu.ph email validation
-  // [] User to Student schema
 
   return (
     <>
-      <h1>Sign Up</h1>
+      <h1>Sign Up for Students</h1>
       <form id="sign-up">
         <input id="s-fname" placeholder="First Name" required />
         <input id="s-mname" placeholder="Middle Name" />
@@ -92,12 +124,21 @@ export default function Home() {
         <button onClick={signUp}>Sign Up</button>
       </form>
 
-      <h1>Log In</h1>
-      <form id="log-in">
-        <input id="l-email" placeholder="Email" required />
-        <input id="l-password" type="password" placeholder="Password" required />
-        <button onClick={logIn}>Log In</button>
+      <h1>Log In for Students</h1>
+      <form id="log-in-student">
+        <input id="ls-email" placeholder="Student Email" />
+        <input id="ls-password" type="password" placeholder="Student Password" />
+        <button onClick={logInStudent}>Log In</button>
       </form>
+
+      <h1>Log In for Approvers</h1>
+      <form id="log-in-approver">
+        <input id="la-email" placeholder="Approver Email" />
+        <input id="la-password" type="password" placeholder="Approver Password" />
+        <button onClick={logInApprover}>Log In</button>
+      </form>
+
+      <p>Note: Coordinate with the Admin to create an Approver account.</p>
     </>
   );
 }
