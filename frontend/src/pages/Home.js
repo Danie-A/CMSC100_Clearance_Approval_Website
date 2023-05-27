@@ -83,19 +83,19 @@ export default function Home() {
     <>
       <h1>Sign Up</h1>
       <form id="sign-up">
-        <input id="s-fname" placeholder="First Name" />
+        <input id="s-fname" placeholder="First Name" required />
         <input id="s-mname" placeholder="Middle Name" />
-        <input id="s-lname" placeholder="Last Name" />
-        <input id="s-sno" placeholder="Student Number" />
-        <input id="s-email" placeholder="UP Mail" />
-        <input id="s-password" type="password" placeholder="Password" />
+        <input id="s-lname" placeholder="Last Name" required />
+        <input id="s-sno" placeholder="Student Number" required />
+        <input id="s-email" placeholder="UP Mail" required />
+        <input id="s-password" type="password" placeholder="Password" required />
         <button onClick={signUp}>Sign Up</button>
       </form>
 
       <h1>Log In</h1>
       <form id="log-in">
-        <input id="l-email" placeholder="Email" />
-        <input id="l-password" type="password" placeholder="Password" />
+        <input id="l-email" placeholder="Email" required />
+        <input id="l-password" type="password" placeholder="Password" required />
         <button onClick={logIn}>Log In</button>
       </form>
     </>
