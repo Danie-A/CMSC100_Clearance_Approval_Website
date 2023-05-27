@@ -28,7 +28,7 @@ const signUpStudent = async (req, res) => {
 };
 
 const loginStudent = async (req, res) => {
-  console.log("logging in");
+  console.log("logging in as student");
   const email = req.body.email.trim();
   const password = req.body.password;
 
@@ -54,8 +54,9 @@ const loginStudent = async (req, res) => {
 
     const token = jwt.sign(tokenPayload, "THIS_IS_A_SECRET_STRING");
 
+    const fullName = user.first_name + " " + user.last_name;
     // return the token to the client
-    return res.send({ success: true, token, username: user.first_name });
+    return res.send({ success: true, token, username: fullName });
   });
 };
 

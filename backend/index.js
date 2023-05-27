@@ -34,9 +34,10 @@ app.use((req, res, next) => {
   next();
 });
 
-// to check if user is logged in
+// to check if student is logged in
 app.use((req, res, next) => {
-  // console.log(req.cookies, req.cookies.authToken);
+  console.log("verifying student or approver");
+  console.log(req.cookies, req.cookies.authToken);
   if (!req.cookies || !req.cookies.authToken) {
     req.userId = false;
   } else {
@@ -51,6 +52,9 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+
+// check if approver is logged in
 
 // setup routes
 setUpRoutes(app);
