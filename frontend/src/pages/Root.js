@@ -1,8 +1,7 @@
-import { Outlet, Link, useLocation } from 'react-router-dom';
+import { Outlet, Link, useLocation, useNavigate, useLoaderData } from 'react-router-dom';
 import { FaUserCircle, FaCheckSquare } from 'react-icons/fa';
 import Cookies from "universal-cookie";
 import { useState, useEffect } from "react";
-import { useNavigate, useLoaderData } from "react-router-dom";
 
 export default function Root() {
 
@@ -45,16 +44,16 @@ export default function Root() {
         if (userType === "student") {
             return <nav>
                 <ul>
-                    <li className={`${location.pathname === "/" ? "active" : ""}`}>
+                    <li className={`${location.pathname === "/student" ? "active" : ""}`}>
                         <Link to="/student" className="nav-link">Home</Link>
                     </li>
-                    <li className={`${location.pathname === "/applications" ? "active" : ""}`}>
+                    <li className={`${location.pathname === "/student/applications" ? "active" : ""}`}>
                         <Link to="/student/applications" className="nav-link">Applications</Link>
                     </li>
-                    <li className={`${location.pathname === "/notifications" ? "active" : ""}`}>
+                    <li className={`${location.pathname === "/student/notifications" ? "active" : ""}`}>
                         <Link to="/student/notifications" className="nav-link">Notifications</Link>
                     </li>
-                    <li className={`${location.pathname === "/create-application" ? "active" : ""}`}>
+                    <li className={`${location.pathname === "/student/create-application" ? "active" : ""}`}>
                         <Link to="/student/create-application" className="nav-link">Create Application</Link>
                     </li>
                 </ul>

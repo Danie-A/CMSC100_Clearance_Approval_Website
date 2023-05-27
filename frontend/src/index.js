@@ -87,26 +87,26 @@ const router = createBrowserRouter([
       { path: "/student/create-application", element: <CreateApplication />, loader: checkIfLoggedInOnDash },
     ],
   },
-  {
-    path: "/approver",
-    element: <Root />,
-    loader: checkIfLoggedInOnDashApprover,
-    children: [
-      { path: "/approver", element: <Dashboard />, loader: checkIfLoggedInOnDash },
-      // { path: "/student/applications", element: <Applications />, loader: checkIfLoggedInOnDash },
-      // { path: "/student/notifications", element: <Notifications />, loader: checkIfLoggedInOnDash },
-      // { path: "/student/create-application", element: <CreateApplication />, loader: checkIfLoggedInOnDash },
-    ],
-  },
-  {
-    path: "/admin",
-    element: <Root />,
-    loader: runAdmin,
-    children: [
-      { path: "/admin", element: <ViewPendingApplications /> },
-      { path: "/admin/manage-approvers", element: <ManageApprovers /> },
-    ],
-  },
+  // {
+  //   path: "/approver",
+  //   element: <Root />,
+  //   loader: checkIfLoggedInOnDashApprover,
+  //   children: [
+  //     { path: "/approver", element: <Dashboard />, loader: checkIfLoggedInOnDash },
+  //     // { path: "/student/applications", element: <Applications />, loader: checkIfLoggedInOnDash },
+  //     // { path: "/student/notifications", element: <Notifications />, loader: checkIfLoggedInOnDash },
+  //     // { path: "/student/create-application", element: <CreateApplication />, loader: checkIfLoggedInOnDash },
+  //   ],
+  // },
+  // {
+  //   path: "/admin",
+  //   element: <Root />,
+  //   loader: runAdmin,
+  //   children: [
+  //     { path: "/admin", element: <ViewPendingApplications /> },
+  //     { path: "/admin/manage-approvers", element: <ManageApprovers /> },
+  //   ],
+  // },
 
 
 ]);
