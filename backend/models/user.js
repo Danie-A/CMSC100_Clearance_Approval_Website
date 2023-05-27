@@ -1,31 +1,47 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
-const UserSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+const studentSchema = new mongoose.Schema({
+  // name: { type: String, required: true },
+  // email: { type: String, required: true },
+  // password: { type: String, required: true },
+  first_name: { type: String, required: true },
+  middle_name: { type: String, required: true },
+  last_name: { type: String, required: true },
+  student_number: { type: String, required: true },
   email: { type: String, required: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  status: { type: String, default: "pending" },
+  open_application: { type: mongoose.Schema.Types.ObjectId, ref: "applications", default: null },
+  closed_applications: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: "applications" }], default: [] },
+  adviser: { type: mongoose.Schema.Types.ObjectId, ref: "advisers", default: null },
 });
 
-UserSchema.pre("save", function(next) {
-  const user = this;
+studentSchema.pre("save", function (next) {
+  const student = this;
 
-  if (!user.isModified("password")) return next();
+  if (!student.isModified("password")) return next();
 
   return bcrypt.genSalt((saltError, salt) => {
-    if (saltError) { return next(saltError); }
+    if (saltError) {
+      return next(saltError);
+    }
 
-    return bcrypt.hash(user.password, salt, (hashError, hash) => {
-      if (hashError) { return next(hashError); }
+    return bcrypt.hash(student.password, salt, (hashError, hash) => {
+      if (hashError) {
+        return next(hashError);
+      }
 
-      user.password = hash;
+      student.password = hash;
       return next();
     });
   });
 });
 
-UserSchema.methods.comparePassword = function(password, callback) {
+studentSchema.methods.comparePassword = function (password, callback) {
   bcrypt.compare(password, this.password, callback);
-}
+};
 
-mongoose.model("User", UserSchema);
+const Student = mongoose.model("student", studentSchema);
+
+export { Student };

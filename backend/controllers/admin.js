@@ -1,4 +1,5 @@
-import { Student } from "../models/student.js";
+// import { Student } from "../models/student.js";
+import { Student } from "../models/user.js";
 import { Approver } from "../models/approver.js";
 
 // const DATABASE_URI = "mongodb+srv://jpsabile:VUNVL7QcJ2tYPbZr@jpsabile.nvysktb.mongodb.net/clearME?retryWrites=true&w=majority";

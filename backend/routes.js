@@ -1,4 +1,4 @@
-import { signUp, login, checkIfLoggedIn } from "./controllers/auth-controller.js";
+import { signUpStudent, loginStudent, checkIfLoggedIn } from "./controllers/auth-controller.js";
 import { addStudentAccount, createApplication, submitStep1 } from "./controllers/student.js";
 import { getPendingApplications, approveStudentAccount, rejectStudentAccount, addApproverAccount, editApproverAccount, deleteApproverAccount } from "./controllers/admin.js";
 import { getPendingApplicationsByAdviser } from "./controllers/approver.js";
@@ -6,8 +6,8 @@ import { getPendingApplicationsByAdviser } from "./controllers/approver.js";
 const setUpRoutes = (app) => {
   // auth
   app.get("/", (req, res) => res.send("API Home"));
-  app.post("/signup", signUp);
-  app.post("/login", login);
+  app.post("/signup-student", signUpStudent);
+  app.post("/login-student", loginStudent);
   app.post("/checkifloggedin", checkIfLoggedIn);
 
   // student

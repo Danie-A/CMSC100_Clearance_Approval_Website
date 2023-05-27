@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { Approver } from "../models/approver.js";
-import { Student } from "../models/student.js";
+// import { Student } from "../models/student.js";
+import { Student } from "../models/user.js";
 import { Application } from "../models/application.js";
 
 // get all pending applications of adviser's students

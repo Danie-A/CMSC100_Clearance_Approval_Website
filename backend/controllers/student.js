@@ -1,12 +1,13 @@
 import { Application } from "../models/application.js";
-import { Student } from "../models/student.js";
+// import { Student } from "../models/student.js";
+import { Student } from "../models/user.js";
 
 // const DATABASE_URI = "mongodb+srv://jpsabile:VUNVL7QcJ2tYPbZr@jpsabile.nvysktb.mongodb.net/clearME?retryWrites=true&w=majority";
 // mongoose.connect(DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // adding a student acc, default status is pending
 const addStudentAccount = async (req, res) => {
-  const { first_name, middle_name, last_name, student_number, up_mail, password } = req.body;
+  const { first_name, middle_name, last_name, student_number, email, password } = req.body;
 
   // trying to add a student account
   try {
@@ -15,7 +16,7 @@ const addStudentAccount = async (req, res) => {
       middle_name: middle_name,
       last_name: last_name,
       student_number: student_number,
-      up_mail: up_mail,
+      email: email,
       password: password,
     });
 
