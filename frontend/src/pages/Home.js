@@ -1,45 +1,44 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Cookies from 'universal-cookie';
+import Cookies from "universal-cookie";
 
 export default function Home() {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // redirect when login is successful
   useEffect(() => {
     if (isLoggedIn) {
-      navigate("/dashboard")
+      navigate("/dashboard");
     }
-  }, [isLoggedIn, navigate])
+  }, [isLoggedIn, navigate]);
 
   function signUp(e) {
     e.preventDefault();
-    // form validation goes here 
-    fetch("http://localhost:3001/signup",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          fname: document.getElementById("s-fname").value,
-          mname: document.getElementById("s-mname").value,
-          lname: document.getElementById("s-lname").value,
-          sno: document.getElementById("s-sno").value,
-          email: document.getElementById("s-email").value,
-          password: document.getElementById("s-password").value
-        })
-      })
-      .then(response => response.json())
-      .then(body => {
+    // form validation goes here
+    fetch("http://localhost:3001/signup-student", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        first_name: document.getElementById("s-fname").value,
+        middle_name: document.getElementById("s-mname").value,
+        last_name: document.getElementById("s-lname").value,
+        student_number: document.getElementById("s-sno").value,
+        email: document.getElementById("s-email").value,
+        password: document.getElementById("s-password").value,
+      }),
+    })
+      .then((response) => response.json())
+      .then((body) => {
         if (body.success) {
-          alert("SUCCESS: You have successfully signed up!")
+          alert("SUCCESS: You have successfully signed up!");
+        } else {
+          alert("ERROR: Failed to sign up.");
         }
-        else { alert("ERROR: Failed to sign up.") }
-      })
+      });
   }
 
   function logIn(e) {
@@ -47,41 +46,36 @@ export default function Home() {
 
     // form validation goes here
 
-    fetch("http://localhost:3001/login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email: document.getElementById("l-email").value,
-          password: document.getElementById("l-password").value
-        })
-      })
-      .then(response => response.json())
-      .then(body => {
+    fetch("http://localhost:3001/login-student", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: document.getElementById("l-email").value,
+        password: document.getElementById("l-password").value,
+      }),
+    })
+      .then((response) => response.json())
+      .then((body) => {
         if (body.success) {
-          setIsLoggedIn(true)
+          setIsLoggedIn(true);
           // successful log in. store the token as a cookie
-          const cookies = new Cookies()
-          cookies.set(
-            "authToken",
-            body.token,
-            {
-              path: "localhost:3001/",
-              age: 60 * 60,
-              sameSite: false
-            });
-
+          const cookies = new Cookies();
+          cookies.set("authToken", body.token, {
+            path: "localhost:3001/",
+            age: 60 * 60,
+            sameSite: false,
+          });
 
           localStorage.setItem("username", body.username);
+        } else {
+          alert("Log in failed");
         }
-        else { alert("Log in failed") }
-      })
+      });
   }
 
-
-  // [/] change s-name to s-fname 
+  // [/] change s-name to s-fname
   // [] @up.edu.ph email validation
   // [] User to Student schema
 
@@ -105,5 +99,5 @@ export default function Home() {
         <button onClick={logIn}>Log In</button>
       </form>
     </>
-  )
+  );
 }
