@@ -1,25 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default function CreateApplication() {
-    const getStudentID = async () => {
-        await fetch("http://localhost:3001/view-student-info", {
+
+    const [studentId, setStudentId] = useState('');
+
+    useEffect(() => {
+        fetch("http://localhost:3001/view-student-info", {
             method: "POST",
             credentials: "include",
         })
             .then((response) => response.json())
             .then((body) => {
-                console.log(body);
-                return body._id;
+                setStudentId(body._id);
             });
-    };
+    }, []);
 
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         var link = document.getElementById("link").value; // get values from the form
         // var studentRemark = document.getElementById("student-remark").value;
 
-        var studentId = getStudentID(); // get student id from local storage
         // [] get student _id
 
         var applicationDocu = { // create subject object to be passed to body
@@ -28,7 +28,7 @@ export default function CreateApplication() {
             github_link: link,
         }
 
-        fetch('http://localhost:3001/create-application', {
+        await fetch('http://localhost:3001/create-application', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
