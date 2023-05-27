@@ -63,8 +63,8 @@ const router = createBrowserRouter([
       { path: "/applications", element: <Applications />, loader: checkIfLoggedInOnDash },
       { path: "/notifications", element: <Notifications />, loader: checkIfLoggedInOnDash },
       { path: "/create-application", element: <CreateApplication />, loader: checkIfLoggedInOnDash },
-      { path: "/view-pending-applications", element: <ViewPendingApplications />, loader: checkIfLoggedInOnDash },
-      { path: "/manage-approvers", element: <ManageApprovers />, loader: checkIfLoggedInOnDash },
+      { path: "/view-pending-applications", element: <ViewPendingApplications /> },
+      { path: "/manage-approvers", element: <ManageApprovers /> },
     ],
   },
 ]);

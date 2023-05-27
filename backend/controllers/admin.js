@@ -55,25 +55,25 @@ const rejectStudentAccount = async (req, res) => {
   }
 };
 
-// add an approver account
-const addApproverAccount = async (req, res) => {
-  const { first_name, middle_name, last_name, type } = req.body;
+// add an approver account // NOTE: in auth-controller-approver
+// const addApproverAccount = async (req, res) => {
+//   const { first_name, middle_name, last_name, type } = req.body;
 
-  try {
-    const approver = Approver({
-      first_name: first_name,
-      middle_name: middle_name,
-      last_name: last_name,
-      type: type,
-    });
+//   try {
+//     const approver = Approver({
+//       first_name: first_name,
+//       middle_name: middle_name,
+//       last_name: last_name,
+//       type: type,
+//     });
 
-    const result = approver.save();
-    if (result) res.status(200).json({ success: true });
-    else res.status(500).json({ success: false });
-  } catch (error) {
-    res.status(500).json({ success: false });
-  }
-};
+//     const result = approver.save();
+//     if (result) res.status(200).json({ success: true });
+//     else res.status(500).json({ success: false });
+//   } catch (error) {
+//     res.status(500).json({ success: false });
+//   }
+// };
 
 // edit an approver account
 const editApproverAccount = async (req, res) => {
@@ -115,4 +115,4 @@ const deleteApproverAccount = async (req, res) => {
   }
 };
 
-export { getPendingApplications, approveStudentAccount, rejectStudentAccount, addApproverAccount, editApproverAccount, deleteApproverAccount };
+export { getPendingApplications, approveStudentAccount, rejectStudentAccount, editApproverAccount, deleteApproverAccount };
