@@ -18,9 +18,6 @@ export default function CreateApplication() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         var link = document.getElementById("link").value; // get values from the form
-        // var studentRemark = document.getElementById("student-remark").value;
-
-        // [] get student _id
 
         var applicationDocu = { // create subject object to be passed to body
             studentId: studentId,

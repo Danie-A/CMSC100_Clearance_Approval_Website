@@ -46,15 +46,12 @@ const createApplication = async (req, res) => {
     if (found) {
       const application = Application({ owner: studentId, current_step: current_step, github_link: github_link });
       const newApplication = await application.save();
-      console.log("FOUND STUDENT");
       await Student.findByIdAndUpdate(studentId, { $set: { open_application: newApplication._id } });
       res.status(200).json({ success: true });
     } else {
-      console.log("FALSE CREATE APPLICATION");
       res.status(404).json({ success: false });
     }
   } catch (error) {
-    console.log("CATCH ERROR");
     res.status(500).json({ success: false });
   }
 };
