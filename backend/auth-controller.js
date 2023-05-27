@@ -8,6 +8,9 @@ const User = mongoose.model("User");
 const signUp = async (req, res) => {
   const newuser = new User({
     name: req.body.name,
+    mname: req.body.mname,
+    lname: req.body.lname,
+    sno: req.body.sno,
     email: req.body.email,
     password: req.body.password
   });
@@ -15,10 +18,10 @@ const signUp = async (req, res) => {
   const result = await newuser.save();
 
   if (result._id) {
-		res.send({ success: true })
-	} else {
-		res.send({ success: false })
-	}
+    res.send({ success: true })
+  } else {
+    res.send({ success: false })
+  }
 }
 
 const login = async (req, res) => {
@@ -34,7 +37,7 @@ const login = async (req, res) => {
   }
 
   // Check if password is correct using the Schema method defined in User Schema
-   user.comparePassword(password, (err, isMatch) => {
+  user.comparePassword(password, (err, isMatch) => {
     if (err || !isMatch) {
       // Scenario 2: FAIL - Wrong password
       return res.send({ success: false });

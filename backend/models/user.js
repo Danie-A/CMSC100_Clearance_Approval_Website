@@ -3,11 +3,14 @@ import bcrypt from 'bcrypt';
 
 const UserSchema = new mongoose.Schema({
   name: { type: String, required: true },
+  mname: { type: String, required: true },
+  lname: { type: String, required: true },
+  sno: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true }
 });
 
-UserSchema.pre("save", function(next) {
+UserSchema.pre("save", function (next) {
   const user = this;
 
   if (!user.isModified("password")) return next();
@@ -24,7 +27,7 @@ UserSchema.pre("save", function(next) {
   });
 });
 
-UserSchema.methods.comparePassword = function(password, callback) {
+UserSchema.methods.comparePassword = function (password, callback) {
   bcrypt.compare(password, this.password, callback);
 }
 
