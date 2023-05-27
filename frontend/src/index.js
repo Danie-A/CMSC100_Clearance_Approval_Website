@@ -26,9 +26,24 @@ const checkIfLoggedInOnHome = async () => {
 
   if (payload.isLoggedIn) {
     return redirect("/dashboard")
+  } else if (!payload.isLoggedIn) {
+
+    const res = await fetch("http://localhost:3001/checkifloggedinapprover",
+      {
+        method: "POST",
+        credentials: "include"
+      });
+
+    const payloadApprover = await res.json();
+    if (payloadApprover.isLoggedIn) {
+      return redirect("/dashboard")
+    } else {
+      return 0
+    }
   } else {
     return 0
   }
+
 }
 
 // Send a POST request to API to check if the user is logged in. Redirect the user back to / if not logged in

@@ -27,7 +27,7 @@ const addApproverAccount = async (req, res) => {
 };
 
 const loginApprover = async (req, res) => {
-  console.log("logging in");
+  console.log("logging in as approver");
   const email = req.body.email.trim();
   const password = req.body.password;
 

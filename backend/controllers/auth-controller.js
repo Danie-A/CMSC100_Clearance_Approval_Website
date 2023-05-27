@@ -28,7 +28,7 @@ const signUpStudent = async (req, res) => {
 };
 
 const loginStudent = async (req, res) => {
-  console.log("logging in");
+  console.log("logging in as student");
   const email = req.body.email.trim();
   const password = req.body.password;
 

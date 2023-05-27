@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 const approverSchema = mongoose.Schema({
   first_name: { type: String, required: true },
