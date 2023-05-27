@@ -1,6 +1,57 @@
 import React from "react";
 
 export default function CreateApplication() {
+    const getStudentID = async () => {
+        await fetch("http://localhost:3001/view-student-info", {
+            method: "POST",
+            credentials: "include",
+        })
+            .then((response) => response.json())
+            .then((body) => {
+                console.log(body);
+                return body._id;
+            });
+    };
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        var link = document.getElementById("link").value; // get values from the form
+        // var studentRemark = document.getElementById("student-remark").value;
+
+        var studentId = getStudentID(); // get student id from local storage
+        // [] get student _id
+
+        var applicationDocu = { // create subject object to be passed to body
+            studentId: studentId,
+            current_step: 1,
+            github_link: link,
+        }
+
+        fetch('http://localhost:3001/create-application', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(applicationDocu)
+        })
+            .then((response) => response.json()) // get the response
+            .then((data) => {
+                console.log(data);
+                if (data.success) { // if success is true
+                    alert("Successfully created application!");
+                } else { // success: false
+                    alert("Failed to create application.");
+                }
+            })
+            .catch((error) => { // show error
+                alert(`Error: ${error}`);
+            })
+
+        // set form to blank again
+        document.getElementById("link").value = ''; // get values from the form
+    }
+
     return (
         <div className="whole-container">
             <h5>Create Clearance Application</h5>
@@ -11,10 +62,10 @@ export default function CreateApplication() {
                     <label htmlFor="link">GitHub Link:</label><br />
                     <input type="text" id="link" name="link" required /><br />
 
-                    <label htmlFor="student-remark">Student Remark:</label><br />
-                    <input type="text" id="student-remark" name="student-remark" /><br /><br />
+                    {/* <label htmlFor="student-remark">Student Remark:</label><br />
+                    <input type="text" id="student-remark" name="student-remark" /><br /><br /> */}
 
-                    <input type="submit" className="btn btn-primary" value="Submit" />
+                    <input type="submit" onClick={handleSubmit} className="btn btn-primary" value="Submit" />
                     <br />
 
                 </form>

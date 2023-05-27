@@ -4,18 +4,6 @@ import Cookies from "universal-cookie";
 import { useState, useEffect } from "react";
 
 export default function Root() {
-
-    const viewMyInfo = async () => {
-        await fetch("http://localhost:3001/view-student-info", {
-            method: "POST",
-            credentials: "include",
-        })
-            .then((response) => response.json())
-            .then((body) => {
-                console.log(body);
-            });
-    };
-
     const location = useLocation();
 
     const username = localStorage.getItem("username");
