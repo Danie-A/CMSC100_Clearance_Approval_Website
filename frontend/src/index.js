@@ -1,52 +1,49 @@
-import './index.css';
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { redirect } from 'react-router-dom';
+import "./index.css";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { redirect } from "react-router-dom";
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Home from './pages/Home';
-import Dashboard from './pages/Dashboard';
-import Root from './pages/Root';
-import Applications from './pages/Student/applications/Applications';
-import Notifications from './pages/Student/notifications/Notifications';
-import CreateApplication from './pages/Student/CreateApplication';
-import ViewPendingApplications from './pages/Admin/ViewPendingApplications';
-import ManageApprovers from './pages/Admin/ManageApprovers';
+import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
+import Root from "./pages/Root";
+import Applications from "./pages/Student/applications/Applications";
+import Notifications from "./pages/Student/notifications/Notifications";
+import CreateApplication from "./pages/Student/CreateApplication";
+import ViewPendingApplications from "./pages/Admin/ViewPendingApplications";
+import ManageApprovers from "./pages/Admin/ManageApprovers";
 
 // Send a POST request to API to check if the user is logged in. Redirect the user to /dashboard if already logged in
 const checkIfLoggedInOnHome = async () => {
-  const res = await fetch("http://localhost:3001/checkifloggedin",
-    {
-      method: "POST",
-      credentials: "include"
-    });
+  const res = await fetch("http://localhost:3001/checkifloggedin", {
+    method: "POST",
+    credentials: "include",
+  });
 
   const payload = await res.json();
 
   if (payload.isLoggedIn) {
-    return redirect("/dashboard")
+    return redirect("/dashboard");
   } else {
-    return 0
+    return 0;
   }
-}
+};
 
 // Send a POST request to API to check if the user is logged in. Redirect the user back to / if not logged in
 const checkIfLoggedInOnDash = async () => {
-  const res = await fetch("http://localhost:3001/checkifloggedin",
-    {
-      method: "POST",
-      credentials: "include"
-    });
-
+  const res = await fetch("http://localhost:3001/checkifloggedin", {
+    method: "POST",
+    credentials: "include",
+  });
 
   const payload = await res.json();
   if (payload.isLoggedIn) {
-    return true
+    return true;
   } else {
-    return redirect("/")
+    return redirect("/");
   }
-}
+};
 
 // const router = createBrowserRouter([
 //   { path: '/', element: <Home />, loader: checkIfLoggedInOnHome },
@@ -63,13 +60,13 @@ const router = createBrowserRouter([
       { path: "/applications", element: <Applications />, loader: checkIfLoggedInOnDash },
       { path: "/notifications", element: <Notifications />, loader: checkIfLoggedInOnDash },
       { path: "/create-application", element: <CreateApplication />, loader: checkIfLoggedInOnDash },
-      { path: "/view-pending-applications", element: <ViewPendingApplications />, loader: checkIfLoggedInOnDash },
-      { path: "/manage-approvers", element: <ManageApprovers />, loader: checkIfLoggedInOnDash },
+      { path: "/admin/view-pending-applications", element: <ViewPendingApplications /> },
+      { path: "/admin/manage-approvers", element: <ManageApprovers /> },
     ],
   },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />

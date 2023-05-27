@@ -49,18 +49,18 @@ import needle from "needle";
 
 // needle.post("http://localhost:3001/add-approver", { first_name: "Kat", middle_name: "Loren", last_name: "Tan", type: "adviser" }, (err, res) => console.log(res.body));
 
-needle.post(
-  "http://localhost:3001/add-student",
-  {
-    first_name: "Hello",
-    middle_name: "I",
-    last_name: "Baymax",
-    student_number: "2000-99999",
-    up_mail: "baymax@up.edu.ph",
-    password: "12345678",
-  },
-  (err, res) => console.log(res.body)
-);
+// needle.post(
+//   "http://localhost:3001/add-student",
+//   {
+//     first_name: "Hello",
+//     middle_name: "I",
+//     last_name: "Baymax",
+//     student_number: "2000-99999",
+//     up_mail: "baymax@up.edu.ph",
+//     password: "12345678",
+//   },
+//   (err, res) => console.log(res.body)
+// );
 // needle.post(
 //   "http://localhost:3001/add-student",
 //   {
@@ -83,3 +83,22 @@ needle.post(
 // needle.post("http://localhost:3001/create-application", { studentId: "6470f707f45884ea8a9ba222" }, (err, res) => console.log(res.body));
 
 // needle.post("http://localhost:3001/submit-step1", { studentId: "6470f707f45884ea8a9ba222", githubLink: "github" }, (err, res) => console.log(res.body));
+
+needle.post(
+  "http://localhost:3001/add-approver",
+  {
+    first_name: "kat",
+    middle_name: "loren",
+    last_name: "tan",
+    type: "adviser",
+    email: "kmtan4@up.edu.ph",
+    password: "12345678",
+  },
+  (err, res) => console.log(res.body)
+);
+
+// needle.post("http://localhost:3001/login-admin", { email: "admin", password: "admin" }, (err, res) => console.log(res.body));
+
+// needle.get("http://localhost:3001/get-all-approvers", (err, res) => console.log(res.body));
+
+// needle.post("http://localhost:3001/delete-approver", { approverId: "6471d39cfd663db0a7295286" }, (err, res) => console.log(res.body));
