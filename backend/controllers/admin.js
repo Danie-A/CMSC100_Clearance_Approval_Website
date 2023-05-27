@@ -56,9 +56,19 @@ const rejectStudentAccount = async (req, res) => {
   }
 };
 
-// add an approver account 
+// get all approvers
+const getAllApprovers = async (req, res) => {
+  try {
+    const result = await Approver.find({});
+    res.status(200).json({ success: true, result: result });
+  } catch (error) {
+    res.status(500).json({ success: false });
+  }
+};
+
+// add an approver account
 const addApproverAccount = async (req, res) => {
-  const { first_name, middle_name, last_name, type } = req.body;
+  const { first_name, middle_name, last_name, type, email, password } = req.body;
 
   try {
     const approver = Approver({
@@ -66,9 +76,11 @@ const addApproverAccount = async (req, res) => {
       middle_name: middle_name,
       last_name: last_name,
       type: type,
+      email: email,
+      password: password,
     });
 
-    const result = approver.save();
+    const result = await approver.save();
     if (result) res.status(200).json({ success: true });
     else res.status(500).json({ success: false });
   } catch (error) {
@@ -78,16 +90,13 @@ const addApproverAccount = async (req, res) => {
 
 // edit an approver account
 const editApproverAccount = async (req, res) => {
-  const { approverId, first_name, middle_name, last_name } = req.body;
+  const { approverId, updatedApprover } = req.body;
+  console.log(approverId);
+  console.log(updatedApprover);
 
   try {
     const found = await Approver.findById(approverId);
     if (found) {
-      const updatedApprover = {
-        first_name: first_name,
-        middle_name: middle_name,
-        last_name: last_name,
-      };
       await Approver.findByIdAndUpdate(approverId, { $set: updatedApprover });
       res.status(200).json({ success: true });
     } else {
@@ -104,6 +113,7 @@ const deleteApproverAccount = async (req, res) => {
   const { approverId } = req.body;
   try {
     const found = await Approver.findById(approverId);
+    console.log(found);
     if (found) {
       await Approver.findByIdAndDelete(approverId);
       res.status(200).json({ success: true });
@@ -179,4 +189,4 @@ const checkIfLoggedInApprover = async (req, res) => {
 };
 
 
-export { getPendingApplications, approveStudentAccount, rejectStudentAccount, addApproverAccount, loginApprover, checkIfLoggedInApprover, editApproverAccount, deleteApproverAccount };
+export { getPendingApplications, approveStudentAccount, rejectStudentAccount, addApproverAccount, loginApprover, checkIfLoggedInApprover, getAllApprovers, editApproverAccount, deleteApproverAccount };

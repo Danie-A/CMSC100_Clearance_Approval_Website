@@ -86,4 +86,19 @@ const checkIfLoggedIn = async (req, res) => {
   }
 };
 
-export { signUpStudent, loginStudent, checkIfLoggedIn };
+const logInAsAdmin = (req, res) => {
+  const { email, password } = req.body;
+  try {
+    if (email === "admin" && password === "admin") {
+      const token = jwt.sign({ _id: "admin" }, "THIS_IS_A_SECRET_STRING");
+      return res.send({ success: true, token, username: "admin" });
+    } else {
+      return res.send({ success: false });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.send({ success: false });
+  }
+};
+
+export { signUpStudent, loginStudent, checkIfLoggedIn, logInAsAdmin };

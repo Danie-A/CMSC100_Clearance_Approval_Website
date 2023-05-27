@@ -1,6 +1,15 @@
-import { signUpStudent, loginStudent, checkIfLoggedIn } from "./controllers/auth-controller.js";
+import { signUpStudent, loginStudent, checkIfLoggedIn, logInAsAdmin } from "./controllers/auth-controller.js";
 import { viewStudentInfo, createApplication, submitStep1 } from "./controllers/student.js";
-import { getPendingApplications, approveStudentAccount, rejectStudentAccount, addApproverAccount, loginApprover, checkIfLoggedInApprover, editApproverAccount, deleteApproverAccount } from "./controllers/admin.js";
+import {
+  getPendingApplications,
+  approveStudentAccount,
+  rejectStudentAccount,
+  getAllApprovers,
+  addApproverAccount,
+  loginApprover, checkIfLoggedInApprover,
+  editApproverAccount,
+  deleteApproverAccount,
+} from "./controllers/admin.js";
 import { getPendingApplicationsByAdviser } from "./controllers/approver.js";
 
 const setUpRoutes = (app) => {
@@ -17,9 +26,11 @@ const setUpRoutes = (app) => {
   app.post("/submit-step1", submitStep1);
 
   // admin
+  app.post("/login-admin", logInAsAdmin);
   app.get("/get-pending-applications", getPendingApplications);
   app.post("/approve-student-account", approveStudentAccount);
   app.post("/reject-student-account", rejectStudentAccount);
+  app.get("/get-all-approvers", getAllApprovers);
   app.post("/add-approver", addApproverAccount);
   app.post("/login-approver", loginApprover);
   app.post("/checkifloggedinapprover", checkIfLoggedInApprover);

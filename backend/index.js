@@ -43,7 +43,7 @@ app.use((req, res, next) => {
   } else {
     try {
       const tokenPayload = jwt.verify(req.cookies.authToken, "THIS_IS_A_SECRET_STRING");
-      console.log(tokenPayload);
+      // console.log(tokenPayload);
       req.userId = tokenPayload._id;
     } catch {
       console.log("catch");
