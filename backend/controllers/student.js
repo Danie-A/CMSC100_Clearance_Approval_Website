@@ -38,6 +38,18 @@ const viewStudentInfo = async (req, res) => {
   res.status(200).json(result);
 };
 
+const viewOpenApplicationInfo = async (req, res) => {
+  const { applicationId } = req.body;
+  try {
+    const found = await Application.findById(applicationId);
+    if (found) res.status(200).json({ data: found });
+    else res.status(500).json({ success: false, request: [] });
+  } catch (error) {
+    console.log(`Error: ${error}`);
+    res.status(500).json({ succes: false, request: [] });
+  }
+};
+
 // creating an application
 const createApplication = async (req, res) => {
   const { studentId, github_link } = req.body;
@@ -60,12 +72,11 @@ const createApplication = async (req, res) => {
 // revise current_step and link/remark
 // submitting step1 (github link) 
 const addStudentSubmission = async (req, res) => {
-  const { studentId, githubLink } = req.body;
-
+  const { studentId, current_step, remark_link } = req.body;
   try {
     const foundStudent = await Student.findById(studentId);
     if (foundStudent) {
-      await Application.findByIdAndUpdate(foundStudent.open_application, { $set: { current_step: 1, github_link: githubLink } });
+      await Application.findByIdAndUpdate(foundStudent.open_application, { $set: { current_step: current_step, student_submissions: [...foundStudent.student_submissions, { date: new Date().getDate(), step: current_step, remark_link: remark_link }] } });
       res.status(200).json({ success: true });
     } else {
       res.status(404).json({ success: false });
@@ -79,4 +90,4 @@ const addStudentSubmission = async (req, res) => {
 
 
 
-export { viewStudentInfo, createApplication, addStudentSubmission };
+export { viewStudentInfo, createApplication, addStudentSubmission, viewOpenApplicationInfo };
