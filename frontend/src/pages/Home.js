@@ -60,6 +60,7 @@ export default function Home() {
       .then((body) => {
         if (body.success) {
           setIsLoggedIn(true);
+          console.log("logged in");
           // successful log in. store the token as a cookie
           const cookies = new Cookies();
           cookies.set("authToken", body.token, {

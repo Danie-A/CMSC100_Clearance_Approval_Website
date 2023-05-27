@@ -15,9 +15,9 @@ export default function Dashboard() {
 
       <div className="whole-container">
         <p>You have no pending clearance application.</p>
-        <button type="button" class="btn btn-primary">Create Clearance Application</button>
+        <button type="button" className="btn btn-primary">Create Clearance Application</button>
         <br></br>
-        <button type="button" class="btn btn-primary" onClick={viewMyInfo}>View My Info</button>
+        <button type="button" className="btn btn-primary" onClick={viewMyInfo}>View My Info</button>
       </div>
 
     </>
