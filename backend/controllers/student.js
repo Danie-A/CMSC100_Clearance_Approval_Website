@@ -6,36 +6,43 @@ import { Student } from "../models/user.js";
 // mongoose.connect(DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // adding a student acc, default status is pending
-const addStudentAccount = async (req, res) => {
-  const { first_name, middle_name, last_name, student_number, email, password } = req.body;
+// const addStudentAccount = async (req, res) => {
+//   const { first_name, middle_name, last_name, student_number, email, password } = req.body;
 
-  // trying to add a student account
-  try {
-    const student = new Student({
-      first_name: first_name,
-      middle_name: middle_name,
-      last_name: last_name,
-      student_number: student_number,
-      email: email,
-      password: password,
-    });
+//   // trying to add a student account
+//   try {
+//     const student = new Student({
+//       first_name: first_name,
+//       middle_name: middle_name,
+//       last_name: last_name,
+//       student_number: student_number,
+//       email: email,
+//       password: password,
+//     });
 
-    const result = await student.save();
-    if (result) res.status(200).json({ success: true });
-    else res.status(500).json({ success: false });
+//     const result = await student.save();
+//     if (result) res.status(200).json({ success: true });
+//     else res.status(500).json({ success: false });
 
-    // if error
-  } catch (error) {
-    console.log(`Error: ${error}`);
-    res.status(500).json({ success: false });
-  }
+//     // if error
+//   } catch (error) {
+//     console.log(`Error: ${error}`);
+//     res.status(500).json({ success: false });
+//   }
+// };
+
+const viewStudentInfo = async (req, res) => {
+  console.log(req.userId);
+  const result = await Student.findById(req.userId);
+  console.log(result);
+  res.status(200).json(result);
 };
 
 // creating an application
 const createApplication = async (req, res) => {
   const { studentId } = req.body;
   try {
-    const found = await Student.findById(studentId);
+    const found = await Student.find({ _id: studentId, status: "approved" });
     if (found) {
       const application = Application({ owner: studentId });
       const newApplication = await application.save();
@@ -66,4 +73,4 @@ const submitStep1 = async (req, res) => {
     res.status(500).json({ success: false });
   }
 };
-export { addStudentAccount, createApplication, submitStep1 };
+export { viewStudentInfo, createApplication, submitStep1 };

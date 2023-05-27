@@ -1,6 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
+import jwt from "jsonwebtoken";
 
 // import UserSchema from "./models/user.js";
 import "./models/user.js";
@@ -30,6 +31,25 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS,POST");
   res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers,Access-Control-Allow-Methods,Origin,Accept,Content-Type,X-Requested-With,Cookie");
   res.setHeader("Access-Control-Allow-Credentials", "true");
+  next();
+});
+
+// to check if user is logged in
+app.use((req, res, next) => {
+  console.log("verifying");
+  console.log(req.cookies, req.cookies.authToken);
+  if (!req.cookies || !req.cookies.authToken) {
+    req.userId = false;
+  } else {
+    try {
+      const tokenPayload = jwt.verify(req.cookies.authToken, "THIS_IS_A_SECRET_STRING");
+      console.log(tokenPayload);
+      req.userId = tokenPayload._id;
+    } catch {
+      console.log("catch");
+      req.userId = false;
+    }
+  }
   next();
 });
 

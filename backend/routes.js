@@ -1,5 +1,5 @@
 import { signUpStudent, loginStudent, checkIfLoggedIn } from "./controllers/auth-controller.js";
-import { addStudentAccount, createApplication, submitStep1 } from "./controllers/student.js";
+import { viewStudentInfo, createApplication, submitStep1 } from "./controllers/student.js";
 import { getPendingApplications, approveStudentAccount, rejectStudentAccount, addApproverAccount, editApproverAccount, deleteApproverAccount } from "./controllers/admin.js";
 import { getPendingApplicationsByAdviser } from "./controllers/approver.js";
 
@@ -11,7 +11,8 @@ const setUpRoutes = (app) => {
   app.post("/checkifloggedin", checkIfLoggedIn);
 
   // student
-  app.post("/add-student", addStudentAccount);
+  // app.post("/add-student", addStudentAccount);
+  app.post("/view-student-info", viewStudentInfo);
   app.post("/create-application", createApplication);
   app.post("/submit-step1", submitStep1);
 

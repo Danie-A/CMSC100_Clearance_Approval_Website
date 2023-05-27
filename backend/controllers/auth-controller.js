@@ -6,14 +6,15 @@ import jwt from "jsonwebtoken";
 import { Student } from "../models/user.js";
 
 const signUpStudent = async (req, res) => {
-  const { first_name, middle_name, last_name, student_number, email, password } = req.body;
+  // const { first_name, middle_name, last_name, student_number, email, password } = req.body;
+  const { name, email, password } = req.body;
 
   const student = new Student({
-    first_name: first_name,
-    middle_name: middle_name,
-    last_name: last_name,
-    student_number: student_number,
-    email: up_mail,
+    first_name: name,
+    middle_name: "test",
+    last_name: "test",
+    student_number: "test",
+    email: email,
     password: password,
   });
 
@@ -27,6 +28,7 @@ const signUpStudent = async (req, res) => {
 };
 
 const loginStudent = async (req, res) => {
+  console.log("logging in");
   const email = req.body.email.trim();
   const password = req.body.password;
 
@@ -53,7 +55,7 @@ const loginStudent = async (req, res) => {
     const token = jwt.sign(tokenPayload, "THIS_IS_A_SECRET_STRING");
 
     // return the token to the client
-    return res.send({ success: true, token, username: user.name });
+    return res.send({ success: true, token, username: user.first_name });
   });
 };
 
@@ -68,7 +70,7 @@ const checkIfLoggedIn = async (req, res) => {
     const tokenPayload = jwt.verify(req.cookies.authToken, "THIS_IS_A_SECRET_STRING");
 
     // check if the _id in the payload is an existing user id
-    const user = await User.findById(tokenPayload._id);
+    const user = await Student.findById(tokenPayload._id);
 
     if (user) {
       // SUCCESS Scenario - User is found
