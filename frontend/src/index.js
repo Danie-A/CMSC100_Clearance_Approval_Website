@@ -11,10 +11,10 @@ import Root from './pages/Root';
 import Applications from './pages/Student/applications/Applications';
 import Notifications from './pages/Student/notifications/Notifications';
 import CreateApplication from './pages/Student/CreateApplication';
-import ViewPendingApplications from './pages/Admin/ViewPendingApplications';
-import ManageApprovers from './pages/Admin/ManageApprovers';
+// import ViewPendingApplications from './pages/Admin/ViewPendingApplications';
+// import ManageApprovers from './pages/Admin/ManageApprovers';
 
-// Send a POST request to API to check if the user is logged in. Redirect the user to /dashboard if already logged in
+// Send a POST request to API to check if the user is logged in. Redirect the user to /student if already logged in
 const checkIfLoggedInOnHome = async () => {
   const res = await fetch("http://localhost:3001/checkifloggedin",
     {
@@ -25,7 +25,7 @@ const checkIfLoggedInOnHome = async () => {
   const payload = await res.json();
 
   if (payload.isLoggedIn) {
-    return redirect("/dashboard")
+    return redirect("/student")
 
   } else {
     return 0
@@ -50,21 +50,23 @@ const checkIfLoggedInOnDash = async () => {
   }
 }
 
-
 const router = createBrowserRouter([
+  { path: "/", element: <Home />, loader: checkIfLoggedInOnHome },
   {
-    path: "/",
+    path: "/student",
     element: <Root />,
+    loader: checkIfLoggedInOnDash,
     children: [
-      { path: "/", element: <Home />, loader: checkIfLoggedInOnHome },
-      { path: "/dashboard", element: <Dashboard />, loader: checkIfLoggedInOnDash },
-      { path: "/applications", element: <Applications />, loader: checkIfLoggedInOnDash },
-      { path: "/notifications", element: <Notifications />, loader: checkIfLoggedInOnDash },
-      { path: "/create-application", element: <CreateApplication />, loader: checkIfLoggedInOnDash },
-      { path: "/view-pending-applications", element: <ViewPendingApplications /> },
-      { path: "/manage-approvers", element: <ManageApprovers /> },
+      { path: "/student", element: <Dashboard />, loader: checkIfLoggedInOnDash },
+      { path: "/student/applications", element: <Applications />, loader: checkIfLoggedInOnDash },
+      { path: "/student/notifications", element: <Notifications />, loader: checkIfLoggedInOnDash },
+      { path: "/student/create-application", element: <CreateApplication />, loader: checkIfLoggedInOnDash },
+      // { path: "/admin/view-pending-applications", element: <ViewPendingApplications />, loader: checkIfLoggedInOnDash },
+      // { path: "/admin/manage-approvers", element: <ManageApprovers />, loader: checkIfLoggedInOnDash },
     ],
   },
+
+
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

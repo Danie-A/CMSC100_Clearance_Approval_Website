@@ -1,27 +1,4 @@
-import Cookies from "universal-cookie";
-import { useState, useEffect } from "react";
-import { useNavigate, useLoaderData } from "react-router-dom";
-
 export default function Dashboard() {
-  const username = localStorage.getItem("username");
-  const [isLoggedIn, setIsLoggedIn] = useState(useLoaderData());
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/");
-    }
-  }, [isLoggedIn, navigate]);
-
-  function logout() {
-    const cookies = new Cookies();
-    cookies.remove("authToken");
-
-    localStorage.removeItem("username");
-
-    setIsLoggedIn(false);
-  }
-
   const viewMyInfo = async () => {
     await fetch("http://localhost:3001/view-student-info", {
       method: "POST",
@@ -35,9 +12,14 @@ export default function Dashboard() {
 
   return (
     <>
-      Welcome to the dashboard, {username}!<br />
-      <button onClick={logout}>Log Out</button>
-      <button onClick={viewMyInfo}>View My Info</button>
+
+      <div className="whole-container">
+        <p>You have no pending clearance application.</p>
+        <button type="button" class="btn btn-primary">Create Clearance Application</button>
+        <br></br>
+        <button type="button" class="btn btn-primary" onClick={viewMyInfo}>View My Info</button>
+      </div>
+
     </>
   );
 }

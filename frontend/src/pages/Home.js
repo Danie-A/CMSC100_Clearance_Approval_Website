@@ -10,7 +10,7 @@ export default function Home() {
   // redirect when login is successful
   useEffect(() => {
     if (isLoggedIn) {
-      navigate("/dashboard");
+      navigate("/student");
     }
   }, [isLoggedIn, navigate]);
 
