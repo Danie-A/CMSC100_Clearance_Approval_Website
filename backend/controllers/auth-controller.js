@@ -7,13 +7,13 @@ import { Student } from "../models/user.js";
 
 const signUpStudent = async (req, res) => {
   // const { first_name, middle_name, last_name, student_number, email, password } = req.body;
-  const { name, email, password } = req.body;
+  const { first_name, middle_name, last_name, student_number, email, password } = req.body;
 
   const student = new Student({
-    first_name: name,
-    middle_name: "test",
-    last_name: "test",
-    student_number: "test",
+    first_name: first_name,
+    middle_name: middle_name,
+    last_name: last_name,
+    student_number: student_number,
     email: email,
     password: password,
   });
