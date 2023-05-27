@@ -1,6 +1,7 @@
 // import { Student } from "../models/student.js";
 import { Student } from "../models/user.js";
 import { Approver } from "../models/approver.js";
+import jwt from "jsonwebtoken";
 
 // const DATABASE_URI = "mongodb+srv://jpsabile:VUNVL7QcJ2tYPbZr@jpsabile.nvysktb.mongodb.net/clearME?retryWrites=true&w=majority";
 // mongoose.connect(DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -55,25 +56,25 @@ const rejectStudentAccount = async (req, res) => {
   }
 };
 
-// add an approver account // NOTE: in auth-controller-approver
-// const addApproverAccount = async (req, res) => {
-//   const { first_name, middle_name, last_name, type } = req.body;
+// add an approver account 
+const addApproverAccount = async (req, res) => {
+  const { first_name, middle_name, last_name, type } = req.body;
 
-//   try {
-//     const approver = Approver({
-//       first_name: first_name,
-//       middle_name: middle_name,
-//       last_name: last_name,
-//       type: type,
-//     });
+  try {
+    const approver = Approver({
+      first_name: first_name,
+      middle_name: middle_name,
+      last_name: last_name,
+      type: type,
+    });
 
-//     const result = approver.save();
-//     if (result) res.status(200).json({ success: true });
-//     else res.status(500).json({ success: false });
-//   } catch (error) {
-//     res.status(500).json({ success: false });
-//   }
-// };
+    const result = approver.save();
+    if (result) res.status(200).json({ success: true });
+    else res.status(500).json({ success: false });
+  } catch (error) {
+    res.status(500).json({ success: false });
+  }
+};
 
 // edit an approver account
 const editApproverAccount = async (req, res) => {
@@ -115,4 +116,67 @@ const deleteApproverAccount = async (req, res) => {
   }
 };
 
-export { getPendingApplications, approveStudentAccount, rejectStudentAccount, editApproverAccount, deleteApproverAccount };
+const loginApprover = async (req, res) => {
+  console.log("logging in as approver");
+  const email = req.body.email.trim();
+  const password = req.body.password;
+
+  // Check if email exists
+  const user = await Approver.findOne({ email });
+
+  //  Scenario 1: FAIL - User doesn't exist
+  if (!user) {
+    console.log("user doesn't exist");
+    return res.send({ success: false });
+  }
+
+  // Check if password is correct using the Schema method defined in User Schema
+  user.comparePassword(password, (err, isMatch) => {
+    if (err || !isMatch) {
+      // Scenario 2: FAIL - Wrong password
+      console.log("wrong password");
+      return res.send({ success: false });
+    }
+
+    // Scenario 3: SUCCESS - time to create a token
+    const tokenPayload = {
+      _id: user._id,
+    };
+
+    const token = jwt.sign(tokenPayload, "THIS_IS_A_SECRET_STRING");
+
+    const fullName = user.first_name + " " + user.last_name;
+    // return the token to the client
+    console.log("success login approver");
+    return res.send({ success: true, token, username: fullName });
+  });
+};
+
+const checkIfLoggedInApprover = async (req, res) => {
+  if (!req.cookies || !req.cookies.authToken) {
+    // FAIL Scenario 1 - No cookies / no authToken cookie sent
+    return res.send({ isLoggedIn: false });
+  }
+
+  try {
+    // try to verify the token
+    const tokenPayload = jwt.verify(req.cookies.authToken, "THIS_IS_A_SECRET_STRING");
+
+    // check if the _id in the payload is an existing user id
+    const user = await Approver.findById(tokenPayload._id);
+
+    if (user) {
+      // SUCCESS Scenario - User is found
+      return res.send({ isLoggedIn: true });
+    } else {
+      // FAIL Scenario 2 - Token is valid but user id not found
+      return res.send({ isLoggedIn: false });
+    }
+  } catch {
+    // FAIL Scenario 3 - Error in validating token / Token is not valid
+    return res.send({ isLoggedIn: false });
+  }
+};
+
+
+export { getPendingApplications, approveStudentAccount, rejectStudentAccount, addApproverAccount, loginApprover, checkIfLoggedInApprover, editApproverAccount, deleteApproverAccount };

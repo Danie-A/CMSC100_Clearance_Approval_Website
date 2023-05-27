@@ -3,6 +3,20 @@ import { FaUserCircle, FaCheckSquare } from 'react-icons/fa';
 
 export default function Root() {
     const location = useLocation();
+
+    // root is just clearme logo
+
+    // subroot is the navbar:
+    // if user different navbar
+
+    // if admin different navbar
+
+    // if approver clearance officer different navbar
+
+    // if approver adviser different navbar
+
+    // show 'dashboard' from auth_lec
+
     return (
         <>
             <div className="header-container d-flex justify-content-between align-items-center">

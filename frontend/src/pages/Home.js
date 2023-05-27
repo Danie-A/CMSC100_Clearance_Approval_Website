@@ -41,34 +41,6 @@ export default function Home() {
       });
   }
 
-  // TO BE INCLUDED IN ADMIN
-  function createApproverAccount(e) {
-    e.preventDefault();
-    // form validation goes here
-    fetch("http://localhost:3001/add-approver", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        first_name: document.getElementById("a-fname").value,
-        middle_name: document.getElementById("a-mname").value,
-        last_name: document.getElementById("a-lname").value,
-        type: document.getElementById("a-type").value,
-        email: document.getElementById("a-email").value,
-        password: document.getElementById("a-password").value,
-      }),
-    })
-      .then((response) => response.json())
-      .then((body) => {
-        if (body.success) {
-          alert("SUCCESS: You have successfully signed up!");
-        } else {
-          alert("ERROR: Failed to sign up.");
-        }
-      });
-  }
-
   function logInStudent(e) {
     e.preventDefault();
 
@@ -151,22 +123,6 @@ export default function Home() {
         <input id="s-password" type="password" placeholder="Password" />
         <button onClick={signUp}>Sign Up</button>
       </form>
-
-      {/* Create Approver Account */}
-      <form id="create-approver">
-        <input id="a-fname" placeholder="First Name" />
-        <input id="a-mname" placeholder="Middle Name" />
-        <input id="a-lname" placeholder="Last Name" />
-        <label htmlFor="a-type">Choose Approver Type:</label>
-        <select name="a-type" id="a-type">
-          <option value="adviser">Adviser</option>
-          <option value="clearance-officer">Clearance Officer</option>
-        </select>
-        <input id="a-email" placeholder="Approver Email" />
-        <input id="a-password" type="password" placeholder="Approver Password" />
-        <button onClick={createApproverAccount}>Create Approver Account</button>
-      </form>
-
 
       <h1>Log In for Students</h1>
       <form id="log-in-student">

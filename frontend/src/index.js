@@ -26,20 +26,7 @@ const checkIfLoggedInOnHome = async () => {
 
   if (payload.isLoggedIn) {
     return redirect("/dashboard")
-  } else if (!payload.isLoggedIn) {
 
-    const res = await fetch("http://localhost:3001/checkifloggedinapprover",
-      {
-        method: "POST",
-        credentials: "include"
-      });
-
-    const payloadApprover = await res.json();
-    if (payloadApprover.isLoggedIn) {
-      return redirect("/dashboard")
-    } else {
-      return 0
-    }
   } else {
     return 0
   }
@@ -63,10 +50,6 @@ const checkIfLoggedInOnDash = async () => {
   }
 }
 
-// const router = createBrowserRouter([
-//   { path: '/', element: <Home />, loader: checkIfLoggedInOnHome },
-//   { path: '/dashboard', element: <Dashboard />, loader: checkIfLoggedInOnDash }
-// ])
 
 const router = createBrowserRouter([
   {

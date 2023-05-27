@@ -36,7 +36,7 @@ app.use((req, res, next) => {
 
 // to check if student is logged in
 app.use((req, res, next) => {
-  console.log("verifying");
+  console.log("verifying student or approver");
   console.log(req.cookies, req.cookies.authToken);
   if (!req.cookies || !req.cookies.authToken) {
     req.userId = false;
