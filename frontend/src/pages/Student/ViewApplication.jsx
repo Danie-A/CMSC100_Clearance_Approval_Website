@@ -16,7 +16,7 @@ export default function ViewApplication() {
                 const body = await response.json();
                 setStudent(body);
 
-                const applicationId = student?.open_application;
+                const applicationId = body.open_application;
                 console.log("APPLICATION ID IS " + applicationId);
 
                 const applicationResponse = await fetch('http://localhost:3001/view-open-application-info', {
@@ -43,7 +43,7 @@ export default function ViewApplication() {
         }
 
         fetchData();
-    });
+    }, []);
 
     const handleResubmitClearanceOfficer = async (e) => {
         e.preventDefault();
@@ -117,8 +117,7 @@ export default function ViewApplication() {
     }
 
     function showContent() {
-        console.log("APPLICATION IS: ", application);
-        if (!application || !application.remarks) {
+        if (!application.remarks) {
             // pending to be reviewed by adviser - still at step 1
             return <div className="form-container">
                 <p>Status: Pending</p>
@@ -161,6 +160,11 @@ export default function ViewApplication() {
                     </div>
                 }
 
+            } else {
+                // pending to be reviewed by adviser - still at step 1
+                return <div className="form-container">
+                    Ayaw gumana
+                </div>
             }
         }
 
