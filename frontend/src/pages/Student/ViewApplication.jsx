@@ -30,10 +30,11 @@ export default function ViewApplication() {
                 const payload = await applicationResponse.json();
                 console.log("DATA IS ", payload.data);
 
-                if (payload.data) {
+                if (payload && payload.data) {
                     setApplication(payload.data);
                     alert("Successfully found application info!");
                 } else {
+                    setApplication(null);
                     alert("Failed to find application info.");
                 }
             } catch (error) {
@@ -42,7 +43,7 @@ export default function ViewApplication() {
         }
 
         fetchData();
-    }, []);
+    });
 
     const handleResubmitClearanceOfficer = async (e) => {
         e.preventDefault();
@@ -117,7 +118,7 @@ export default function ViewApplication() {
 
     function showContent() {
         console.log("APPLICATION IS: ", application);
-        if (application.remarks === []) {
+        if (!application || !application.remarks) {
             // pending to be reviewed by adviser - still at step 1
             return <div className="form-container">
                 <p>Status: Pending</p>

@@ -42,7 +42,7 @@ const viewOpenApplicationInfo = async (req, res) => {
   const { applicationId } = req.body;
   try {
     const found = await Application.findById(applicationId);
-    if (found) res.status(200).json({ data: found });
+    if (found) res.status(200).json({ success: true, data: found });
     else res.status(500).json({ success: false, request: [] });
   } catch (error) {
     console.log(`Error: ${error}`);

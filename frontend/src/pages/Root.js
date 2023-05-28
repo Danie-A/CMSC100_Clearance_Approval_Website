@@ -23,7 +23,7 @@ export default function Root() {
             .then((body) => {
                 setOpenApplication(body.open_application);
             });
-    }, []);
+    }, [openApplication]);
 
     useEffect(() => {
         if (!isLoggedIn) {
