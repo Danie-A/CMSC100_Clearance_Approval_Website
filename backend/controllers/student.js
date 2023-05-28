@@ -73,10 +73,25 @@ const createApplication = async (req, res) => {
 // submitting step1 (github link) 
 const addStudentSubmission = async (req, res) => {
   const { studentId, current_step, remark_link } = req.body;
+
   try {
     const foundStudent = await Student.findById(studentId);
     if (foundStudent) {
-      await Application.findByIdAndUpdate(foundStudent.open_application, { $set: { current_step: current_step, student_submissions: [...foundStudent.student_submissions, { date: new Date().getDate(), step: current_step, remark_link: remark_link }] } });
+      await Application.findByIdAndUpdate(foundStudent.open_application,
+        {
+          $set: {
+            current_step: current_step,
+          }
+        });
+      await Application.findByIdAndUpdate(foundStudent.open_application, {
+        $push: {
+          student_submissions:
+          {
+            step: current_step,
+            remark_link: remark_link
+          }
+        }
+      });
       res.status(200).json({ success: true });
     } else {
       res.status(404).json({ success: false });

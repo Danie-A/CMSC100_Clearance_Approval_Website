@@ -32,7 +32,7 @@ export default function ViewApplication() {
 
                 if (payload && payload.data) {
                     setApplication(payload.data);
-                    alert("Successfully found application info!");
+                    //alert("Successfully found application info!");
                 } else {
                     setApplication(null);
                     alert("Failed to find application info.");
@@ -117,7 +117,7 @@ export default function ViewApplication() {
     }
 
     function showContent() {
-        if (!application.remarks) {
+        if (application.current_step === 1) {
             // pending to be reviewed by adviser - still at step 1
             return <div className="form-container">
                 <p>Status: Pending</p>
@@ -125,48 +125,41 @@ export default function ViewApplication() {
                 <p>Your clearance application is pending to be reviewed by your adviser.</p>
             </div>
 
+        } else if (application.current_step === 2 && application.status === "returned") {
+            // returned by adviser
+            return <div className="form-container">
+                <p>Status: Returned</p>
+                <p>Step 2: Adviser</p>
+                <form>
+                    <label htmlFor="link">GitHub Link:</label><br />
+                    <input type="text" id="link" name="link" required /><br />
+                    <input type="submit" onClick={handleResubmitAdviser} className="btn btn-primary" value="Submit" />
+
+                </form>
+            </div>
+
+        } else if (application.current_step === 3 && application.status === "returned") {
+
+            // returned by clearance officer
+            return <div className="form-container">
+                <p>Status: Returned</p>
+                <p>Step 3: Clearance Officer</p>
+                <form>
+                    <label htmlFor="student-remark">Student Remark:</label><br />
+                    <input type="text" id="student-remark" name="student-remark" required /><br /><br />
+                    <input type="submit" onClick={handleResubmitClearanceOfficer} className="btn btn-primary" value="Submit" />
+                </form>
+            </div>
         } else {
-            if (application.current_step === 2 && application.status === "returned") {
-                // returned by adviser
-                return <div className="form-container">
-                    <p>Status: Returned</p>
-                    <p>Step 2: Adviser</p>
-                    <form>
-                        <label htmlFor="link">GitHub Link:</label><br />
-                        <input type="text" id="link" name="link" required /><br />
-                        <input type="submit" onClick={handleResubmitAdviser} className="btn btn-primary" value="Submit" />
+            // pending to be reviewed by adviser - still at step 1
+            return <div className="form-container">
+                <p>Status: Pending</p>
+                <p>Step 3: Clearance Officer</p>
+                <p>Your clearance application is pending to be reviewed by a clearance officer.</p>
+            </div>
 
-                    </form>
-                </div>
-
-            } else if (application.current_step === 3) {
-                if (application.status === "returned") {
-                    // returned by clearance officer
-                    return <div className="form-container">
-                        <p>Status: Returned</p>
-                        <p>Step 3: Clearance Officer</p>
-                        <form>
-                            <label htmlFor="student-remark">Student Remark:</label><br />
-                            <input type="text" id="student-remark" name="student-remark" required /><br /><br />
-                            <input type="submit" onClick={handleResubmitClearanceOfficer} className="btn btn-primary" value="Submit" />
-                        </form>
-                    </div>
-                } else {
-                    // pending to be reviewed by clearance officer
-                    return <div className="form-container">
-                        <p>Status: Pending</p>
-                        <p>Step 3: Clearance Officer</p>
-                        <p>Your clearance application is pending to be reviewed by a clearance officer.</p>
-                    </div>
-                }
-
-            } else {
-                // pending to be reviewed by adviser - still at step 1
-                return <div className="form-container">
-                    Ayaw gumana
-                </div>
-            }
         }
+
 
     }
 
