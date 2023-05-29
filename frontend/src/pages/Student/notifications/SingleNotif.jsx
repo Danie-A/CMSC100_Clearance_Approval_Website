@@ -6,6 +6,7 @@ import { RiReplyFill } from "react-icons/ri";
 import ReactModal from 'react-modal';
 import ViewRemarks from "../viewApplication/remarks/ViewRemarks.jsx";
 import { useState } from "react";
+// import ShowPDF from "../pdf/ShowPDF.jsx";
 
 export default function StudentNotif(props) {
 
@@ -35,6 +36,7 @@ export default function StudentNotif(props) {
                             <AiFillFilePdf className="mr-2" style={{ marginRight: '8px' }} />
                             Print PDF
                         </button>
+                        {/* <ShowPDF /> */}
                         {props.date}
                     </div>
                 </>
