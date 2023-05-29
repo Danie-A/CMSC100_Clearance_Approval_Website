@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import React, { useState,useEffect } from "react";
 // import ButtonComponent from "./SortFunction";
 import * as React from 'react';
@@ -81,3 +82,18 @@ export default function ApproverHome(){
       };
 }
 
+=======
+import { useState,useEffect } from "react";
+
+return(
+    <>
+    <h3>SEARCH STUDENTS</h3>
+    <input placeholder="SEARCH"/>
+    <button>SORT</button>
+    <button>FILTER</button>
+    <table>
+        
+    </table>
+    </>
+)
+>>>>>>> ea6cad93a8a74d483887d8e673d60b663a6fd0fe

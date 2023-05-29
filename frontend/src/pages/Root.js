@@ -81,6 +81,14 @@ export default function Root() {
                 </ul>
             </nav>
 
+        } else if (userType === "approver") {
+            return <nav>
+                <ul>
+                    <li className={`${location.pathname === "/approver" ? "active" : ""}`}>
+                        <Link to="/approver" className='nav-link'>Search Students</Link>
+                    </li>
+                </ul>
+            </nav>
         }
 
     }
