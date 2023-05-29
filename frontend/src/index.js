@@ -5,16 +5,15 @@ import { redirect } from "react-router-dom";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Home from './pages/Home';
-import Dashboard from './pages/Dashboard';
-import Root from './pages/Root';
-import Applications from './pages/Student/applications/Applications';
-import Notifications from './pages/Student/notifications/Notifications';
-import CreateApplication from './pages/Student/CreateApplication';
-import ViewPendingApplications from './pages/Admin/ViewPendingApplications';
-import ViewApplication from './pages/Student/ViewApplication';
-import ManageApprovers from './pages/Admin/ManageApprovers';
-
+import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
+import Root from "./pages/Root";
+import Applications from "./pages/Student/applications/Applications";
+import Notifications from "./pages/Student/notifications/Notifications";
+import CreateApplication from "./pages/Student/CreateApplication";
+import ViewPendingApplications from "./pages/Admin/ViewPendingApplications";
+import ViewApplication from "./pages/Student/ViewApplication";
+import ManageApprovers from "./pages/Admin/ManageApprovers";
 
 var userType = "student";
 localStorage.setItem("userType", userType);
@@ -30,8 +29,7 @@ const checkIfLoggedInOnHome = async () => {
 
   if (payload.isLoggedIn) {
     localStorage.setItem("userType", "student");
-    return redirect("/student")
-
+    return redirect("/student");
   } else {
     return 0;
   }
@@ -50,7 +48,7 @@ const checkIfLoggedInOnDash = async () => {
   } else {
     return redirect("/");
   }
-}
+};
 
 const checkIfLoggedInOnDashApprover = async () => {
   const res = await fetch("http://localhost:3001/checkifloggedinapprover", {
@@ -65,7 +63,7 @@ const checkIfLoggedInOnDashApprover = async () => {
   } else {
     return redirect("/");
   }
-}
+};
 
 const runAdmin = () => {
   if (userType === "admin") {
@@ -73,7 +71,7 @@ const runAdmin = () => {
   } else {
     return redirect("/");
   }
-}
+};
 
 const router = createBrowserRouter([
   { path: "/", element: <Home />, loader: checkIfLoggedInOnHome },
@@ -100,17 +98,8 @@ const router = createBrowserRouter([
       // { path: "/student/create-application", element: <CreateApplication />, loader: checkIfLoggedInOnDash },
     ],
   },
-  {
-    path: "/admin",
-    element: <Root />,
-    loader: runAdmin,
-    children: [
-      { path: "/admin", element: <ViewPendingApplications /> },
-      { path: "/admin/manage-approvers", element: <ManageApprovers /> },
-    ],
-  },
-
-
+  { path: "/admin", element: <ViewPendingApplications /> },
+  { path: "/admin/manage-approvers", element: <ManageApprovers /> },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

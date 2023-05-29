@@ -12,8 +12,8 @@ const app = express();
 
 // connect to Mongo DB
 // await mongoose.connect("mongodb://127.0.0.1:27017/AUTH");
-const DATABASE_URI = "mongodb://127.0.0.1:27017/AUTH";
-// const DATABASE_URI = "mongodb+srv://jpsabile:VUNVL7QcJ2tYPbZr@jpsabile.nvysktb.mongodb.net/clearME?retryWrites=true&w=majority";
+// const DATABASE_URI = "mongodb://127.0.0.1:27017/AUTH";
+const DATABASE_URI = "mongodb+srv://jpsabile:VUNVL7QcJ2tYPbZr@jpsabile.nvysktb.mongodb.net/clearME?retryWrites=true&w=majority";
 await mongoose
   .connect(DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connect to MongoDB"))
@@ -34,28 +34,6 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Credentials", "true");
   next();
 });
-
-// to check if student is logged in
-app.use((req, res, next) => {
-  console.log("verifying student or approver");
-  console.log(req.cookies, req.cookies.authToken);
-  if (!req.cookies || !req.cookies.authToken) {
-    req.userId = false;
-  } else {
-    try {
-      const tokenPayload = jwt.verify(req.cookies.authToken, "THIS_IS_A_SECRET_STRING");
-      // console.log(tokenPayload);
-      req.userId = tokenPayload._id;
-    } catch {
-      console.log("catch");
-      req.userId = false;
-    }
-  }
-  next();
-});
-
-
-// check if approver is logged in
 
 // setup routes
 setUpRoutes(app);

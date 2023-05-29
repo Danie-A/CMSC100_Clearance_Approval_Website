@@ -5,12 +5,15 @@ import {
   approveStudentAccount,
   rejectStudentAccount,
   getAllApprovers,
+  getAllAdvisers,
   addApproverAccount,
   loginApprover, checkIfLoggedInApprover,
   editApproverAccount,
   deleteApproverAccount,
 } from "./controllers/admin.js";
 import { getPendingApplicationsByAdviser } from "./controllers/approver.js";
+
+import { getLoggedIn, isAdmin } from "./controllers/middleware.js";
 
 const setUpRoutes = (app) => {
   // auth
@@ -28,11 +31,12 @@ const setUpRoutes = (app) => {
 
   // admin
   app.post("/login-admin", logInAsAdmin);
-  app.get("/get-pending-applications", getPendingApplications);
-  app.post("/approve-student-account", approveStudentAccount);
-  app.post("/reject-student-account", rejectStudentAccount);
-  app.get("/get-all-approvers", getAllApprovers);
-  app.post("/add-approver", addApproverAccount);
+  app.get("/get-pending-applications", isAdmin, getPendingApplications);
+  app.post("/approve-student-account", isAdmin,  approveStudentAccount);
+  app.post("/reject-student-account", isAdmin, rejectStudentAccount);
+  app.get("/get-all-approvers", isAdmin, getAllApprovers);
+  app.get("/get-all-advisers", isAdmin, getAllAdvisers);
+  app.post("/add-approver", isAdmin, addApproverAccount);
   app.post("/login-approver", loginApprover);
   app.post("/checkifloggedinapprover", checkIfLoggedInApprover);
   app.post("/edit-approver", editApproverAccount);
@@ -40,6 +44,9 @@ const setUpRoutes = (app) => {
 
   // approver
   app.post("/get-pending-applications-adviser", getPendingApplicationsByAdviser);
+
+  // general
+  app.post("/getLoggedIn", getLoggedIn);
 };
 
 export default setUpRoutes;
