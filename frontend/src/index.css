@@ -136,8 +136,9 @@ thead {
     padding: 15px;
     padding-left: 30px;
     gap: 1em;
-    background-color: white;
+    background-color: rgb(40, 42, 58);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.614);
+    color: white;
 
 }
 
@@ -156,9 +157,9 @@ thead {
     margin: 2px;
     padding: 15px;
     padding-left: 30px;
-    background-color: white;
+    background-color: rgb(40, 42, 58);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.614);
-
+    color: white;
 }
 
 .notifBtn {
@@ -166,7 +167,7 @@ thead {
 }
 
 .notif-item:hover {
-    background-color: rgb(236, 236, 236);
+    background-color: #404252;
 }
 
 .form-container {

@@ -12,6 +12,7 @@ function ViewRemarks({ handleCloseModal }) {
             <div className="remark-container">
                 <Remark remark={'Wrong Link lakjflkadsjfaklsdfjalksdfjalksdfjalksdfjlkasfjdalkfjakl'} step={'2'} date={'05-29-2023'} commenter={'Loren Ipsum'} />
                 <Remark remark={'Unpaid Tuition'} step={'3'} date={'05-30-2023'} commenter={'Ipsum Loren'} />
+                <Remark remark={'Wrong Link lakjflkadsjfaklsdfjalksdfjalksdfjalksdfjlkasfjdalkfjakl'} step={'2'} date={'05-29-2023'} commenter={'Loren Ipsum'} />
             </div>
 
         </div>
