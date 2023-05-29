@@ -7,7 +7,8 @@ import {
   getAllApprovers,
   getAllAdvisers,
   addApproverAccount,
-  loginApprover, checkIfLoggedInApprover,
+  loginApprover,
+  checkIfLoggedInApprover,
   editApproverAccount,
   deleteApproverAccount,
 } from "./controllers/admin.js";
@@ -32,7 +33,7 @@ const setUpRoutes = (app) => {
   // admin
   app.post("/login-admin", logInAsAdmin);
   app.get("/get-pending-applications", isAdmin, getPendingApplications);
-  app.post("/approve-student-account", isAdmin,  approveStudentAccount);
+  app.post("/approve-student-account", isAdmin, approveStudentAccount);
   app.post("/reject-student-account", isAdmin, rejectStudentAccount);
   app.get("/get-all-approvers", isAdmin, getAllApprovers);
   app.get("/get-all-advisers", isAdmin, getAllAdvisers);

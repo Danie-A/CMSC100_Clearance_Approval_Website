@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ManageApprovers() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [sortBy, setSortBy] = useState("none");
   const [nameFilter, setNameFilter] = useState("");
   const [approversList, setApproversList] = useState([]);
@@ -12,7 +12,7 @@ function ManageApprovers() {
 
   useEffect(() => {
     const e = async () => {
-      await fetch("http://localhost:3001/getLoggedIn", { method: "POST", credentials: "include"})
+      await fetch("http://localhost:3001/getLoggedIn", { method: "POST", credentials: "include" })
         .then((response) => response.json())
         .then((body) => (!body.loggedIn || body.loggedIn !== "admin") && navigate("/"));
       await fetch("http://localhost:3001/get-all-approvers", { method: "GET" })
@@ -22,6 +22,7 @@ function ManageApprovers() {
         });
     };
     e();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {

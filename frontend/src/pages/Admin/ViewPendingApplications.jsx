@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 function ViewPendingApplications() {
-  const navigate = useNavigate();
   const [sortBy, setSortBy] = useState("none");
   const [studentsList, setStudentsList] = useState([]);
   const [approversList, setApproversList] = useState([]);
@@ -11,9 +9,9 @@ function ViewPendingApplications() {
 
   useEffect(() => {
     const e = async () => {
-      await fetch("http://localhost:3001/getLoggedIn", { method: "POST", credentials: "include" })
-        .then((response) => response.json())
-        .then((body) => (!body.loggedIn || body.loggedIn !== "admin") && navigate("/"));
+      // await fetch("http://localhost:3001/getLoggedIn", { method: "POST", credentials: "include" })
+      //   .then((response) => response.json())
+      //   .then((body) => (!body.loggedIn || body.loggedIn !== "admin") && navigate("/"));
       await fetch("http://localhost:3001/get-pending-applications", { method: "GET" })
         .then((response) => response.json())
         .then((body) => {
@@ -67,24 +65,25 @@ function ViewPendingApplications() {
     await fetch("http://localhost:3001/get-all-advisers", { method: "GET", credentials: "include" })
       .then((response) => response.json())
       .then((body) => {
-        setApproversList(body.result); 
+        setApproversList(body.result);
         setAdviser(body.result[0]?._id);
       });
   };
 
   const handleApprove = async () => {
-    await fetch("http://localhost:3001/approve-student-account", { 
-      method: "POST", credentials: "include",
+    await fetch("http://localhost:3001/approve-student-account", {
+      method: "POST",
+      credentials: "include",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ studentId: approving._id, approverId: adviser}),
-    })
+      body: JSON.stringify({ studentId: approving._id, approverId: adviser }),
+    });
     await fetch("http://localhost:3001/get-pending-applications", { method: "GET", credentials: "include" })
       .then((response) => response.json())
       .then((body) => {
         setStudentsList(body.request);
       });
     setApproving(null);
-  }
+  };
 
   return (
     <>
@@ -120,12 +119,14 @@ function ViewPendingApplications() {
           <h3>Approving A Student</h3>
           <h6>{"Approving " + approving.first_name}</h6>
           <span>{"Select Adviser: "}</span>
-          <select value={adviser} onChange={e=>setAdviser(e.target.value)}>
+          <select value={adviser} onChange={(e) => setAdviser(e.target.value)}>
             {approversList.map((approver, index) => (
-              <option value={approver._id} key={index}>{approver.first_name + " " + approver.middle_name + " " + approver.last_name}</option>
+              <option value={approver._id} key={index}>
+                {approver.first_name + " " + approver.middle_name + " " + approver.last_name}
+              </option>
             ))}
           </select>
-          <button onClick={handleApprove}>Approve</button> 
+          <button onClick={handleApprove}>Approve</button>
         </>
       )}
     </>

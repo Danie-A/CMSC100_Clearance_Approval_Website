@@ -32,9 +32,7 @@ import { Student } from "../models/user.js";
 // };
 
 const viewStudentInfo = async (req, res) => {
-  console.log(req.userId);
-  const result = await Student.findById(req.userId);
-  console.log(result);
+  const result = await Student.findById(req.loggedIn);
   res.status(200).json(result);
 };
 
@@ -70,27 +68,25 @@ const createApplication = async (req, res) => {
 
 // add student submission
 // revise current_step and link/remark
-// submitting step1 (github link) 
+// submitting step1 (github link)
 const addStudentSubmission = async (req, res) => {
   const { studentId, current_step, remark_link } = req.body;
 
   try {
     const foundStudent = await Student.findById(studentId);
     if (foundStudent) {
-      await Application.findByIdAndUpdate(foundStudent.open_application,
-        {
-          $set: {
-            current_step: current_step,
-          }
-        });
+      await Application.findByIdAndUpdate(foundStudent.open_application, {
+        $set: {
+          current_step: current_step,
+        },
+      });
       await Application.findByIdAndUpdate(foundStudent.open_application, {
         $push: {
-          student_submissions:
-          {
+          student_submissions: {
             step: current_step,
-            remark_link: remark_link
-          }
-        }
+            remark_link: remark_link,
+          },
+        },
       });
       res.status(200).json({ success: true });
     } else {
@@ -101,8 +97,5 @@ const addStudentSubmission = async (req, res) => {
     res.status(500).json({ success: false });
   }
 };
-
-
-
 
 export { viewStudentInfo, createApplication, addStudentSubmission, viewOpenApplicationInfo };
