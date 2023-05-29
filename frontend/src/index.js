@@ -5,16 +5,16 @@ import { redirect } from "react-router-dom";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Home from './pages/Home';
-import Dashboard from './pages/Dashboard';
-import Root from './pages/Root';
-import Applications from './pages/Student/applications/Applications';
-import Notifications from './pages/Student/notifications/Notifications';
-import CreateApplication from './pages/Student/CreateApplication';
-import ViewPendingApplications from './pages/Admin/ViewPendingApplications';
-import ViewApplication from './pages/Student/ViewApplication';
-import ManageApprovers from './pages/Admin/ManageApprovers';
-
+import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
+import Root from "./pages/Root";
+import Applications from "./pages/Student/applications/Applications";
+import Notifications from "./pages/Student/notifications/Notifications";
+import CreateApplication from "./pages/Student/CreateApplication";
+import ViewPendingApplications from "./pages/Admin/ViewPendingApplications";
+import ViewApplication from "./pages/Student/ViewApplication";
+import ManageApprovers from "./pages/Admin/ManageApprovers";
+import ApproverHome from "./pages/Approver/ApproverHome";
 
 var userType = "student";
 localStorage.setItem("userType", userType);
@@ -27,14 +27,14 @@ const checkIfLoggedInOnHome = async () => {
   });
 
   const payload = await res.json();
+  return true;
+  // if (payload.isLoggedIn) {
+  //   localStorage.setItem("userType", "student");
+  //   return redirect("/student")
 
-  if (payload.isLoggedIn) {
-    localStorage.setItem("userType", "student");
-    return redirect("/student")
-
-  } else {
-    return 0;
-  }
+  // } else {
+  //   return 0;
+  // }
 };
 
 // Send a POST request to API to check if the user is logged in. Redirect the user back to / if not logged in
@@ -45,12 +45,13 @@ const checkIfLoggedInOnDash = async () => {
   });
 
   const payload = await res.json();
-  if (payload.isLoggedIn) {
-    return true;
-  } else {
-    return redirect("/");
-  }
-}
+  return true;
+  // if (payload.isLoggedIn) {
+  //   return true;
+  // } else {
+  //   return redirect("/");
+  // }
+};
 
 const checkIfLoggedInOnDashApprover = async () => {
   const res = await fetch("http://localhost:3001/checkifloggedinapprover", {
@@ -58,22 +59,24 @@ const checkIfLoggedInOnDashApprover = async () => {
     credentials: "include",
   });
 
-  const payload = await res.json();
-  if (payload.isLoggedIn) {
-    localStorage.setItem("userType", "approver");
-    return true;
-  } else {
-    return redirect("/");
-  }
-}
+  return true;
+  // const payload = await res.json();
+  // if (payload.isLoggedIn) {
+  //   localStorage.setItem("userType", "approver");
+  //   return true;
+  // } else {
+  //   return redirect("/");
+  // }
+};
 
 const runAdmin = () => {
-  if (userType === "admin") {
-    return true;
-  } else {
-    return redirect("/");
-  }
-}
+  return true;
+  // if (userType === "admin") {
+  //   return true;
+  // } else {
+  //   return redirect("/");
+  // }
+};
 
 const router = createBrowserRouter([
   { path: "/", element: <Home />, loader: checkIfLoggedInOnHome },
@@ -82,11 +85,31 @@ const router = createBrowserRouter([
     element: <Root />,
     loader: checkIfLoggedInOnDash,
     children: [
-      { path: "/student", element: <Dashboard />, loader: checkIfLoggedInOnDash },
-      { path: "/student/applications", element: <Applications />, loader: checkIfLoggedInOnDash },
-      { path: "/student/notifications", element: <Notifications />, loader: checkIfLoggedInOnDash },
-      { path: "/student/create-application", element: <CreateApplication />, loader: checkIfLoggedInOnDash },
-      { path: "/student/view-application", element: <ViewApplication />, loader: checkIfLoggedInOnDash },
+      {
+        path: "/student",
+        element: <Dashboard />,
+        loader: checkIfLoggedInOnDash,
+      },
+      {
+        path: "/student/applications",
+        element: <Applications />,
+        loader: checkIfLoggedInOnDash,
+      },
+      {
+        path: "/student/notifications",
+        element: <Notifications />,
+        loader: checkIfLoggedInOnDash,
+      },
+      {
+        path: "/student/create-application",
+        element: <CreateApplication />,
+        loader: checkIfLoggedInOnDash,
+      },
+      {
+        path: "/student/view-application",
+        element: <ViewApplication />,
+        loader: checkIfLoggedInOnDash,
+      },
     ],
   },
   {
@@ -94,8 +117,16 @@ const router = createBrowserRouter([
     element: <Root />,
     loader: checkIfLoggedInOnDashApprover,
     children: [
-      { path: "/approver", element: <Dashboard />, loader: checkIfLoggedInOnDash },
-      // { path: "/student/applications", element: <Applications />, loader: checkIfLoggedInOnDash },
+      {
+        path: "/approver",
+        element: <Dashboard />,
+        loader: checkIfLoggedInOnDash,
+      },
+      {
+        path: "/approver/home",
+        element: <ApproverHome />,
+        loader: checkIfLoggedInOnDash,
+      },
       // { path: "/student/notifications", element: <Notifications />, loader: checkIfLoggedInOnDash },
       // { path: "/student/create-application", element: <CreateApplication />, loader: checkIfLoggedInOnDash },
     ],
@@ -109,8 +140,6 @@ const router = createBrowserRouter([
       { path: "/admin/manage-approvers", element: <ManageApprovers /> },
     ],
   },
-
-
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
