@@ -12,6 +12,7 @@ import Applications from './pages/Student/applications/Applications';
 import Notifications from './pages/Student/notifications/Notifications';
 import CreateApplication from './pages/Student/CreateApplication';
 import ViewPendingApplications from './pages/Admin/ViewPendingApplications';
+import ViewApplication from './pages/Student/ViewApplication';
 import ManageApprovers from './pages/Admin/ManageApprovers';
 
 
@@ -85,6 +86,7 @@ const router = createBrowserRouter([
       { path: "/student/applications", element: <Applications />, loader: checkIfLoggedInOnDash },
       { path: "/student/notifications", element: <Notifications />, loader: checkIfLoggedInOnDash },
       { path: "/student/create-application", element: <CreateApplication />, loader: checkIfLoggedInOnDash },
+      { path: "/student/view-application", element: <ViewApplication />, loader: checkIfLoggedInOnDash },
     ],
   },
   {

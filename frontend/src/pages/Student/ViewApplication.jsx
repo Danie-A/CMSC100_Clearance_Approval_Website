@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+// import { AiFillCloseCircle } from "react-icons/ai";
 
-export default function ViewApplication({ handleCloseModal }) {
+export default function ViewApplication() {
 
     const [student, setStudent] = useState(null);
     const [application, setApplication] = useState(null);
@@ -172,7 +173,10 @@ export default function ViewApplication({ handleCloseModal }) {
     }
     return (
         <div className="whole-container">
-            <button onClick={handleCloseModal}>X</button>
+            {/* <button className="btn btn-danger" onClick={handleCloseModal}>
+                <AiFillCloseCircle color="white" />
+            </button> */}
+
             <h5>View Clearance Application</h5>
             {application && showContent()}
         </div>
