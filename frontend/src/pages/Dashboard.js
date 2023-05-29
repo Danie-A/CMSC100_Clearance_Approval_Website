@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 // import ViewApplication from './Student/ViewApplication';
-import ReactModal from 'react-modal';
+// import ReactModal from 'react-modal';
 
 export default function Dashboard() {
   // const [showModal, setShowModal] = useState(false);
@@ -14,7 +14,7 @@ export default function Dashboard() {
   //   setShowModal(false);
   // };
 
-  ReactModal.setAppElement('#root'); // Set the app element
+  // ReactModal.setAppElement('#root'); // Set the app element
 
   const viewMyInfo = async () => {
     await fetch("http://localhost:3001/view-student-info", {

@@ -1,7 +1,20 @@
 import React, { useEffect, useState } from "react";
-// import { AiFillCloseCircle } from "react-icons/ai";
+import { BiCommentDetail } from "react-icons/bi";
+import ReactModal from 'react-modal';
+import ViewRemarks from "./remarks/ViewRemarks.jsx";
 
 export default function ViewApplication() {
+    const [showModal, setShowModal] = useState(false);
+
+    const handleOpenModal = () => {
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
+
+    ReactModal.setAppElement('#root'); // Set the app element
 
     const [student, setStudent] = useState(null);
     const [application, setApplication] = useState(null);
@@ -140,6 +153,19 @@ export default function ViewApplication() {
             return <div className="form-container">
                 <p>Status: Returned</p>
                 <p>Step 2: Adviser</p>
+                <button className="btn btn-warning notifBtn" onClick={handleOpenModal}>
+                    <BiCommentDetail className="mr-2" style={{ marginRight: '8px' }} />
+                    View Remarks
+                </button>
+                <ReactModal
+                    isOpen={showModal}
+                    contentLabel="Minimal Modal Example"
+                    onRequestClose={handleCloseModal}
+                    appElement={document.getElementById('root')} // Set the app element
+                >
+                    <ViewRemarks handleCloseModal={handleCloseModal} />
+                </ReactModal>
+                <br></br>
                 <form>
                     <label htmlFor="link">GitHub Link:</label><br />
                     <input type="text" id="link" name="link" required /><br />
@@ -155,6 +181,11 @@ export default function ViewApplication() {
             return <div className="form-container">
                 <p>Status: Returned</p>
                 <p>Step 3: Clearance Officer</p>
+                <button className="btn btn-warning notifBtn">
+                    <BiCommentDetail className="mr-2" style={{ marginRight: '8px' }} />
+                    View Remarks
+                </button>
+                <br></br>
                 <form>
                     <label htmlFor="student-remark">Student Remark:</label><br />
                     <input type="text" id="student-remark" name="student-remark" required /><br /><br />
