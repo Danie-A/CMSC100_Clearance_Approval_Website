@@ -1,7 +1,7 @@
 import React from "react";
 import { AiFillFolderOpen, AiFillFilePdf } from "react-icons/ai";
 
-export default function StudentAppRow(props) {
+export default function SingleApp(props) {
 
     const renderButtons = (status) => {
         if (status === 'Pending') {
@@ -35,7 +35,7 @@ export default function StudentAppRow(props) {
                     <td><button className="btn btn-secondary" style={{ pointerEvents: 'none' }}>
                         Closed
                     </button></td>
-                    <td><button type="button" class="btn btn-outline-secondary" style={{ pointerEvents: 'none' }}>N/A</button></td>
+                    <td><button type="button" className="btn btn-outline-secondary" style={{ pointerEvents: 'none' }}>N/A</button></td>
                 </>
             );
         }
