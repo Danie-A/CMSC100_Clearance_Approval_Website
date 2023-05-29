@@ -56,7 +56,7 @@ const createApplication = async (req, res) => {
   try {
     const found = await Student.find({ _id: studentId, status: "approved" });
     if (found) {
-      const application = Application({ owner: studentId, current_step: 1, student_submissions: [{ date: new Date().getDate(), step: 1, remark_link: github_link }] });
+      const application = Application({ owner: studentId, current_step: 1, student_submissions: [{ date: new Date().getDate(), step: 1, github_link: github_link }] });
       const newApplication = await application.save();
       await Student.findByIdAndUpdate(studentId, { $set: { open_application: newApplication._id } });
       res.status(200).json({ success: true });
@@ -71,8 +71,8 @@ const createApplication = async (req, res) => {
 // add student submission
 // revise current_step and link/remark
 // submitting step1 (github link) 
-const addStudentSubmission = async (req, res) => {
-  const { studentId, current_step, remark_link } = req.body;
+const addStudentSubmissionAdviser = async (req, res) => {
+  const { studentId, current_step, github_link, student_remark } = req.body;
 
   try {
     const foundStudent = await Student.findById(studentId);
@@ -88,7 +88,39 @@ const addStudentSubmission = async (req, res) => {
           student_submissions:
           {
             step: current_step,
-            remark_link: remark_link
+            student_remark: student_remark,
+            github_link: github_link
+          }
+        }
+      });
+      res.status(200).json({ success: true });
+    } else {
+      res.status(404).json({ success: false });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false });
+  }
+};
+
+const addStudentSubmissionClearanceOfficer = async (req, res) => {
+  const { studentId, current_step, student_remark } = req.body;
+
+  try {
+    const foundStudent = await Student.findById(studentId);
+    if (foundStudent) {
+      await Application.findByIdAndUpdate(foundStudent.open_application,
+        {
+          $set: {
+            current_step: current_step,
+          }
+        });
+      await Application.findByIdAndUpdate(foundStudent.open_application, {
+        $push: {
+          student_submissions:
+          {
+            step: current_step,
+            student_remark: student_remark
           }
         }
       });
@@ -105,4 +137,4 @@ const addStudentSubmission = async (req, res) => {
 
 
 
-export { viewStudentInfo, createApplication, addStudentSubmission, viewOpenApplicationInfo };
+export { viewStudentInfo, createApplication, addStudentSubmissionClearanceOfficer, addStudentSubmissionAdviser, viewOpenApplicationInfo };

@@ -35,9 +35,11 @@ export default function CreateApplication() {
             .then((data) => {
                 console.log(data);
                 if (data.success) { // if success is true
-                    alert("Successfully created application!");
+                    console.log("Successfully created application!");
+                    // redirect to home page
+                    window.location.href = "/student";
                 } else { // success: false
-                    alert("Failed to create application.");
+                    console.log("Failed to create application.");
                 }
             })
             .catch((error) => { // show error

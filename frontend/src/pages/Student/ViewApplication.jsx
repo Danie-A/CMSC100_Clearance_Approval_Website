@@ -2,6 +2,17 @@ import React, { useEffect, useState } from "react";
 
 export default function ViewApplication() {
 
+    // modal instead of navbar
+    const [showModal, setShowModal] = useState(false);
+
+    const handleOpenModal = () => {
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
+
     const [student, setStudent] = useState(null);
     const [application, setApplication] = useState(null);
 
@@ -45,6 +56,7 @@ export default function ViewApplication() {
         fetchData();
     }, []);
 
+    // RESUBMIT TO CLEARANCE OFFICER
     const handleResubmitClearanceOfficer = async (e) => {
         e.preventDefault();
 
@@ -53,10 +65,10 @@ export default function ViewApplication() {
         var applicationDocu = { // create subject object to be passed to body
             studentId: student._id,
             current_step: 3,
-            remark_link: studentRemark,
+            student_remark: studentRemark,
         }
 
-        await fetch('http://localhost:3001/add-student-submission', {
+        await fetch('http://localhost:3001/add-student-submission-clearance-officer', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -68,6 +80,8 @@ export default function ViewApplication() {
                 console.log(data);
                 if (data.success) { // if success is true
                     alert("Successfully submitted returned application to clearance officer!");
+                    // redirect to homepage
+                    window.location.href = "/student";
                 } else { // success: false
                     alert("Failed to submit returned application to clearance officer.");
                 }
@@ -81,18 +95,21 @@ export default function ViewApplication() {
     }
 
 
+    // RESUBMIT TO ADVISER
     const handleResubmitAdviser = async (e) => {
         e.preventDefault();
 
-        var link = document.getElementById("link").value; // get values from the form
+        var github_link = document.getElementById("link").value; // get values from the form
+        var student_remark = document.getElementById("remark").value; // get values from the form
 
         var applicationDocu = { // create subject object to be passed to body
             studentId: student._id,
             current_step: 2,
-            remark_link: link,
+            github_link: github_link,
+            student_remark: student_remark
         }
 
-        await fetch('http://localhost:3001/add-student-submission', {
+        await fetch('http://localhost:3001/add-student-submission-adviser', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -104,6 +121,8 @@ export default function ViewApplication() {
                 console.log(data);
                 if (data.success) { // if success is true
                     alert("Successfully submitted returned application to adviser!");
+                    // redirect to homepage
+                    window.location.href = "/student";
                 } else { // success: false
                     alert("Failed to submit returned application to adviser.");
                 }
@@ -114,6 +133,7 @@ export default function ViewApplication() {
 
         // set form to blank again
         document.getElementById("link").value = ''; // get values from the form
+        document.getElementById("remark").value = ''; // get values from the form
     }
 
     function showContent() {
@@ -133,8 +153,9 @@ export default function ViewApplication() {
                 <form>
                     <label htmlFor="link">GitHub Link:</label><br />
                     <input type="text" id="link" name="link" required /><br />
+                    <label htmlFor="link">Student Remark:</label><br />
+                    <input type="text" id="remark" name="remark" required /><br />
                     <input type="submit" onClick={handleResubmitAdviser} className="btn btn-primary" value="Submit" />
-
                 </form>
             </div>
 
@@ -165,10 +186,20 @@ export default function ViewApplication() {
 
 
     return (
-        <div className="whole-container">
-            <h5>View Clearance Application</h5>
-            {application && showContent()}
+        <div>
+            <button onClick={handleOpenModal}>Trigger Modal</button>
+            {showModal && (
+                <div>
+                    <div className="whole-container">
+                        <h5>View Clearance Application</h5>
+                        {application && showContent()}
+                    </div>
+                    <button onClick={handleCloseModal}>Close Modal</button>
+                </div>
+            )}
         </div>
+
+
     );
 
 }

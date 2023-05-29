@@ -12,8 +12,6 @@ export default function Root() {
     const [isLoggedIn, setIsLoggedIn] = useState(useLoaderData());
     const navigate = useNavigate();
 
-    const [openApplication, setOpenApplication] = useState('');
-
     useEffect(() => {
         fetch("http://localhost:3001/view-student-info", {
             method: "POST",
@@ -23,7 +21,10 @@ export default function Root() {
             .then((body) => {
                 setOpenApplication(body.open_application);
             });
-    }, [openApplication]);
+    }, []);
+
+    // get openApplication from Dashboard
+    const [openApplication, setOpenApplication] = useState('');
 
     useEffect(() => {
         if (!isLoggedIn) {
