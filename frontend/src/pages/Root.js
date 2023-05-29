@@ -19,12 +19,12 @@ export default function Root() {
         })
             .then((response) => response.json())
             .then((body) => {
-                setOpenApplication(body.open_application);
+                // setOpenApplication(body.open_application);
             });
     }, []);
 
     // get openApplication from Dashboard
-    const [openApplication, setOpenApplication] = useState('');
+    // const [openApplication, setOpenApplication] = useState('');
 
     useEffect(() => {
         if (!isLoggedIn) {
@@ -44,18 +44,18 @@ export default function Root() {
     // if user different navbar
     function renderNavBar() {
         if (userType === "student") {
-            function showApplicationButton() {
-                if (openApplication) {
-                    return <li className={`${location.pathname === "/student/view-application" ? "active" : ""}`}>
-                        <Link to="/student/view-application" className="nav-link">View Application</Link>
-                    </li>
-                } else {
-                    return <li className={`${location.pathname === "/student/create-application" ? "active" : ""}`}>
-                        <Link to="/student/create-application" className="nav-link">Create Application</Link>
-                    </li>
+            // function showApplicationButton() {
+            //     if (openApplication) {
+            //         return <li className={`${location.pathname === "/student/view-application" ? "active" : ""}`}>
+            //             <Link to="/student/view-application" className="nav-link">View Application</Link>
+            //         </li>
+            //     } else {
+            //         return <li className={`${location.pathname === "/student/create-application" ? "active" : ""}`}>
+            //             <Link to="/student/create-application" className="nav-link">Create Application</Link>
+            //         </li>
 
-                }
-            }
+            //     }
+            // }
             return <nav>
                 <ul>
                     <li className={`${location.pathname === "/student" ? "active" : ""}`}>
@@ -67,7 +67,7 @@ export default function Root() {
                     <li className={`${location.pathname === "/student/notifications" ? "active" : ""}`}>
                         <Link to="/student/notifications" className="nav-link">Notifications</Link>
                     </li>
-                    {showApplicationButton()}
+                    {/* {showApplicationButton()} */}
                 </ul>
             </nav>
         } else if (userType === "admin") {

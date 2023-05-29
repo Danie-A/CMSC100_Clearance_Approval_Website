@@ -1,17 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export default function ViewApplication() {
-
-    // modal instead of navbar
-    const [showModal, setShowModal] = useState(false);
-
-    const handleOpenModal = () => {
-        setShowModal(true);
-    };
-
-    const handleCloseModal = () => {
-        setShowModal(false);
-    };
+export default function ViewApplication({ handleCloseModal }) {
 
     const [student, setStudent] = useState(null);
     const [application, setApplication] = useState(null);
@@ -180,26 +169,13 @@ export default function ViewApplication() {
             </div>
 
         }
-
-
     }
-
-
     return (
-        <div>
-            <button onClick={handleOpenModal}>Trigger Modal</button>
-            {showModal && (
-                <div>
-                    <div className="whole-container">
-                        <h5>View Clearance Application</h5>
-                        {application && showContent()}
-                    </div>
-                    <button onClick={handleCloseModal}>Close Modal</button>
-                </div>
-            )}
+        <div className="whole-container">
+            <button onClick={handleCloseModal}>X</button>
+            <h5>View Clearance Application</h5>
+            {application && showContent()}
         </div>
-
-
     );
 
 }
