@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import { BiCommentDetail } from "react-icons/bi";
 import ReactModal from 'react-modal';
 import ViewRemarks from "./remarks/ViewRemarks.jsx";
+import { MdDelete } from 'react-icons/md';
+import DeletePopUp from "./DeletePopUp.jsx";
 
 export default function ViewApplication() {
+
+    // for view remarks modal
     const [showModal, setShowModal] = useState(false);
 
     const handleOpenModal = () => {
@@ -12,6 +16,24 @@ export default function ViewApplication() {
 
     const handleCloseModal = () => {
         setShowModal(false);
+    };
+
+    // for delete application modal
+    const [showModal2, setShowModal2] = useState(false);
+
+    const handleOpenModal2 = () => {
+        setShowModal2(true);
+    };
+
+    const handleCloseModal2 = () => {
+        setShowModal2(false);
+    };
+
+    const deleteModalSize = {
+        content: {
+            width: "500px", // Set the desired width
+            height: "300px", // Set the desired height
+        },
     };
 
     ReactModal.setAppElement('#root'); // Set the app element
@@ -143,6 +165,7 @@ export default function ViewApplication() {
         if (application.current_step === 1) {
             // pending to be reviewed by adviser - still at step 1
             return <div className="form-container">
+
                 <p>Status: Pending</p>
                 <p>Step 2: Adviser</p>
                 <p>Your clearance application is pending to be reviewed by your adviser.</p>
@@ -159,7 +182,7 @@ export default function ViewApplication() {
                 </button>
                 <ReactModal
                     isOpen={showModal}
-                    contentLabel="Minimal Modal Example"
+                    contentLabel="Show Remarks"
                     onRequestClose={handleCloseModal}
                     appElement={document.getElementById('root')} // Set the app element
                 >
@@ -192,21 +215,35 @@ export default function ViewApplication() {
                     <input type="submit" onClick={handleResubmitClearanceOfficer} className="btn btn-primary" value="Submit" />
                 </form>
             </div>
-        } else {
-            // pending to be reviewed by adviser - still at step 1
+        } else if (application.current_step === 3 && application.status === "pending") {
+            // pending to be reviewed by clearance officer 
             return <div className="form-container">
                 <p>Status: Pending</p>
                 <p>Step 3: Clearance Officer</p>
                 <p>Your clearance application is pending to be reviewed by a clearance officer.</p>
             </div>
 
+        } else {
+            // else go back to home using redirect
+            window.location.href = "/student";
         }
+
+
     }
     return (
         <div className="whole-container">
-            {/* <button className="btn btn-danger" onClick={handleCloseModal}>
-                <AiFillCloseCircle color="white" />
-            </button> */}
+            <button onClick={handleOpenModal2} className="btn btn-danger">
+                <MdDelete color="white" />
+            </button>
+            <ReactModal
+                style={deleteModalSize}
+                isOpen={showModal2}
+                contentLabel="Close Application"
+                onRequestClose={handleCloseModal2}
+                appElement={document.getElementById('root')} // Set the app element
+            >
+                <DeletePopUp handleCloseModal={handleCloseModal2} />
+            </ReactModal>
 
             <h5>View Clearance Application</h5>
             {application && showContent()}

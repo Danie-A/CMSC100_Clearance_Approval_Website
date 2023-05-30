@@ -5,9 +5,12 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 function ViewRemarks({ handleCloseModal }) {
     return (
         <div className='whole-container'>
-            <button className="btn btn-danger" onClick={handleCloseModal}>
+
+            <button className="btn btn-danger btn-right" onClick={handleCloseModal}>
                 <AiFillCloseCircle color="white" />
             </button>
+
+
             <h5>Returned Remarks</h5>
             <div className="remark-container">
                 <Remark remark={'Wrong Link lakjflkadsjfaklsdfjalksdfjalksdfjalksdfjlkasfjdalkfjakl'} step={'2'} date={'05-29-2023'} commenter={'Loren Ipsum'} />

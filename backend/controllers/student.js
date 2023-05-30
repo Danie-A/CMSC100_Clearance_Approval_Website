@@ -135,6 +135,39 @@ const addStudentSubmissionClearanceOfficer = async (req, res) => {
 };
 
 
+// delete an approver account
+const deleteApplication = async (req, res) => {
+  const { studentId, applicationId } = req.body;
+  try {
+    const found = await Student.findById(studentId);
+    console.log(found);
+    if (found) {
+      // Find the student by ID and update the openApplication and closedApplications fields
+      await Student.findByIdAndUpdate(studentId, {
+        $set: {
+          open_application: null,
+        },
+        $push: {
+          closed_applications: applicationId,
+        },
+      });
+
+      // Find the application by ID and update the status field
+      await Application.findByIdAndUpdate(applicationId, {
+        $set: {
+          status: 'closed',
+        },
+      });
+
+      res.status(200).json({ success: true });
+    } else {
+      res.status(404).json({ success: false });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: true });
+  }
+};
 
 
-export { viewStudentInfo, createApplication, addStudentSubmissionClearanceOfficer, addStudentSubmissionAdviser, viewOpenApplicationInfo };
+export { viewStudentInfo, createApplication, deleteApplication, addStudentSubmissionClearanceOfficer, addStudentSubmissionAdviser, viewOpenApplicationInfo };

@@ -14,7 +14,7 @@ const studentSchema = new mongoose.Schema({
   status: { type: String, default: "pending" },
   open_application: { type: mongoose.Schema.Types.ObjectId, ref: "applications", default: null },
   closed_applications: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: "applications" }], default: [] },
-  adviser: { type: mongoose.Schema.Types.ObjectId, ref: "advisers", default: null },
+  adviser: { type: mongoose.Schema.Types.ObjectId, ref: "approvers", default: null },
 });
 
 studentSchema.pre("save", function (next) {
