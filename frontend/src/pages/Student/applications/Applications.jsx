@@ -42,6 +42,14 @@ export default function Applications() {
         fetchData();
     }, []);
 
+    const sortedApplicationList = applicationList.sort((a, b) => {
+        if (a._id > b._id) {
+            return -1; // Sort in descending order
+        } else if (a._id < b._id) {
+            return 1;
+        }
+        return 0;
+    });
 
     return (
         <div className='whole-container'>
@@ -57,13 +65,9 @@ export default function Applications() {
                     </tr>
                 </thead>
                 <tbody>
-                    {applicationList.map((application) => (
+                    {sortedApplicationList.map((application) => (
                         <SingleApp key={application._id} application={application} />
                     ))}
-
-                    <SingleApp id={`000001`} status={`pending`} />
-                    <SingleApp id={`000002`} status={`cleared`} />
-                    <SingleApp id={`000003`} status={`closed`} />
                 </tbody>
             </table>
         </div>
