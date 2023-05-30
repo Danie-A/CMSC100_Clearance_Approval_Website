@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { MdDelete } from 'react-icons/md';
 
-
 function DeletePopUp({ handleCloseModal }) {
 
     const handleClick = (studentId, applicationId) => {
         handleCloseModal();
         handleDeleteApplication(studentId, applicationId);
+        // go to home using window
+        window.location.href = "/student";
     };
 
     const [studentId, setStudentId] = useState('');
@@ -46,7 +47,7 @@ function DeletePopUp({ handleCloseModal }) {
             </div>
             <br></br>
 
-            <button className="btn btn-danger" onClick={() => handleClick(studentId, applicationId)}>
+            <button className="btn btn-danger" onClick={() => { handleClick(studentId, applicationId) }}>
                 <MdDelete color="white" /> Close Application
             </button>
 
