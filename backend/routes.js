@@ -1,5 +1,5 @@
 import { signUpStudent, loginStudent, checkIfLoggedIn, logInAsAdmin } from "./controllers/auth-controller.js";
-import { viewStudentInfo, createApplication, addStudentSubmission, viewOpenApplicationInfo } from "./controllers/student.js";
+import { viewStudentInfo, createApplication, deleteApplication, getApplicationsOfStudent, addStudentSubmissionClearanceOfficer, addStudentSubmissionAdviser, viewOpenApplicationInfo } from "./controllers/student.js";
 import {
   getPendingApplications,
   approveStudentAccount,
@@ -23,10 +23,14 @@ const setUpRoutes = (app) => {
   app.post("/checkifloggedin", checkIfLoggedIn);
 
   // student
+  // app.post("/add-student", addStudentAccount);
   app.post("/view-student-info", isStudent, viewStudentInfo);
   app.post("/create-application", isStudent, createApplication);
-  app.post("/view-open-application-info", isStudent, viewOpenApplicationInfo);
-  app.post("/add-student-submission", isStudent, addStudentSubmission);
+  app.post("/delete-application", isStudent, deleteApplication);
+  app.post("/add-student-submission-adviser", isStudent, addStudentSubmissionAdviser);
+  app.post("/add-student-submission-clearance-officer", isStudent, addStudentSubmissionClearanceOfficer);
+  app.post("/view-open-application-info", viewOpenApplicationInfo);
+  app.get("/get-applications-of-student", isStudent, getApplicationsOfStudent);
 
   // admin
   app.post("/login-admin", logInAsAdmin);
@@ -42,7 +46,7 @@ const setUpRoutes = (app) => {
   app.post("/checkifloggedinapprover", checkIfLoggedInApprover);
 
   // approver
-  app.post("/get-pending-applications-adviser", isAdviser, getPendingApplicationsByAdviser);
+  app.get("/get-pending-applications-adviser", isAdviser, getPendingApplicationsByAdviser);
 
   // general
   app.post("/getLoggedIn", getLoggedIn);

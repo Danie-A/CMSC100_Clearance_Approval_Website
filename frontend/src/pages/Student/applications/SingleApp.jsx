@@ -1,21 +1,27 @@
 import React from "react";
 import { AiFillFolderOpen, AiFillFilePdf } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 export default function SingleApp(props) {
+    const { application } = props;
+    if (!application) {
+        return <tr><td>Loading...</td></tr>; // Or any other suitable fallback UI
+    }
 
     const renderButtons = (status) => {
-        if (status === 'Pending') {
+        if (status === 'pending' || status === 'returned') {
             return (
                 <>
                     <td><button className="btn btn-warning" style={{ pointerEvents: 'none' }}>
                         Pending
                     </button></td>
                     <td><button className="btn btn-outline-primary">
-                        <AiFillFolderOpen className="mr-2 pr-3" />
-                        Open Application
+                        <Link to="/student/view-application" className="nav-link">
+                            <AiFillFolderOpen className="mr-2 pr-3" />
+                            Open Application</Link>
                     </button></td></>
             );
-        } else if (status === 'Cleared') {
+        } else if (status === 'cleared') {
             return (
                 <>
                     <td><button className="btn btn-success" style={{ pointerEvents: 'none' }}>
@@ -43,8 +49,8 @@ export default function SingleApp(props) {
 
     return (
         <tr>
-            <td>{props.id}</td>
-            {renderButtons(props.status)}
+            <td>{application._id}</td>
+            {renderButtons(application.status)}
         </tr>
     );
 }
