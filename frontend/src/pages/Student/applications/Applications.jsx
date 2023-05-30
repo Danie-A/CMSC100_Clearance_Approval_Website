@@ -58,8 +58,9 @@ export default function Applications() {
                 </thead>
                 <tbody>
                     {applicationList.map((application) => (
-                        <SingleApp id={application._id} status={application.status} />
+                        <SingleApp key={application._id} application={application} />
                     ))}
+
                     <SingleApp id={`000001`} status={`pending`} />
                     <SingleApp id={`000002`} status={`cleared`} />
                     <SingleApp id={`000003`} status={`closed`} />

@@ -3,6 +3,10 @@ import { AiFillFolderOpen, AiFillFilePdf } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 export default function SingleApp(props) {
+    const { application } = props;
+    if (!application) {
+        return <tr><td>Loading...</td></tr>; // Or any other suitable fallback UI
+    }
 
     const renderButtons = (status) => {
         if (status === 'pending' || status === 'returned') {
@@ -45,8 +49,8 @@ export default function SingleApp(props) {
 
     return (
         <tr>
-            <td>{props.id}</td>
-            {renderButtons(props.status)}
+            <td>{application._id}</td>
+            {renderButtons(application.status)}
         </tr>
     );
 }
