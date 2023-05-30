@@ -9,6 +9,8 @@ export default function Root() {
     const username = localStorage.getItem("username");
     const userType = localStorage.getItem("userType");
 
+    // get openApplication from Dashboard
+    const [openApplication, setOpenApplication] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(useLoaderData());
     const navigate = useNavigate();
 
@@ -21,10 +23,7 @@ export default function Root() {
             .then((body) => {
                 setOpenApplication(body.open_application);
             });
-    }, []);
-
-    // get openApplication from Dashboard
-    const [openApplication, setOpenApplication] = useState('');
+    }, [location.pathname]);
 
     useEffect(() => {
         if (!isLoggedIn) {
