@@ -50,7 +50,12 @@ export default function Applications() {
                 <tr><td><div className="spinner-border text-dark" role="status">
                 </div></td></tr>
             </tbody>
-        } else
+        } else if (applicationList.length === 0) {
+            return <tbody>
+                <tr><td>No applications yet.</td></tr>
+            </tbody>
+        }
+        else
             return (<tbody>{sortedApplicationList.map((application) => (
                 <SingleApp key={application._id} application={application} />
             ))}</tbody>);

@@ -39,10 +39,10 @@ export default function Root() {
     function logout() {
         const cookies = new Cookies();
         cookies.remove("authToken");
+        localStorage.removeItem("username");
+        localStorage.removeItem("userType");
         setIsLoggedIn(false);
         navigate("/");
-
-        localStorage.removeItem("username");
     }
     // root is clearme logo and the navbar:
     // if user different navbar
