@@ -15,15 +15,18 @@ export default function Root() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch("http://localhost:3001/view-student-info", {
-            method: "POST",
-            credentials: "include",
-        })
-            .then((response) => response.json())
-            .then((body) => {
-                setOpenApplication(body.open_application);
-            });
-    }, [location.pathname]);
+        if (userType === "student") {
+            fetch("http://localhost:3001/view-student-info", {
+                method: "POST",
+                credentials: "include",
+            })
+                .then((response) => response.json())
+                .then((body) => {
+                    setOpenApplication(body.open_application);
+                });
+        }
+
+    }, [location.pathname, userType]);
 
     useEffect(() => {
         if (!isLoggedIn) {
