@@ -4,13 +4,16 @@ import {
   getPendingApplications,
   approveStudentAccount,
   rejectStudentAccount,
-  getAllApprovers,
+  getAllAdvisers,
   addApproverAccount,
-  loginApprover, checkIfLoggedInApprover,
+  loginApprover,
+  checkIfLoggedInApprover,
   editApproverAccount,
   deleteApproverAccount,
 } from "./controllers/admin.js";
 import { getPendingApplicationsByAdviser } from "./controllers/approver.js";
+
+import { getLoggedIn, isStudent, isAdmin, isAdviser } from "./controllers/middleware.js";
 
 const setUpRoutes = (app) => {
   // auth
@@ -20,26 +23,29 @@ const setUpRoutes = (app) => {
   app.post("/checkifloggedin", checkIfLoggedIn);
 
   // student
-  // app.post("/add-student", addStudentAccount);
-  app.post("/view-student-info", viewStudentInfo);
-  app.post("/create-application", createApplication);
-  app.post("/add-student-submission", addStudentSubmission);
-  app.post("/view-open-application-info", viewOpenApplicationInfo);
+  app.post("/view-student-info", isStudent, viewStudentInfo);
+  app.post("/create-application", isStudent, createApplication);
+  app.post("/view-open-application-info", isStudent, viewOpenApplicationInfo);
+  app.post("/add-student-submission", isStudent, addStudentSubmission);
 
   // admin
   app.post("/login-admin", logInAsAdmin);
-  app.get("/get-pending-applications", getPendingApplications);
-  app.post("/approve-student-account", approveStudentAccount);
-  app.post("/reject-student-account", rejectStudentAccount);
-  app.get("/get-all-approvers", getAllApprovers);
-  app.post("/add-approver", addApproverAccount);
+  app.get("/get-pending-applications", isAdmin, getPendingApplications);
+  app.post("/approve-student-account", isAdmin, approveStudentAccount);
+  app.post("/reject-student-account", isAdmin, rejectStudentAccount);
+  app.get("/get-all-advisers", isAdmin, getAllAdvisers);
+  app.post("/add-approver", isAdmin, addApproverAccount);
+  app.post("/edit-approver", isAdmin, editApproverAccount);
+  app.post("/delete-approver", isAdmin, deleteApproverAccount);
+
   app.post("/login-approver", loginApprover);
   app.post("/checkifloggedinapprover", checkIfLoggedInApprover);
-  app.post("/edit-approver", editApproverAccount);
-  app.post("/delete-approver", deleteApproverAccount);
 
   // approver
-  app.post("/get-pending-applications-adviser", getPendingApplicationsByAdviser);
+  app.post("/get-pending-applications-adviser", isAdviser, getPendingApplicationsByAdviser);
+
+  // general
+  app.post("/getLoggedIn", getLoggedIn);
 };
 
 export default setUpRoutes;
