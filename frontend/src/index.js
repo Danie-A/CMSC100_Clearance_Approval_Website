@@ -14,6 +14,8 @@ import CreateApplication from "./pages/Student/CreateApplication";
 import ViewPendingApplications from "./pages/Admin/ViewPendingApplications";
 import ViewApplication from "./pages/Student/ViewApplication";
 import ManageApprovers from "./pages/Admin/ManageApprovers";
+import AdminHome from "./pages/Admin/AdminHome";
+import AdviserViewPendingApplications from "./pages/Adviser/AdviserViewPendingApplications";
 
 // var userType = "student";
 // localStorage.setItem("userType", userType);
@@ -97,10 +99,8 @@ const router = createBrowserRouter([
     element: <Root />,
     loader: () => checkIfLoggedIn("adviser"),
     children: [
-      { path: "/adviser", element: <Dashboard /> },
-      { path: "/adviser/applications", element: <Applications /> },
-      { path: "/adviser/notifications", element: <Notifications /> },
-      { path: "/adviser/create-application", element: <CreateApplication /> },
+      // { path: "/adviser", element: <Dashboard /> },
+      { path: "/adviser/view-pending-applications", element: <AdviserViewPendingApplications /> },
     ],
   },
   {
@@ -108,7 +108,8 @@ const router = createBrowserRouter([
     element: <Root />,
     loader: () => checkIfLoggedIn("admin"),
     children: [
-      { path: "/admin/view-pending-application", element: <ViewPendingApplications /> },
+      { path: "/admin", element: <AdminHome /> },
+      { path: "/admin/view-pending-applications", element: <ViewPendingApplications /> },
       { path: "/admin/manage-approvers", element: <ManageApprovers /> },
     ],
   },

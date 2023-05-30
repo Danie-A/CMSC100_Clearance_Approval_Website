@@ -9,10 +9,7 @@ function ViewPendingApplications() {
 
   useEffect(() => {
     const e = async () => {
-      // await fetch("http://localhost:3001/getLoggedIn", { method: "POST", credentials: "include" })
-      //   .then((response) => response.json())
-      //   .then((body) => (!body.loggedIn || body.loggedIn !== "admin") && navigate("/"));
-      await fetch("http://localhost:3001/get-pending-applications", { method: "GET" })
+      await fetch("http://localhost:3001/get-pending-applications", { method: "GET", credentials: "include" })
         .then((response) => response.json())
         .then((body) => {
           setStudentsList(body.request);
@@ -87,7 +84,7 @@ function ViewPendingApplications() {
 
   return (
     <>
-      <h3>View Pending Applications</h3>
+      <h3>View Pending Accounts</h3>
       <span>Sort by:</span>
       <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
         <option value="none">{"None"}</option>
@@ -98,7 +95,7 @@ function ViewPendingApplications() {
       </select>
       <table>
         <tbody>
-          {studentsList.map((student, index) => (
+          {studentsList?.map((student, index) => (
             <tr key={index}>
               <td>{student.first_name + " " + student.middle_name + " " + student.last_name}</td>
               <td>
@@ -120,7 +117,7 @@ function ViewPendingApplications() {
           <h6>{"Approving " + approving.first_name}</h6>
           <span>{"Select Adviser: "}</span>
           <select value={adviser} onChange={(e) => setAdviser(e.target.value)}>
-            {approversList.map((approver, index) => (
+            {approversList?.map((approver, index) => (
               <option value={approver._id} key={index}>
                 {approver.first_name + " " + approver.middle_name + " " + approver.last_name}
               </option>

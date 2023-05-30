@@ -56,36 +56,25 @@ const rejectStudentAccount = async (req, res) => {
   }
 };
 
-// get all approvers
-const getAllApprovers = async (req, res) => {
+// get all advisers
+const getAllAdvisers = async (req, res) => {
   try {
     const result = await Approver.find({});
     res.status(200).json({ success: true, result: result });
   } catch (error) {
-    res.status(500).json({ success: false });
-  }
-};
-
-// get all advisers
-const getAllAdvisers = async (req, res) => {
-  try {
-    const result = await Approver.find({ type: "adviser" });
-    res.status(200).json({ success: true, result: result });
-  } catch (error) {
-    res.status(500).json({ success: false, result: [] });
+    res.status(500).json({ success: false, result: [], error: error });
   }
 };
 
 // add an approver account
 const addApproverAccount = async (req, res) => {
-  const { first_name, middle_name, last_name, type, email, password } = req.body;
+  const { first_name, middle_name, last_name, email, password } = req.body;
 
   try {
     const approver = Approver({
       first_name: first_name,
       middle_name: middle_name,
       last_name: last_name,
-      type: type,
       email: email,
       password: password,
     });
@@ -202,7 +191,6 @@ export {
   addApproverAccount,
   loginApprover,
   checkIfLoggedInApprover,
-  getAllApprovers,
   getAllAdvisers,
   editApproverAccount,
   deleteApproverAccount,
