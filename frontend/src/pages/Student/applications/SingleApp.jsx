@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 export default function SingleApp(props) {
     const { application } = props;
     if (!application) {
-        return <tr><td>Loading...</td></tr>; // Or any other suitable fallback UI
+        return <tr><td><div className="spinner-border text-dark" role="status">
+            <span className="sr-only">Loading...</span>
+        </div></td></tr>;
     }
 
     const renderButtons = (status) => {

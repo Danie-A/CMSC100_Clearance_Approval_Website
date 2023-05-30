@@ -3,8 +3,10 @@ import { FaUserCircle, FaCheckSquare } from "react-icons/fa";
 import Cookies from "universal-cookie";
 import { useState, useEffect } from "react";
 
+
 export default function Root() {
     const location = useLocation();
+
 
     const username = localStorage.getItem("username");
     const userType = localStorage.getItem("userType");
@@ -37,11 +39,10 @@ export default function Root() {
     function logout() {
         const cookies = new Cookies();
         cookies.remove("authToken");
-
-        localStorage.removeItem("username");
-
         setIsLoggedIn(false);
         navigate("/");
+
+        localStorage.removeItem("username");
     }
     // root is clearme logo and the navbar:
     // if user different navbar

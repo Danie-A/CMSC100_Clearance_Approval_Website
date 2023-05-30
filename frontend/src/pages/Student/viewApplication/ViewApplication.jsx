@@ -163,6 +163,11 @@ export default function ViewApplication() {
     }
 
     function showContent() {
+        if (!application) {
+            return <div className="spinner-border text-dark" role="status">
+
+            </div>
+        }
         if (application.current_step === 1) {
             // pending to be reviewed by adviser - still at step 1
             return <div className="form-container">
@@ -247,7 +252,7 @@ export default function ViewApplication() {
             </ReactModal>
 
             <h5>View Clearance Application</h5>
-            {application && showContent()}
+            {showContent()}
         </div>
     );
 }
