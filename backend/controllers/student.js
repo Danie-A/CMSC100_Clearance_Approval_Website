@@ -169,5 +169,21 @@ const deleteApplication = async (req, res) => {
   }
 };
 
+// get all applications of student - pending, closed, returned, cleared
+const getApplicationsOfStudent = async (req, res) => {
+  const { studentId } = req.body;
+  try {
+    const found = await Student.findById(studentId);
+    if (found) {
+      const applications = await Application.find({ owner: studentId });
+      res.status(200).json({ success: true, data: applications });
+    } else {
+      res.status(404).json({ success: false, data: [] });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, data: [] });
+  }
+};
 
-export { viewStudentInfo, createApplication, deleteApplication, addStudentSubmissionClearanceOfficer, addStudentSubmissionAdviser, viewOpenApplicationInfo };
+export { viewStudentInfo, createApplication, deleteApplication, getApplicationsOfStudent, addStudentSubmissionClearanceOfficer, addStudentSubmissionAdviser, viewOpenApplicationInfo };

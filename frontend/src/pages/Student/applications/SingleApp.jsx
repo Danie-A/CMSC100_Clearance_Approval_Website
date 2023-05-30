@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function SingleApp(props) {
 
     const renderButtons = (status) => {
-        if (status === 'Pending') {
+        if (status === 'pending' || status === 'returned') {
             return (
                 <>
                     <td><button className="btn btn-warning" style={{ pointerEvents: 'none' }}>
@@ -17,7 +17,7 @@ export default function SingleApp(props) {
                             Open Application</Link>
                     </button></td></>
             );
-        } else if (status === 'Cleared') {
+        } else if (status === 'cleared') {
             return (
                 <>
                     <td><button className="btn btn-success" style={{ pointerEvents: 'none' }}>

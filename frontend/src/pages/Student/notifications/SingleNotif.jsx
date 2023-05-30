@@ -59,7 +59,7 @@ export default function StudentNotif(props) {
                         </button>
                         <ReactModal
                             isOpen={showModal}
-                            contentLabel="Minimal Modal Example"
+                            contentLabel="Remarks"
                             onRequestClose={handleCloseModal}
                             appElement={document.getElementById('root')} // Set the app element
                         >

@@ -1,5 +1,5 @@
 import { signUpStudent, loginStudent, checkIfLoggedIn, logInAsAdmin } from "./controllers/auth-controller.js";
-import { viewStudentInfo, createApplication, deleteApplication, addStudentSubmissionClearanceOfficer, addStudentSubmissionAdviser, viewOpenApplicationInfo } from "./controllers/student.js";
+import { viewStudentInfo, createApplication, deleteApplication, getApplicationsOfStudent, addStudentSubmissionClearanceOfficer, addStudentSubmissionAdviser, viewOpenApplicationInfo } from "./controllers/student.js";
 import {
   getPendingApplications,
   approveStudentAccount,
@@ -27,6 +27,7 @@ const setUpRoutes = (app) => {
   app.post("/add-student-submission-adviser", addStudentSubmissionAdviser);
   app.post("/add-student-submission-clearance-officer", addStudentSubmissionClearanceOfficer);
   app.post("/view-open-application-info", viewOpenApplicationInfo);
+  app.post("/get-applications-of-student", getApplicationsOfStudent);
 
   // admin
   app.post("/login-admin", logInAsAdmin);
