@@ -5,15 +5,13 @@ import { Link } from 'react-router-dom';
 
 function DeletePopUp({ handleCloseModal }) {
 
-    const handleClick = (studentId, applicationId) => {
+    const handleClick = (applicationId) => {
         handleCloseModal();
-        handleDeleteApplication(studentId, applicationId);
+        handleDeleteApplication(applicationId);
         // go back to home page
-        //window.location.href = "/student";
-
+        window.location.href = "/student";
     };
 
-    const [studentId, setStudentId] = useState('');
     const [applicationId, setApplicationId] = useState('');
 
     useEffect(() => {
@@ -23,16 +21,16 @@ function DeletePopUp({ handleCloseModal }) {
         })
             .then((response) => response.json())
             .then((body) => {
-                setStudentId(body._id);
                 setApplicationId(body.open_application);
             });
     }, []);
 
-    const handleDeleteApplication = async (studentId, applicationId) => {
+    const handleDeleteApplication = async (applicationId) => {
         await fetch("http://localhost:3001/delete-application", {
             method: "POST",
+            credentials: "include",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ studentId: studentId, applicationId: applicationId }),
+            body: JSON.stringify({ applicationId: applicationId }),
         });
     };
 
@@ -49,7 +47,7 @@ function DeletePopUp({ handleCloseModal }) {
             </div>
             <br></br>
 
-            <button className="btn btn-danger" onClick={() => { handleClick(studentId, applicationId) }}>
+            <button className="btn btn-danger" onClick={() => { handleClick(applicationId) }}>
                 <Link to="/student" className="nav-link"><MdDelete color="white" /> Close Application</Link>
             </button>
 

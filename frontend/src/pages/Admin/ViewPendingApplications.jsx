@@ -1,73 +1,90 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function ViewPendingApplications() {
   const [sortBy, setSortBy] = useState("none");
-  const [studentsList, setStudentsList] = useState([
-    {
-      name: "Celine Reynolds",
-      studentNum: "2021-12345",
-    },
-    {
-      name: "Velva Corkery",
-      studentNum: "2021-02345",
-    },
-    {
-      name: "Mellie Boyle",
-      studentNum: "2021-22345",
-    },
-    {
-      name: "Winnifred White",
-      studentNum: "2021-12343",
-    },
-    {
-      name: "Luisa Beatty",
-      studentNum: "2021-12245",
-    },
-    {
-      name: "Elias Bayer",
-      studentNum: "2021-12545",
-    },
-    {
-      name: "Titus Considine",
-      studentNum: "2021-12347",
-    },
-    {
-      name: "Alisa Barrows",
-      studentNum: "2020-12345",
-    },
-    {
-      name: "Russell Gorczany",
-      studentNum: "2022-12345",
-    },
-    {
-      name: "Francisca Hoeger",
-      studentNum: "2021-10025",
-    },
-  ]);
+  const [studentsList, setStudentsList] = useState([]);
+  const [approversList, setApproversList] = useState([]);
+  const [approving, setApproving] = useState(null);
+  const [adviser, setAdviser] = useState();
+
+  useEffect(() => {
+    const e = async () => {
+      await fetch("http://localhost:3001/get-pending-applications", { method: "GET", credentials: "include" })
+        .then((response) => response.json())
+        .then((body) => {
+          setStudentsList(body.request);
+        });
+    };
+    e();
+  }, []);
 
   useEffect(() => {
     switch (sortBy) {
       case "name_asc":
-        setStudentsList((prevList) => [...prevList].sort((a, b) => a.name.localeCompare(b.name)));
+        setStudentsList((prevList) => [...prevList].sort((a, b) => a.first_name.localeCompare(b.first_name)));
         break;
       case "name_desc":
-        setStudentsList((prevList) => [...prevList].sort((a, b) => b.name.localeCompare(a.name)));
+        setStudentsList((prevList) => [...prevList].sort((a, b) => b.first_name.localeCompare(a.first_name)));
         break;
       case "studNum_asc":
-        setStudentsList((prevList) => [...prevList].sort((a, b) => b.studentNum.localeCompare(a.studentNum)));
+        setStudentsList((prevList) => [...prevList].sort((a, b) => b.student_number.localeCompare(a.student_number)));
         break;
       case "studNum_desc":
-        setStudentsList((prevList) => [...prevList].sort((a, b) => a.studentNum.localeCompare(b.studentNum)));
+        setStudentsList((prevList) => [...prevList].sort((a, b) => a.student_number.localeCompare(b.student_number)));
         break;
       default:
         break;
     }
   }, [sortBy]);
 
+  useEffect(() => console.log(adviser));
+
+  const handleReject = async (studentId) => {
+    await fetch("http://localhost:3001/reject-student-account", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ studentId: studentId }),
+    })
+      .then((response) => response.json())
+      .then((body) => {
+        console.log(body);
+      });
+    await fetch("http://localhost:3001/get-pending-applications", { method: "GET", credentials: "include" })
+      .then((response) => response.json())
+      .then((body) => {
+        setStudentsList(body.request);
+      });
+  };
+
+  const preApprove = async (student) => {
+    setApproving(student);
+    await fetch("http://localhost:3001/get-all-advisers", { method: "GET", credentials: "include" })
+      .then((response) => response.json())
+      .then((body) => {
+        setApproversList(body.result);
+        setAdviser(body.result[0]?._id);
+      });
+  };
+
+  const handleApprove = async () => {
+    await fetch("http://localhost:3001/approve-student-account", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ studentId: approving._id, approverId: adviser }),
+    });
+    await fetch("http://localhost:3001/get-pending-applications", { method: "GET", credentials: "include" })
+      .then((response) => response.json())
+      .then((body) => {
+        setStudentsList(body.request);
+      });
+    setApproving(null);
+  };
+
   return (
     <>
-      <h3>View Pending Applications</h3>
+      <h3>View Pending Accounts</h3>
       <span>Sort by:</span>
       <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
         <option value="none">{"None"}</option>
@@ -78,52 +95,39 @@ function ViewPendingApplications() {
       </select>
       <table>
         <tbody>
-          {studentsList.map((student, index) => (
+          {studentsList?.map((student, index) => (
             <tr key={index}>
-              <td>{student.name}</td>
+              <td>{student.first_name + " " + student.middle_name + " " + student.last_name}</td>
               <td>
-                <button>Approve</button>
+                <button onClick={() => preApprove(student)}>Approve</button>
               </td>
               <td>
-                <button>Reject</button>
+                <button onClick={() => handleReject(student._id)}>Reject</button>
               </td>
-              <td>{`Student Number: ${student.studentNum} (just to make sure sort by student number works)`}</td>
+              <td>{`Student Number: ${student.student_number} (just to make sure sort by student number works)`}</td>
             </tr>
           ))}
         </tbody>
       </table>
+      <br />
+
+      {approving && (
+        <>
+          <h3>Approving A Student</h3>
+          <h6>{"Approving " + approving.first_name}</h6>
+          <span>{"Select Adviser: "}</span>
+          <select value={adviser} onChange={(e) => setAdviser(e.target.value)}>
+            {approversList?.map((approver, index) => (
+              <option value={approver._id} key={index}>
+                {approver.first_name + " " + approver.middle_name + " " + approver.last_name}
+              </option>
+            ))}
+          </select>
+          <button onClick={handleApprove}>Approve</button>
+        </>
+      )}
     </>
   );
-
-  // Incorrect
-  // return (
-  //   <>
-  //     <h3>View Pending Applications</h3>
-  //     <input placeholder="Name" onChange={(e) => setNameFilter(e.target.value)} value={nameFilter} />
-  //     <button>Search</button>
-  //     <table>
-  //       <tbody>
-  //         {students
-  //           .filter((e) => e.name.toLowerCase().includes(nameFilter.toLowerCase()))
-  //           .map((student, index) => (
-  //             <tr key={index}>
-  //               <td>{student.name}</td>
-  //               <td>
-  //                 <input placeholder="Approver" />
-  //                 <button onclick={() => {}}>Assign</button>
-  //               </td>
-  //               <td>
-  //                 <button>Approve</button>
-  //               </td>
-  //               <td>
-  //                 <button>Reject</button>
-  //               </td>
-  //             </tr>
-  //           ))}
-  //       </tbody>
-  //     </table>
-  //   </>
-  // );
 }
 
 export default ViewPendingApplications;

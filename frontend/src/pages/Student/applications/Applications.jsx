@@ -9,20 +9,8 @@ export default function Applications() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch("http://localhost:3001/view-student-info", {
-                    method: "POST",
-                    credentials: "include",
-                });
 
-                const student = await response.json();
-
-                const applicationListResponse = await fetch('http://localhost:3001/get-applications-of-student', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ studentId: student._id })
-                });
+                const applicationListResponse = await fetch('http://localhost:3001/get-applications-of-student', { method: "GET", credentials: "include" });
 
                 const payload = await applicationListResponse.json();
                 console.log("DATA IS ", payload.data);

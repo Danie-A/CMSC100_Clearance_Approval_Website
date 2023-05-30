@@ -1,31 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 export default function CreateApplication() {
-
-    const [studentId, setStudentId] = useState('');
-
-    useEffect(() => {
-        fetch("http://localhost:3001/view-student-info", {
-            method: "POST",
-            credentials: "include",
-        })
-            .then((response) => response.json())
-            .then((body) => {
-                setStudentId(body._id);
-            });
-    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         var link = document.getElementById("link").value; // get values from the form
 
         var applicationDocu = { // create subject object to be passed to body
-            studentId: studentId,
             github_link: link,
         }
 
         await fetch('http://localhost:3001/create-application', {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -71,6 +58,4 @@ export default function CreateApplication() {
         </div>
 
     );
-
-
 }

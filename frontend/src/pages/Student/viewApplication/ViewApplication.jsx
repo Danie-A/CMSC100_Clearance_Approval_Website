@@ -57,6 +57,7 @@ export default function ViewApplication() {
 
                 const applicationResponse = await fetch('http://localhost:3001/view-open-application-info', {
                     method: 'POST',
+                    credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -64,7 +65,7 @@ export default function ViewApplication() {
                 });
 
                 const payload = await applicationResponse.json();
-                console.log("DATA IS ", payload.data);
+                console.log("DATA IS ", payload);
 
                 if (payload && payload.data) {
                     setApplication(payload.data);
@@ -225,7 +226,7 @@ export default function ViewApplication() {
 
         } else {
             // else go back to home using redirect
-            window.location.href = "/student";
+            // window.location.href = "/student";
         }
 
 
@@ -249,5 +250,4 @@ export default function ViewApplication() {
             {application && showContent()}
         </div>
     );
-
 }
