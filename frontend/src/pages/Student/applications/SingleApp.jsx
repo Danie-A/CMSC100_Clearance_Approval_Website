@@ -34,8 +34,6 @@ export default function SingleApp(props) {
                         Print PDF
                     </button></td>
                 </>
-
-
             );
         } else {
             return (

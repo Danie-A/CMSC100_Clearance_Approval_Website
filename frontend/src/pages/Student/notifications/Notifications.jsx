@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 
 export default function Notifications() {
 
-    const [hasOpenApplication, setHasOpenApplication] = useState(null);
-    const [application, setApplication] = useState(null);
+    const [hasOpenApplication, setHasOpenApplication] = useState(null); // application id from student 
+    const [application, setApplication] = useState(null); // application info from applications collection
+    const [clearedApplications, setClearedApplications] = useState([]); // list of cleared applications 
 
     useEffect(() => {
         async function fetchData() {
@@ -41,6 +42,21 @@ export default function Notifications() {
                     }
                 }
 
+                // get cleared applications
+
+                await fetch('http://localhost:3001/get-cleared-applications', {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then((response) => response.json())
+                    .then((body) => {
+                        console.log("Cleared applications: ", body.data);
+                        setClearedApplications(body.data);
+                    });
+
             } catch (error) {
                 alert(`Error: ${error}`);
             }
@@ -50,16 +66,35 @@ export default function Notifications() {
     }, [hasOpenApplication]);
 
 
-    function showNotif() {
-        if (hasOpenApplication && application) {
+    function showReturnedApplication() {
+        if (hasOpenApplication && application && application.status === 'returned') {
             return (
                 <SingleNotif id={application._id} status={application.status} step={application.current_step} />
             );
-        } else {
+        }
+        else {
             // you have no notifications alert using bootstrap
             return (
                 <div className="alert alert-dark" role="alert">
-                    You have no notifications.
+                    You have no returned application notification.
+                </div>
+            );
+        }
+    }
+
+    function showClearedApplications() {
+        if (clearedApplications.length > 0) {
+            return (
+                clearedApplications.map((application) => {
+                    return (
+                        <SingleNotif key={application._id} id={application._id} status={application.status} step={application.current_step} />
+                    );
+                })
+            );
+        } else {
+            return (
+                <div className="alert alert-dark" role="alert">
+                    You have no cleared application notifications.
                 </div>
             );
         }
@@ -69,7 +104,11 @@ export default function Notifications() {
         <div className='whole-container'>
             <h5>Notifications</h5>
             <div className="notif-container">
-                {showNotif()}
+                <h6>Returned Application Notification</h6>
+                {showReturnedApplication()}
+                <br></br>
+                <h6>Cleared Application Notifications</h6>
+                {showClearedApplications()}
             </div>
 
         </div>

@@ -51,6 +51,18 @@ const createApplication = async (req, res) => {
   }
 };
 
+// get cleared status application of student
+const getClearedApplications = async (req, res) => {
+  const studentId = req.userId;
+  try {
+    const found = await Application.find({ owner: studentId, status: "cleared" });
+    if (found) res.status(200).json({ success: true, data: found });
+    else res.status(404).json({ success: false });
+  } catch (error) {
+    res.status(500).json({ success: false });
+  }
+};
+
 // add student submission
 // revise current_step and link/remark
 // submitting step1 (github link) 
@@ -169,4 +181,4 @@ const getApplicationsOfStudent = async (req, res) => {
   }
 };
 
-export { viewStudentInfo, createApplication, deleteApplication, getApplicationsOfStudent, addStudentSubmissionClearanceOfficer, addStudentSubmissionAdviser, viewOpenApplicationInfo };
+export { viewStudentInfo, createApplication, deleteApplication, getApplicationsOfStudent, getClearedApplications, addStudentSubmissionClearanceOfficer, addStudentSubmissionAdviser, viewOpenApplicationInfo };
