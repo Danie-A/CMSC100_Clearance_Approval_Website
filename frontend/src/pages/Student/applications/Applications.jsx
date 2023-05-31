@@ -75,11 +75,6 @@ export default function Applications() {
                     </tr>
                 </thead>
                 {showList()}
-                {/* <tbody>
-                    {sortedApplicationList.map((application) => (
-                        <SingleApp key={application._id} application={application} />
-                    ))}
-                </tbody> */}
             </table>
         </div>
     );

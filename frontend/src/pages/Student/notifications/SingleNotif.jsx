@@ -22,8 +22,8 @@ export default function StudentNotif(props) {
 
     ReactModal.setAppElement('#root'); // Set the app element
 
-    const renderNotif = (decision) => {
-        if (decision === 'approved') {
+    const renderNotif = (props) => {
+        if (props.status === 'cleared') {
             return (
                 <>
                     <div>
@@ -37,19 +37,19 @@ export default function StudentNotif(props) {
                             Print PDF
                         </button>
                         {/* <ShowPDF /> */}
-                        {props.date}
+
                     </div>
                 </>
             );
 
 
-        } else if (decision === 'returnedAdviser' || decision === 'returnedOfficer') {
-            const whoReturned = (decision === 'returnedAdviser') ? 'your adviser' : 'the clearance officer';
+        } else if (props.status === 'returned') {
+            const whoReturned = (props.step === 2) ? 'your adviser' : 'the clearance officer';
             return (
                 <>
                     <div>
                         <RiReplyFill className="mr-2" color={'#DC4C64'} style={{ marginRight: '8px' }} />
-                        Your clearance application {props.id} has been returned by {whoReturned}.
+                        Your application "{props.id}" has been returned by {whoReturned}.
 
                     </div>
                     <div>
@@ -65,7 +65,7 @@ export default function StudentNotif(props) {
                         >
                             <ViewRemarks handleCloseModal={handleCloseModal} />
                         </ReactModal>
-                        {props.date}
+
                     </div>
 
                 </>
@@ -75,7 +75,7 @@ export default function StudentNotif(props) {
 
     return (
         <div className="notif-item">
-            {renderNotif(props.decision)}
+            {renderNotif(props)}
         </div>
     );
 }
