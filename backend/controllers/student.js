@@ -207,7 +207,7 @@ const getAdviserDetails = async (req, res) => {
     const found = await Student.findById(studentId);
     if (found) {
       const adviser = await Approver.findById(found.adviser);
-      res.status(200).json({ success: true, data: adviser });
+      res.status(200).json({ success: true, adviser: adviser, student: found });
     } else {
       res.status(404).json({ success: false });
     }

@@ -22,8 +22,8 @@ function ViewRemarks({ handleCloseModal }) {
             await fetch("http://localhost:3001/get-adviser-details", { method: "GET", credentials: "include" })
                 .then((response) => response.json())
                 .then((body) => {
-                    console.log(body.data);
-                    setAdviser(body.data);
+                    console.log(body.adviser);
+                    setAdviser(body.adviser);
                 }
                 );
 
