@@ -16,6 +16,7 @@ import ViewApplication from './pages/Student/viewApplication/ViewApplication';
 import ManageApprovers from "./pages/Admin/ManageApprovers";
 import AdminHome from "./pages/Admin/AdminHome";
 import AdviserViewPendingApplications from "./pages/Adviser/AdviserViewPendingApplications";
+import GeneratePDF from "./pages/Student/pdf/GeneratePDF";
 
 // var userType = "student";
 // localStorage.setItem("userType", userType);
@@ -79,6 +80,7 @@ const router = createBrowserRouter([
       { path: "/student/notifications", element: <Notifications /> },
       { path: "/student/create-application", element: <CreateApplication /> },
       { path: "/student/view-application", element: <ViewApplication /> },
+      { path: "/student/generate-pdf", element: <GeneratePDF /> },
     ],
   },
   {
