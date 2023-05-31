@@ -12,9 +12,9 @@ const studentSchema = new mongoose.Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
   status: { type: String, default: "pending" },
-  open_application: { type: mongoose.Schema.Types.ObjectId, ref: "applications", default: null },
-  closed_applications: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: "applications" }], default: [] },
-  adviser: { type: mongoose.Schema.Types.ObjectId, ref: "advisers", default: null },
+  open_application: { type: mongoose.Schema.Types.ObjectId, ref: "application", default: null },
+  closed_applications: { type: [{ type: mongoose.Schema.Types.ObjectId, ref: "application" }], default: [] },
+  adviser: { type: mongoose.Schema.Types.ObjectId, ref: "approver", default: null },
 });
 
 studentSchema.pre("save", function (next) {

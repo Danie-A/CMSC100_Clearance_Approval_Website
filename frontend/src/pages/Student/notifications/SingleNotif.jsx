@@ -3,8 +3,24 @@ import { AiFillFilePdf } from "react-icons/ai";
 import { FaCheckSquare } from "react-icons/fa";
 import { BiCommentDetail } from "react-icons/bi";
 import { RiReplyFill } from "react-icons/ri";
+import ReactModal from 'react-modal';
+import ViewRemarks from "../viewApplication/remarks/ViewRemarks.jsx";
+import { useState } from "react";
+// import ShowPDF from "../pdf/ShowPDF.jsx";
 
 export default function StudentNotif(props) {
+
+    const [showModal, setShowModal] = useState(false);
+
+    const handleOpenModal = () => {
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
+
+    ReactModal.setAppElement('#root'); // Set the app element
 
     const renderNotif = (decision) => {
         if (decision === 'approved') {
@@ -20,6 +36,7 @@ export default function StudentNotif(props) {
                             <AiFillFilePdf className="mr-2" style={{ marginRight: '8px' }} />
                             Print PDF
                         </button>
+                        {/* <ShowPDF /> */}
                         {props.date}
                     </div>
                 </>
@@ -36,10 +53,18 @@ export default function StudentNotif(props) {
 
                     </div>
                     <div>
-                        <button className="btn btn-warning notifBtn">
+                        <button className="btn btn-warning notifBtn" onClick={handleOpenModal}>
                             <BiCommentDetail className="mr-2" style={{ marginRight: '8px' }} />
                             View Remarks
                         </button>
+                        <ReactModal
+                            isOpen={showModal}
+                            contentLabel="Remarks"
+                            onRequestClose={handleCloseModal}
+                            appElement={document.getElementById('root')} // Set the app element
+                        >
+                            <ViewRemarks handleCloseModal={handleCloseModal} />
+                        </ReactModal>
                         {props.date}
                     </div>
 

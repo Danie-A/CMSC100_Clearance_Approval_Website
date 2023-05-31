@@ -1,6 +1,42 @@
 import React, { useEffect, useState } from "react";
+import { BiCommentDetail } from "react-icons/bi";
+import ReactModal from 'react-modal';
+import ViewRemarks from "./remarks/ViewRemarks.jsx";
+import { MdDelete } from 'react-icons/md';
+import DeletePopUp from "./DeletePopUp.jsx";
 
 export default function ViewApplication() {
+
+    // for view remarks modal
+    const [showModal, setShowModal] = useState(false);
+
+    const handleOpenModal = () => {
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
+
+    // for delete application modal
+    const [showModal2, setShowModal2] = useState(false);
+
+    const handleOpenModal2 = () => {
+        setShowModal2(true);
+    };
+
+    const handleCloseModal2 = () => {
+        setShowModal2(false);
+    };
+
+    const deleteModalSize = {
+        content: {
+            width: "500px", // Set the desired width
+            height: "300px", // Set the desired height
+        },
+    };
+
+    ReactModal.setAppElement('#root'); // Set the app element
 
     const [student, setStudent] = useState(null);
     const [application, setApplication] = useState(null);
@@ -21,6 +57,7 @@ export default function ViewApplication() {
 
                 const applicationResponse = await fetch('http://localhost:3001/view-open-application-info', {
                     method: 'POST',
+                    credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -28,7 +65,7 @@ export default function ViewApplication() {
                 });
 
                 const payload = await applicationResponse.json();
-                console.log("DATA IS ", payload.data);
+                console.log("DATA IS ", payload);
 
                 if (payload && payload.data) {
                     setApplication(payload.data);
@@ -45,6 +82,7 @@ export default function ViewApplication() {
         fetchData();
     }, []);
 
+    // RESUBMIT TO CLEARANCE OFFICER
     const handleResubmitClearanceOfficer = async (e) => {
         e.preventDefault();
 
@@ -53,10 +91,10 @@ export default function ViewApplication() {
         var applicationDocu = { // create subject object to be passed to body
             studentId: student._id,
             current_step: 3,
-            remark_link: studentRemark,
+            student_remark: studentRemark,
         }
 
-        await fetch('http://localhost:3001/add-student-submission', {
+        await fetch('http://localhost:3001/add-student-submission-clearance-officer', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -68,6 +106,8 @@ export default function ViewApplication() {
                 console.log(data);
                 if (data.success) { // if success is true
                     alert("Successfully submitted returned application to clearance officer!");
+                    // redirect to homepage
+                    window.location.href = "/student";
                 } else { // success: false
                     alert("Failed to submit returned application to clearance officer.");
                 }
@@ -81,18 +121,21 @@ export default function ViewApplication() {
     }
 
 
+    // RESUBMIT TO ADVISER
     const handleResubmitAdviser = async (e) => {
         e.preventDefault();
 
-        var link = document.getElementById("link").value; // get values from the form
+        var github_link = document.getElementById("link").value; // get values from the form
+        var student_remark = document.getElementById("remark").value; // get values from the form
 
         var applicationDocu = { // create subject object to be passed to body
             studentId: student._id,
             current_step: 2,
-            remark_link: link,
+            github_link: github_link,
+            student_remark: student_remark
         }
 
-        await fetch('http://localhost:3001/add-student-submission', {
+        await fetch('http://localhost:3001/add-student-submission-adviser', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -104,6 +147,8 @@ export default function ViewApplication() {
                 console.log(data);
                 if (data.success) { // if success is true
                     alert("Successfully submitted returned application to adviser!");
+                    // redirect to homepage
+                    window.location.href = "/student";
                 } else { // success: false
                     alert("Failed to submit returned application to adviser.");
                 }
@@ -114,12 +159,14 @@ export default function ViewApplication() {
 
         // set form to blank again
         document.getElementById("link").value = ''; // get values from the form
+        document.getElementById("remark").value = ''; // get values from the form
     }
 
     function showContent() {
         if (application.current_step === 1) {
             // pending to be reviewed by adviser - still at step 1
             return <div className="form-container">
+
                 <p>Status: Pending</p>
                 <p>Step 2: Adviser</p>
                 <p>Your clearance application is pending to be reviewed by your adviser.</p>
@@ -130,11 +177,25 @@ export default function ViewApplication() {
             return <div className="form-container">
                 <p>Status: Returned</p>
                 <p>Step 2: Adviser</p>
+                <button className="btn btn-warning notifBtn" onClick={handleOpenModal}>
+                    <BiCommentDetail className="mr-2" style={{ marginRight: '8px' }} />
+                    View Remarks
+                </button>
+                <ReactModal
+                    isOpen={showModal}
+                    contentLabel="Show Remarks"
+                    onRequestClose={handleCloseModal}
+                    appElement={document.getElementById('root')} // Set the app element
+                >
+                    <ViewRemarks handleCloseModal={handleCloseModal} />
+                </ReactModal>
+                <br></br>
                 <form>
                     <label htmlFor="link">GitHub Link:</label><br />
                     <input type="text" id="link" name="link" required /><br />
+                    <label htmlFor="link">Student Remark:</label><br />
+                    <input type="text" id="remark" name="remark" required /><br />
                     <input type="submit" onClick={handleResubmitAdviser} className="btn btn-primary" value="Submit" />
-
                 </form>
             </div>
 
@@ -144,31 +205,49 @@ export default function ViewApplication() {
             return <div className="form-container">
                 <p>Status: Returned</p>
                 <p>Step 3: Clearance Officer</p>
+                <button className="btn btn-warning notifBtn">
+                    <BiCommentDetail className="mr-2" style={{ marginRight: '8px' }} />
+                    View Remarks
+                </button>
+                <br></br>
                 <form>
                     <label htmlFor="student-remark">Student Remark:</label><br />
                     <input type="text" id="student-remark" name="student-remark" required /><br /><br />
                     <input type="submit" onClick={handleResubmitClearanceOfficer} className="btn btn-primary" value="Submit" />
                 </form>
             </div>
-        } else {
-            // pending to be reviewed by adviser - still at step 1
+        } else if (application.current_step === 3 && application.status === "pending") {
+            // pending to be reviewed by clearance officer 
             return <div className="form-container">
                 <p>Status: Pending</p>
                 <p>Step 3: Clearance Officer</p>
                 <p>Your clearance application is pending to be reviewed by a clearance officer.</p>
             </div>
 
+        } else {
+            // else go back to home using redirect
+            // window.location.href = "/student";
         }
 
 
     }
-
-
     return (
         <div className="whole-container">
+            <button onClick={handleOpenModal2} className="btn btn-danger">
+                <MdDelete color="white" />
+            </button>
+            <ReactModal
+                style={deleteModalSize}
+                isOpen={showModal2}
+                contentLabel="Close Application"
+                onRequestClose={handleCloseModal2}
+                appElement={document.getElementById('root')} // Set the app element
+            >
+                <DeletePopUp handleCloseModal={handleCloseModal2} />
+            </ReactModal>
+
             <h5>View Clearance Application</h5>
             {application && showContent()}
         </div>
     );
-
 }

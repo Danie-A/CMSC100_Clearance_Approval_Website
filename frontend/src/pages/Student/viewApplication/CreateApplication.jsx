@@ -1,31 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 export default function CreateApplication() {
-
-    const [studentId, setStudentId] = useState('');
-
-    useEffect(() => {
-        fetch("http://localhost:3001/view-student-info", {
-            method: "POST",
-            credentials: "include",
-        })
-            .then((response) => response.json())
-            .then((body) => {
-                setStudentId(body._id);
-            });
-    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         var link = document.getElementById("link").value; // get values from the form
 
         var applicationDocu = { // create subject object to be passed to body
-            studentId: studentId,
             github_link: link,
         }
 
         await fetch('http://localhost:3001/create-application', {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -35,9 +22,11 @@ export default function CreateApplication() {
             .then((data) => {
                 console.log(data);
                 if (data.success) { // if success is true
-                    alert("Successfully created application!");
+                    console.log("Successfully created application!");
+                    // redirect to home page
+                    window.location.href = "/student";
                 } else { // success: false
-                    alert("Failed to create application.");
+                    console.log("Failed to create application.");
                 }
             })
             .catch((error) => { // show error
@@ -69,6 +58,4 @@ export default function CreateApplication() {
         </div>
 
     );
-
-
 }

@@ -83,6 +83,7 @@ nav ul li {
 }
 
 .whole-container {
+    /* background-color: #5B5D6B; */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -136,9 +137,30 @@ thead {
     padding: 15px;
     padding-left: 30px;
     gap: 1em;
-    background-color: white;
+    background-color: rgb(40, 42, 58);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.614);
+    color: white;
 
+}
+
+.remark-container {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 30px;
+    width: 100%;
+}
+
+.remark-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2px;
+    padding: 15px;
+    padding-left: 30px;
+    background-color: rgb(40, 42, 58);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.614);
+    color: white;
 }
 
 .notifBtn {
@@ -146,7 +168,7 @@ thead {
 }
 
 .notif-item:hover {
-    background-color: rgb(236, 236, 236);
+    background-color: #404252;
 }
 
 .form-container {
@@ -167,3 +189,9 @@ thead {
     transition: 0.3s;
     background-color: #101223;
 } */
+
+.btn-right {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}

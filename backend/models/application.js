@@ -6,7 +6,7 @@ const applicationSchema = mongoose.Schema({
   status: { type: String, default: "pending" }, // closed, pending, cleared
   remarks: { type: [{ type: { remarks: String, step: Number, date: { type: Date, default: Date.now }, commenter: { type: mongoose.Schema.Types.ObjectId, ref: "approvers" } } }], default: [] },
   student_submissions: {
-    type: [{ type: { remark_link: String, step: Number, date: { type: Date, default: Date.now } } }],
+    type: [{ type: { github_link: String, student_remark: String, step: Number, date: { type: Date, default: Date.now } } }],
     default: []
   },
 });
