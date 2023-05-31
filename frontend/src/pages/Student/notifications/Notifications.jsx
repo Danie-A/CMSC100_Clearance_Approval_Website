@@ -1,6 +1,7 @@
 import SingleNotif from "./SingleNotif";
 import React, { useEffect, useState } from "react";
 
+
 export default function Notifications() {
 
     const [hasOpenApplication, setHasOpenApplication] = useState(null); // application id from student 
