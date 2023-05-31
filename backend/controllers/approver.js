@@ -21,4 +21,14 @@ const getPendingApplicationsByAdviser = async (req, res) => {
   }
 };
 
-export { getPendingApplicationsByAdviser };
+// get all students
+const getAllStudents = async (req, res) => {
+  try {
+    const result = await Student.find({});
+    res.status(200).json({ success: true, result: result });
+  } catch (error) {
+    res.status(500).json({ success: false, result: [], error: error });
+  }
+};
+
+export { getPendingApplicationsByAdviser, getAllStudents };

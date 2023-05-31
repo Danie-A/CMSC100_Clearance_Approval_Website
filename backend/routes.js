@@ -11,7 +11,7 @@ import {
   editApproverAccount,
   deleteApproverAccount,
 } from "./controllers/admin.js";
-import { getPendingApplicationsByAdviser } from "./controllers/approver.js";
+import { getPendingApplicationsByAdviser, getAllStudents } from "./controllers/approver.js";
 
 import { getLoggedIn, isStudent, isAdmin, isAdviser } from "./controllers/middleware.js";
 
@@ -47,6 +47,7 @@ const setUpRoutes = (app) => {
 
   // approver
   app.get("/get-pending-applications-adviser", isAdviser, getPendingApplicationsByAdviser);
+  app.get("/adviser", isAdviser, getAllStudents)
 
   // general
   app.post("/getLoggedIn", getLoggedIn);
