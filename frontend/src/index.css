@@ -133,14 +133,21 @@ thead {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin: 10px;
     padding: 15px;
     padding-left: 30px;
+    margin-bottom: 10px;
     gap: 1em;
-    background-color: rgb(40, 42, 58);
+    background-color: #30313d;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.614);
     color: white;
 
+}
+
+.notif-item:hover {
+    background-color: rgb(40, 42, 58);
+    transition: 0.4s;
+    border-radius: 10px;
+    scale: 1.01;
 }
 
 .remark-container {
@@ -162,13 +169,17 @@ thead {
     color: white;
 }
 
+.remark-item:hover {
+    background-color: #404252;
+    transition: 0.4s;
+    scale: 1.01;
+    border-radius: 20px;
+}
+
 .notifBtn {
     margin-right: 20px;
 }
 
-.notif-item:hover {
-    background-color: #404252;
-}
 
 .form-container {
     display: flex;
