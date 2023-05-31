@@ -5,6 +5,8 @@ body {
         sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* background-color: #282A3A;
+    color: white; */
 }
 
 code {
@@ -135,15 +137,18 @@ thead {
     justify-content: space-between;
     padding: 15px;
     padding-left: 30px;
+
     margin-bottom: 10px;
     gap: 1em;
+    /* background-color: #D2D4DA; */
     background-color: #30313d;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.614);
     color: white;
-
+    /* color: black; */
 }
 
 .notif-item:hover {
+    /* background-color: #d2d3d6; */
     background-color: rgb(40, 42, 58);
     transition: 0.4s;
     border-radius: 10px;
@@ -155,6 +160,20 @@ thead {
     flex-direction: column;
     padding-bottom: 30px;
     width: 100%;
+}
+
+.view-app-container {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    border-radius: 10px;
+    border-color: #B3B5BD;
+    border-width: 2px;
+    border-style: solid;
+    margin: 20px 0px 10px 0px;
+    padding: 40px 80px 40px 80px;
+    background-color: #F3F4F8;
+    color: black;
 }
 
 .remark-item {
@@ -187,7 +206,6 @@ thead {
     flex-direction: column;
     align-content: flex-start;
     justify-content: flex-start;
-    padding-left: 40px;
 }
 
 /* .btn-primary {
@@ -202,12 +220,8 @@ thead {
 
 .btn-right {
     position: absolute;
-    top: 10px;
-    right: 10px;
-}
-
-.delete-modal-content {
-    flex: 1;
+    top: 20px;
+    right: 20px;
 }
 
 .invisible-table {

@@ -1,6 +1,5 @@
 import React from 'react';
 import Remark from './Remark.jsx';
-import { AiFillCloseCircle } from 'react-icons/ai';
 import { useState, useEffect } from 'react';
 
 function ViewRemarks({ handleCloseModal }) {
@@ -63,9 +62,7 @@ function ViewRemarks({ handleCloseModal }) {
     return (
         <div className='whole-container'>
 
-            <button className="btn btn-danger btn-right" onClick={handleCloseModal}>
-                <AiFillCloseCircle color="white" />
-            </button>
+            <button type="button" className="btn-close btn-right" aria-label="Close" onClick={handleCloseModal}></button>
 
 
             <h5>Returned Remarks</h5>

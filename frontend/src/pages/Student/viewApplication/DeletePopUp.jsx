@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { AiFillCloseCircle } from 'react-icons/ai';
 import { MdDelete } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
@@ -37,10 +36,7 @@ function DeletePopUp({ handleCloseModal }) {
     return (
         <div className='whole-container'>
 
-            <button className="btn btn-light btn-right" onClick={handleCloseModal}>
-                <AiFillCloseCircle size="30" color="red" />
-            </button>
-
+            <button type="button" className="btn-close btn-right" aria-label="Close" onClick={handleCloseModal}></button>
             <h5>Close Current Application</h5>
             <div>
                 <p>Are you sure you want to close the current application?</p>
@@ -50,6 +46,7 @@ function DeletePopUp({ handleCloseModal }) {
             <button className="btn btn-danger" onClick={() => { handleClick(applicationId) }}>
                 <Link to="/student" className="nav-link"><MdDelete color="white" /> Close Application</Link>
             </button>
+            <br />
 
         </div>
 

@@ -36,6 +36,7 @@ export default function ViewApplication() {
             display: "flex",
             flexDirection: "column", // Set flexbox direction if needed
             justifyContent: "center", // Set flexbox alignment properties
+            flexWrap: "wrap",
             alignItems: "flex-start",
             top: "25%", // Position the modal at the center vertically
             left: "25%", // Position the modal at the center horizontally
@@ -217,10 +218,18 @@ export default function ViewApplication() {
             return <div className="form-container">
                 <p>Status: Returned</p>
                 <p>Step 3: Clearance Officer</p>
-                <button className="btn btn-warning notifBtn">
+                <button className="btn btn-warning notifBtn" onClick={handleOpenModal}>
                     <BiCommentDetail className="mr-2" style={{ marginRight: '8px' }} />
                     View Remarks
                 </button>
+                <ReactModal
+                    isOpen={showModal}
+                    contentLabel="Show Remarks"
+                    onRequestClose={handleCloseModal}
+                    appElement={document.getElementById('root')} // Set the app element
+                >
+                    <ViewRemarks handleCloseModal={handleCloseModal} />
+                </ReactModal>
                 <br></br>
                 <form>
                     <label htmlFor="student-remark">Student Remark:</label><br />
@@ -260,8 +269,11 @@ export default function ViewApplication() {
 
             </ReactModal>
 
-            <h5>View Clearance Application</h5>
-            {showContent()}
+            <div className="view-app-container">
+                <h5>View Clearance Application</h5>
+                {showContent()}
+            </div>
+
         </div>
     );
 }
