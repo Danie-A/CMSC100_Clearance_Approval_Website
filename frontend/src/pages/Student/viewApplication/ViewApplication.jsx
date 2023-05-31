@@ -107,6 +107,7 @@ export default function ViewApplication() {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify(applicationDocu)
         })
             .then((response) => response.json()) // get the response
@@ -148,6 +149,7 @@ export default function ViewApplication() {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify(applicationDocu)
         })
             .then((response) => response.json()) // get the response
@@ -155,6 +157,10 @@ export default function ViewApplication() {
                 console.log(data);
                 if (data.success) { // if success is true
                     alert("Successfully submitted returned application to adviser!");
+                    // change application status to pending
+
+
+
                     // redirect to homepage
                     window.location.href = "/student";
                 } else { // success: false

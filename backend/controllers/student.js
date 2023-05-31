@@ -95,6 +95,7 @@ const addStudentSubmissionAdviser = async (req, res) => {
         {
           $set: {
             current_step: current_step,
+            status: "pending"
           }
         });
       await Application.findByIdAndUpdate(foundStudent.open_application, {
@@ -127,6 +128,7 @@ const addStudentSubmissionClearanceOfficer = async (req, res) => {
       await Application.findByIdAndUpdate(foundStudent.open_application, {
         $set: {
           current_step: current_step,
+          status: "pending",
         },
       });
       await Application.findByIdAndUpdate(foundStudent.open_application, {
