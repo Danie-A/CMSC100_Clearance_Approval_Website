@@ -17,6 +17,7 @@ import ManageApprovers from "./pages/Admin/ManageApprovers";
 import AdminHome from "./pages/Admin/AdminHome";
 import AdviserViewPendingApplications from "./pages/Adviser/AdviserViewPendingApplications";
 import AdviserHome from "./pages/Adviser/AdviserHome";
+import AdviserSearch from "./pages/Adviser/AdviserSearch";
 
 // var userType = "student";
 // localStorage.setItem("userType", userType);
@@ -102,6 +103,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/adviser", element: <AdviserHome /> },
       { path: "/adviser/view-pending-applications", element: <AdviserViewPendingApplications /> },
+      { path: "/adviser/search-students", element: <AdviserSearch />}
     ],
   },
   {
