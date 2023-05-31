@@ -195,3 +195,7 @@ thead {
     top: 10px;
     right: 10px;
 }
+
+.delete-modal-content {
+    flex: 1;
+}

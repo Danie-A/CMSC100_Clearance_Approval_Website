@@ -39,7 +39,7 @@ const createApplication = async (req, res) => {
   try {
     const found = await Student.find({ _id: studentId, status: "approved" });
     if (found) {
-      const application = Application({ owner: studentId, current_step: 1, student_submissions: [{ date: new Date().getDate(), step: 1, github_link: github_link }] });
+      const application = Application({ owner: studentId, current_step: 1, student_submissions: [{ step: 1, github_link: github_link }] });
       const newApplication = await application.save();
       await Student.findByIdAndUpdate(studentId, { $set: { open_application: newApplication._id } });
       res.status(200).json({ success: true });

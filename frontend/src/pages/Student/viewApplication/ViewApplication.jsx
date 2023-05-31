@@ -31,8 +31,15 @@ export default function ViewApplication() {
 
     const deleteModalSize = {
         content: {
-            width: "500px", // Set the desired width
-            height: "300px", // Set the desired height
+            maxWidth: "600px", // Set the desired width
+            maxHeight: "280px", // Set the desired height
+            display: "flex",
+            flexDirection: "column", // Set flexbox direction if needed
+            justifyContent: "center", // Set flexbox alignment properties
+            alignItems: "flex-start",
+            top: "25%", // Position the modal at the center vertically
+            left: "25%", // Position the modal at the center horizontally
+            transform: "translate(-25%, -25%)", // Adjust the positioning based on modal size
         },
     };
 
@@ -239,7 +246,7 @@ export default function ViewApplication() {
     return (
         <div className="whole-container">
             <button onClick={handleOpenModal2} className="btn btn-danger">
-                <MdDelete color="white" />
+                <MdDelete color="white" />  Close Current Application
             </button>
             <ReactModal
                 style={deleteModalSize}
@@ -249,6 +256,8 @@ export default function ViewApplication() {
                 appElement={document.getElementById('root')} // Set the app element
             >
                 <DeletePopUp handleCloseModal={handleCloseModal2} />
+
+
             </ReactModal>
 
             <h5>View Clearance Application</h5>
