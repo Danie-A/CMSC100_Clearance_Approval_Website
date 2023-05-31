@@ -1,5 +1,6 @@
 import { Application } from "../models/application.js";
 import { Student } from "../models/user.js";
+import { Approver } from "../models/approver.js";
 
 const viewStudentInfo = async (req, res) => {
   const studentId = req.userId;
@@ -26,6 +27,24 @@ const viewOpenApplicationInfo = async (req, res) => {
     if (found) res.status(200).json({ success: true, data: found });
     else res.status(500).json({ success: false });
   } catch (error) {
+    console.log(`Error: ${error}`);
+    res.status(500).json({ succes: false });
+  }
+};
+
+const getOpenApplication = async (req, res) => {
+  const studentId = req.userId;
+  try {
+    const found = await Student.findById(studentId);
+    if (found.open_application) {
+      // find it in application collection
+      const foundApplication = await Application.findById(found.open_application);
+      if (foundApplication) res.status(200).json({ success: true, data: foundApplication });
+      else res.status(500).json({ success: false });
+    }
+    else res.status(500).json({ success: false });
+  }
+  catch (error) {
     console.log(`Error: ${error}`);
     res.status(500).json({ succes: false });
   }
@@ -181,4 +200,22 @@ const getApplicationsOfStudent = async (req, res) => {
   }
 };
 
-export { viewStudentInfo, createApplication, deleteApplication, getApplicationsOfStudent, getClearedApplications, addStudentSubmissionClearanceOfficer, addStudentSubmissionAdviser, viewOpenApplicationInfo };
+// get adviser details
+const getAdviserDetails = async (req, res) => {
+  const studentId = req.userId;
+  try {
+    const found = await Student.findById(studentId);
+    if (found) {
+      const adviser = await Approver.findById(found.adviser);
+      res.status(200).json({ success: true, data: adviser });
+    } else {
+      res.status(404).json({ success: false });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false });
+  }
+};
+
+
+export { viewStudentInfo, getAdviserDetails, createApplication, deleteApplication, getApplicationsOfStudent, getClearedApplications, addStudentSubmissionClearanceOfficer, addStudentSubmissionAdviser, viewOpenApplicationInfo, getOpenApplication };
