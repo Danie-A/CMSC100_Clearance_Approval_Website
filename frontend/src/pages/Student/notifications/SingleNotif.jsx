@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiFillFilePdf } from "react-icons/ai";
 import { FaCheckSquare } from "react-icons/fa";
 import { BiCommentDetail } from "react-icons/bi";
 import { RiReplyFill } from "react-icons/ri";
 import ReactModal from 'react-modal';
 import ViewRemarks from "../viewApplication/remarks/ViewRemarks.jsx";
-import { useState } from "react";
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import PDFDocument from '../pdf/PDFDocument';
 
@@ -34,17 +33,12 @@ export default function StudentNotif(props) {
                     </div>
 
                     <div>
-
                         <PDFDownloadLink document={<PDFDocument applicationId={123456789} dateGenerated={date} studentName={"Danielle Araez"} studentNumber={"2021-12345"} adviser={"Ipsum Lorem"} clearanceOfficer={"Lorem Ipsum"} />} fileName="approved_clearance.pdf">
                             {({ blob, url, loading, error }) => (loading ? 'Generating PDF...' : <button className="btn btn-danger notifBtn">
                                 <AiFillFilePdf className="mr-2" style={{ marginRight: '8px' }} />
                                 Print PDF
                             </button>)}
                         </PDFDownloadLink>
-
-
-                        {/* <ShowPDF /> */}
-
                     </div>
                 </>
             );
