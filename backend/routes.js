@@ -47,7 +47,7 @@ const setUpRoutes = (app) => {
 
   // approver
   app.get("/get-pending-applications-adviser", isAdviser, getPendingApplicationsByAdviser);
-  app.get("/adviser", isAdviser, getAllStudents)
+  app.get("/adviser/search-students", isAdviser, getAllStudents)
 
   // general
   app.post("/getLoggedIn", getLoggedIn);

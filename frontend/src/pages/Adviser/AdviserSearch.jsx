@@ -22,6 +22,18 @@ export default function AdviserSearch() {
     //     });
     // }
 
+    useEffect(() => {
+        const e = async () => {
+          await fetch("http://localhost:3001/search-students", { method: "GET", credentials: "include" })
+            .then((response) => response.json())
+            .then((body) => {
+              console.log(body.result);
+              setStudentsList(body.result);
+            });
+        };
+        e();
+      }, []);
+
     return(
         <>
         {/* <input placeholder="SEARCH" />
@@ -31,7 +43,7 @@ export default function AdviserSearch() {
             
         </ul> */}
         
-        {/* Displaying approvers */}
+        {/* Displaying students */}
         <h3>Advisees</h3>
         <span>Name </span>
         <button onClick={() => setSortBy("name_asc")}>↑</button>
