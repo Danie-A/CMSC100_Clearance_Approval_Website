@@ -1,6 +1,8 @@
 import { Student } from "../models/user.js";
 import { Approver } from "../models/approver.js";
 import jwt from "jsonwebtoken";
+import csvParser from "csv-parser";
+import fs from "fs";
 
 // getting all pending applications
 const getPendingApplications = async (req, res) => {
@@ -158,6 +160,27 @@ const checkIfLoggedInApprover = async (req, res) => {
   }
 };
 
+const approveStudentByCsv = async (row) => {
+  const { adviserInitials, studentNumber } = row;
+  const adviser = await Approver.findOne({ initials_surname: adviserInitials });
+  await Student.findOne({ student_number: studentNumber }).updateOne({ adviser: adviser._id, status: "approved" });
+  return true;
+};
+
+const uploadCSV = async (req, res) => {
+  const file = req.file;
+  if (!file) res.status(400).json({ error: "No file uploaded" });
+
+  const promises = [];
+  fs.createReadStream(file.path)
+    .pipe(csvParser())
+    .on("data", (row) => promises.push(approveStudentByCsv(row)))
+    .on("end", async () => {
+      await Promise.all(promises);
+      res.status(200).json({ success: true });
+    });
+};
+
 export {
   getPendingApplications,
   approveStudentAccount,
@@ -168,4 +191,5 @@ export {
   getAllAdvisers,
   editApproverAccount,
   deleteApproverAccount,
+  uploadCSV,
 };
