@@ -89,8 +89,8 @@ export default function Root() {
       return (
         <nav id="manage-approver">
           <ul>
-            <li className={`${location.pathname === "/admin/view-pending-applications" ? "active" : ""}`}>
-              <Link to="/admin/view-pending-applications" className="nav-link">
+            <li className={`${location.pathname === "/admin/view-pending-accounts" ? "active" : ""}`}>
+              <Link to="/admin/view-pending-accounts" className="nav-link">
                 View Pending Accounts
               </Link>
             </li>
