@@ -29,7 +29,6 @@ function AdviserViewPendingApplications() {
       <h3>{"Adviser's View Pending Applications"}</h3>
       {pendingApplications.map((application, index) => (
         <div key={index}> {application.owner}</div>
-
       ))}
     </>
   );

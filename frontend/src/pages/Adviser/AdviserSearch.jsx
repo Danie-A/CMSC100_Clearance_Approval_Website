@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import Popup from "./SeeProfile";
-import SeeProfile from "./SeeProfile";
 
 export default function AdviserSearch() {
 
@@ -96,10 +94,6 @@ export default function AdviserSearch() {
         ))}
       </div>
     </div>
-            {/* <SeeProfile trigger={buttonPopup}>
-                    <h3>POPUP!</h3>
-                </SeeProfile> */}
-            <br />
             <br />
         </>
     )
