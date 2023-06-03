@@ -9,7 +9,6 @@ function GeneratePDF() {
             {/* Content to be included in the PDF */}
             <h1>PDF Content</h1>
             <p>This is a sample PDF document.</p>
-
             {/* PDF download link */}
             <PDFDownloadLink document={<PDFDocument />} fileName="clearance.pdf">
                 {({ blob, url, loading, error }) => (loading ? 'Generating PDF...' : 'Download PDF')}
