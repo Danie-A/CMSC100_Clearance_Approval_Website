@@ -80,7 +80,7 @@ export default function SeeProfile({ handleCloseModal, student }) {
 
             return (<div>
                 <p><strong>GitHub Link:</strong>  <a href={github_link} target="_blank" rel="noopener noreferrer">{github_link}</a></p>
-                <p>{student_remark}</p>
+                <p><strong>Student Remark:</strong> {student_remark}</p>
             </div>);
 
         }
@@ -102,7 +102,7 @@ export default function SeeProfile({ handleCloseModal, student }) {
         return (
             <div className='whole-container'>
 
-                <button type="button" className="btn-close btn-right" aria-label="Close" onClick={handleCloseModal}></button>
+                <button type="button" className="btn-close btn-right" aria-label="Close" onClick={handleCloseRemark}></button>
 
                 <h5>Returned Remarks</h5>
 
@@ -137,7 +137,7 @@ export default function SeeProfile({ handleCloseModal, student }) {
         return (
             <div className='whole-container'>
 
-                <button type="button" className="btn-close btn-right" aria-label="Close" onClick={handleCloseModal}></button>
+                <button type="button" className="btn-close btn-right" aria-label="Close" onClick={handleCloseSubmission}></button>
 
                 <h5>Student Submissions</h5>
 
@@ -145,7 +145,7 @@ export default function SeeProfile({ handleCloseModal, student }) {
 
                     <div>
                         {sortedSubmissions.map((sub, index) => (
-                            <Submission key={index} github_link={sub.github_link} remark={sub} step={sub.step} date={sub.date.slice(0, 10)} />
+                            <Submission key={index} github_link={sub.github_link} student_remark={sub.student_remark} step={sub.step} date={sub.date.slice(0, 10)} />
                         ))}
                     </div>
 
