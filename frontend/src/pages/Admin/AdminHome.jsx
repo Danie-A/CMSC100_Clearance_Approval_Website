@@ -25,7 +25,7 @@ function AdminHome() {
         <span>Csv file: </span>
         <input type="file" name="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
         <button onClick={handleCSVUpload}>Submit</button>
-        <img id="image" src="https://i.pinimg.com/originals/1b/0f/b0/1b0fb0ed95b7ee77ac662af8adcc29e7.png" alt="Image"></img>
+        <img id="image" src="https://i.pinimg.com/originals/1b/0f/b0/1b0fb0ed95b7ee77ac662af8adcc29e7.png" alt="admin-home"></img>
       </div>
     </>
   );

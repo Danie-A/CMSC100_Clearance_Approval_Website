@@ -146,14 +146,12 @@ export default function Home() {
       });
   };
 
-  // [] @up.edu.ph email validation
-
   return (
     <>
       {/* <div id="welcome-page"> */}
       <div id="header-container">
         <div id="glass-background">
-          <img id="image" src="https://i.pinimg.com/originals/38/4c/20/384c20132bda8dba92a55ddcebf29038.jpg" alt="Image"></img>
+          <img id="image" src="https://i.pinimg.com/originals/38/4c/20/384c20132bda8dba92a55ddcebf29038.jpg" alt="home"></img>
           <header id="header">Welcome To ClearMe</header>
         </div>
       </div>
@@ -196,6 +194,7 @@ export default function Home() {
         <p>Unlock the Path to Success with Effortless Efficiency: Experience Seamless Clearance Approval in the Institute of Computer Science</p>
       </footer>
       {/* </div> */}
+
     </>
   );
 }

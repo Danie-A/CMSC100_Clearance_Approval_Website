@@ -129,7 +129,8 @@ function ViewPendingApplications() {
         </div>
 
         <div id="image-container">
-          <img id="image5" src="https://i.pinimg.com/originals/70/2c/88/702c88766c91b0d333b220326dfb14ad.png" alt="Image"></img>
+          <img id="image5" src="https://i.pinimg.com/originals/70/2c/88/702c88766c91b0d333b220326dfb14ad.png" alt="view-pending-applications">
+          </img>
         </div>
 
         <br />
@@ -152,7 +153,7 @@ function ViewPendingApplications() {
           </>
         )}
       </div>
-      <ReactModal isOpen={showApproveModal} style={modalStyle} onAfterClose={() => {}}>
+      <ReactModal isOpen={showApproveModal} style={modalStyle} onAfterClose={() => { }}>
         <div className="d-flex flex-column gap-1 p-0 py-sm-3 px-sm-4 w-100 h-100 justify-content-between">
           <button type="button" className="btn-close btn-right" onClick={() => setShowApproveModal(false)} />
           <h4 className="fw-semibold mb-4">{"Approving " + approving?.first_name}</h4>
