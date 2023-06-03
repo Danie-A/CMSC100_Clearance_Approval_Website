@@ -71,7 +71,7 @@ function ManagePendingApplications() {
           <button type="button" className="btn-close btn-right" onClick={() => setIsRejectingOpen(false)} />
           <h4>{"Rejecting " + currentStudent?.first_name}</h4>
           <textarea type="text" rows="4" placeholder="Remarks" value={remarks} onChange={(e) => setRemarks(e.target.value)} />
-          <button onClick={handleReject}>Reject</button>
+          <button onClick={handleReject}>Return</button>
         </div>
       </ReactModal>
 
@@ -87,7 +87,7 @@ function ManagePendingApplications() {
                 <button onClick={() => handleApprove(student.open_application._id)}>Approve</button>
               </td>
               <td>
-                <button onClick={() => handlePreReject(student)}>Reject</button>
+                <button onClick={() => handlePreReject(student)}>Return</button>
               </td>
             </tr>
           ))}
