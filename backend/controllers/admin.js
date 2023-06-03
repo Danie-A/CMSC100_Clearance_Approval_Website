@@ -219,6 +219,19 @@ const rejectStudentApplicationAdmin = async (req, res) => {
   }
 };
 
+const getAllApplications = async (req, res) => {
+  try {
+    const result = await Student.find({ open_application: { $ne: null } })
+      .select("-password")
+      .populate("open_application");
+    const filteredResult = result.filter((student) => student.open_application != null);
+    res.status(200).json({ success: true, request: filteredResult });
+  } catch (error) {
+    console.log(`Error in admin - getAllApplications(): ${error}`);
+    res.status(500).json({ success: false });
+  }
+};
+
 export {
   getPendingApplications,
   approveStudentAccount,
@@ -233,4 +246,5 @@ export {
   getStudentApplicationAdmin,
   clearStudentApplication,
   rejectStudentApplicationAdmin,
+  getAllApplications,
 };
