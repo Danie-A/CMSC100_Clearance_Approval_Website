@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import Popup from "./ViewApplication";
-import ViewApplication from "./ViewApplication";
+import Popup from "./SeeProfile";
+import SeeProfile from "./SeeProfile";
 
 export default function AdviserSearch() {
 
@@ -62,11 +62,10 @@ export default function AdviserSearch() {
                         .filter((e) => (e.first_name + " " + e.middle_name + " " + e.last_name).toLowerCase().includes(nameFilter.toLowerCase()))
                         .map((student, index) => (
                             <tr key={index}>
-                                <td>{student.first_name + " " + student.middle_name + " " + student.last_name}</td>
-                                <button onClick={()=>setButtonPopup(true)}>View Application</button>
-                                <ViewApplication trigger={buttonPopup}>
-                                    <h3>POPUP!</h3>
-                                </ViewApplication>
+                                <td>{student.first_name + " " + student.middle_name + " " + student.last_name}
+                                    <button onClick={()=>setButtonPopup(true)}>See Profile</button>
+                                </td>
+                                {/* <button onClick={()=>setButtonPopup(true)}>See Profile</button> */}
                                 {/* <td>
                     <button onClick={() => handlePreEdit(approver)}>Edit</button>
                     </td>
@@ -77,6 +76,9 @@ export default function AdviserSearch() {
                         ))}
                 </tbody>
             </table>
+            <SeeProfile trigger={buttonPopup}>
+                    <h3>POPUP!</h3>
+                </SeeProfile>
             <br />
             <br />
         </>
