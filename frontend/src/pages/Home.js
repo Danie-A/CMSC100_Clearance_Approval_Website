@@ -150,8 +150,13 @@ export default function Home() {
 
   return (
     <>
-    <imageee id="image" src="https://i.pinimg.com/originals/0d/bd/79/0dbd79769623038b3999e2e1c32ccb64.png" alt="Image"></imageee>
-      <header id="header">Welcome To ClearMe</header>
+    <div id="header-container">
+    <div id="glass-background">
+    <img id="image" src="https://i.pinimg.com/originals/38/4c/20/384c20132bda8dba92a55ddcebf29038.jpg" alt="Image"></img>
+    <header id="header">Welcome To ClearMe</header>
+    </div>
+    </div>
+
       <h1>Sign Up for Students</h1>
       <form id="sign-up">
         <input id="s-fname" placeholder="First Name" required />
@@ -185,6 +190,10 @@ export default function Home() {
       </form>
 
       <p class="note">Note: Coordinate with the Admin to create an Approver account.</p>
+
+      <footer>
+      <p>Unlock the Path to Success with Effortless Efficiency: Experience Seamless Clearance Approval in the Institute of Computer Science</p>
+      </footer>
     </>
   );
 }
