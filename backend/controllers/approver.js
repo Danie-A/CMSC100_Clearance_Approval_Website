@@ -76,7 +76,7 @@ const returnApplicationAdviser = async (req, res) => {
   const { applicationId, remarks } = req.body;
   try {
     await Application.findByIdAndUpdate(applicationId, { current_step: 2, status: "returned", $push: { remarks: { remarks: remarks, step: 2, commenter: adviserId } } });
-    res.status(200).json({ success: "Successfully returned application from adviser." });
+    res.status(200).json({ success: "Successfully returned application to student." });
   } catch (error) {
     console.log(`Error in adviser - returnApplicationAdviser(): ${error}`);
     res.status(500).json({ success: false });
