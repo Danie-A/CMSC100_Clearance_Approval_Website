@@ -103,12 +103,12 @@ export default function Notifications() {
 
     return (
         <div className='whole-container'>
-            <h5>Notifications</h5>
+            <h5 className="text-dark">Notifications</h5>
             <div className="notif-container">
-                <h6>Returned Application Notification</h6>
+                <h6 className="text-muted">Returned Application Notification</h6>
                 {showReturnedApplication()}
                 <br></br>
-                <h6>Cleared Application Notifications</h6>
+                <h6 className="text-muted">Cleared Application Notifications</h6>
                 {showClearedApplications()}
             </div>
 

@@ -9,7 +9,7 @@ import {
   getClearedApplications,
   addStudentSubmissionClearanceOfficer,
   addStudentSubmissionAdviser,
-  viewOpenApplicationInfo
+  viewOpenApplicationInfo,
 } from "./controllers/student.js";
 import {
   getPendingApplications,
@@ -21,11 +21,23 @@ import {
   checkIfLoggedInApprover,
   editApproverAccount,
   deleteApproverAccount,
+  uploadCSV,
+  getStudentApplicationAdmin,
+  clearStudentApplication,
+  rejectStudentApplicationAdmin,
 } from "./controllers/admin.js";
-import { getPendingApplicationsByAdviser } from "./controllers/approver.js";
+import {
+  getPendingApplicationsByAdviser,
+  getStudentsWithPendingApplication,
+  getAllStudents,
+  getAdviserName
+} from "./controllers/approver.js";
 
 import { getLoggedIn, isStudent, isAdmin, isAdviser } from "./controllers/middleware.js";
-import { application } from "express";
+
+import multer from "multer";
+
+const upload = multer({ dest: "uploads/" });
 
 const setUpRoutes = (app) => {
   // auth
@@ -56,12 +68,19 @@ const setUpRoutes = (app) => {
   app.post("/add-approver", isAdmin, addApproverAccount);
   app.post("/edit-approver", isAdmin, editApproverAccount);
   app.post("/delete-approver", isAdmin, deleteApproverAccount);
+  app.post("/upload-csv-file", upload.single("file"), uploadCSV);
+  app.post("/get-student-application-admin", isAdmin, getStudentApplicationAdmin);
+  app.post("/clear-student-application", isAdmin, clearStudentApplication);
+  app.post("/reject-student-application-admin", isAdmin, rejectStudentApplicationAdmin);
 
   app.post("/login-approver", loginApprover);
   app.post("/checkifloggedinapprover", checkIfLoggedInApprover);
 
   // approver
   app.get("/get-pending-applications-adviser", isAdviser, getPendingApplicationsByAdviser);
+  app.get("/search-students", isAdviser, getAllStudents)
+  app.get("/get-students-with-pending-application", isAdviser, getStudentsWithPendingApplication)
+  app.get("/get-adviser-name", isAdviser, getAdviserName)
 
   // general
   app.post("/getLoggedIn", getLoggedIn);

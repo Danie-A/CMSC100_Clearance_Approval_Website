@@ -4,21 +4,15 @@ import { Approver } from "../models/approver.js";
 
 const viewStudentInfo = async (req, res) => {
   const studentId = req.userId;
-  const result = await Student.findById(studentId);
-  res.status(200).json(result);
+  try {
+    const result = await Student.findById(studentId);
+    if (result) res.status(200).json(result);
+    else res.status(404).json({ success: false });
+  } catch (error) {
+    console.log(`Error in student - viewStudentInfo(): ${error}`);
+    res.status(500).json({ success: false });
+  }
 };
-
-// const viewOpenApplicationInfo = async (req, res) => {
-//   const studentId = req.userId;
-//   try {
-//     const found = await Student.findById(studentId).populate("open_application");
-//     if (found) res.status(200).json({ success: true, request: { open_application: found.open_application } });
-//     else res.status(500).json({ success: false, request: {} });
-//   } catch (error) {
-//     console.log(`Error: ${error}`);
-//     res.status(500).json({ succes: false, request: {} });
-//   }
-// };
 
 const viewOpenApplicationInfo = async (req, res) => {
   const { applicationId } = req.body;
@@ -41,10 +35,8 @@ const getOpenApplication = async (req, res) => {
       const foundApplication = await Application.findById(found.open_application);
       if (foundApplication) res.status(200).json({ success: true, data: foundApplication });
       else res.status(500).json({ success: false });
-    }
-    else res.status(500).json({ success: false });
-  }
-  catch (error) {
+    } else res.status(500).json({ success: false });
+  } catch (error) {
     console.log(`Error: ${error}`);
     res.status(500).json({ succes: false });
   }
@@ -52,7 +44,6 @@ const getOpenApplication = async (req, res) => {
 
 // creating an application
 const createApplication = async (req, res) => {
-  console.log("trying to create an application");
   const { github_link } = req.body;
   const studentId = req.userId;
   try {
@@ -84,36 +75,34 @@ const getClearedApplications = async (req, res) => {
 
 // add student submission
 // revise current_step and link/remark
-// submitting step1 (github link) 
+// submitting step1 (github link)
 const addStudentSubmissionAdviser = async (req, res) => {
   const { current_step, github_link, student_remark } = req.body;
   const studentId = req.userId;
   try {
     const foundStudent = await Student.findById(studentId);
     if (foundStudent) {
-      await Application.findByIdAndUpdate(foundStudent.open_application,
-        {
-          $set: {
-            current_step: current_step,
-            status: "pending"
-          }
-        });
+      await Application.findByIdAndUpdate(foundStudent.open_application, {
+        $set: {
+          current_step: current_step,
+          status: "pending",
+        },
+      });
       await Application.findByIdAndUpdate(foundStudent.open_application, {
         $push: {
-          student_submissions:
-          {
+          student_submissions: {
             step: current_step,
             student_remark: student_remark,
-            github_link: github_link
-          }
-        }
+            github_link: github_link,
+          },
+        },
       });
       res.status(200).json({ success: true });
     } else {
       res.status(404).json({ success: false });
     }
   } catch (error) {
-    console.log(error);
+    console.log(`Error in student - addStudentSubmissionAdviser(): ${error}`);
     res.status(500).json({ success: false });
   }
 };
@@ -132,23 +121,17 @@ const addStudentSubmissionClearanceOfficer = async (req, res) => {
         },
       });
       await Application.findByIdAndUpdate(foundStudent.open_application, {
-        $push: {
-          student_submissions: {
-            step: current_step,
-            student_remark: student_remark
-          }
-        }
+        $push: { student_submissions: { step: current_step, student_remark: student_remark } },
       });
       res.status(200).json({ success: true });
     } else {
       res.status(404).json({ success: false });
     }
   } catch (error) {
-    console.log(error);
+    console.log(`Error in student - addStudentSubmissionClearanceOfficer(): ${error}`);
     res.status(500).json({ success: false });
   }
 };
-
 
 // delete an approver account
 const deleteApplication = async (req, res) => {
@@ -158,21 +141,14 @@ const deleteApplication = async (req, res) => {
     const found = await Student.findById(studentId);
     console.log(found);
     if (found) {
-      // Find the student by ID and update the openApplication and closedApplications fields
       await Student.findByIdAndUpdate(studentId, {
-        $set: {
-          open_application: null,
-        },
-        $push: {
-          closed_applications: applicationId,
-        },
+        $set: { open_application: null },
+        $push: { closed_applications: applicationId },
       });
 
       // Find the application by ID and update the status field
       await Application.findByIdAndUpdate(applicationId, {
-        $set: {
-          status: 'closed',
-        },
+        $set: { status: "closed" },
       });
 
       res.status(200).json({ success: true });
@@ -219,5 +195,15 @@ const getAdviserDetails = async (req, res) => {
   }
 };
 
-
-export { viewStudentInfo, getAdviserDetails, createApplication, deleteApplication, getApplicationsOfStudent, getClearedApplications, addStudentSubmissionClearanceOfficer, addStudentSubmissionAdviser, viewOpenApplicationInfo, getOpenApplication };
+export {
+  viewStudentInfo,
+  getAdviserDetails,
+  createApplication,
+  deleteApplication,
+  getApplicationsOfStudent,
+  getClearedApplications,
+  addStudentSubmissionClearanceOfficer,
+  addStudentSubmissionAdviser,
+  viewOpenApplicationInfo,
+  getOpenApplication,
+};

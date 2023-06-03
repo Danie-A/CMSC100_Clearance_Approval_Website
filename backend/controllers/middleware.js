@@ -4,24 +4,22 @@ import { Approver } from "../models/approver.js";
 
 const getLoggedIn = (req, res) => {
   try {
-    if (!req.cookies || !req.cookies.authToken) {
-      res.status(403).json({ loggedIn: false });
-    } else {
+    if (!req.cookies || !req.cookies.authToken) res.status(403).json({ loggedIn: false });
+    else {
       const tokenPayload = jwt.verify(req.cookies.authToken, "THIS_IS_A_SECRET_STRING");
       res.status(200).json({ loggedIn: tokenPayload._id });
     }
   } catch (error) {
+    console.log(`Error in middleware - getLoggedIn(): ${error}`);
     res.status(500).json({ loggedIn: false });
   }
 };
 
 const isUserAn = async (user, cookies) => {
-  console.log("checking user");
   try {
     if (!cookies || !cookies.authToken) return { code: 403 };
     else {
       const tokenPayload = jwt.verify(cookies.authToken, "THIS_IS_A_SECRET_STRING");
-      console.log(tokenPayload);
       if (user === "student" && (await Student.findById(tokenPayload._id))) {
         return { code: 200, userId: tokenPayload._id };
       } else if (user === "adviser" && (await Approver.findById(tokenPayload._id))) {
@@ -38,12 +36,10 @@ const isUserAn = async (user, cookies) => {
 };
 
 const isStudent = async (req, res, next) => {
-  console.log("checking student");
   try {
     const result = await isUserAn("student", req.cookies);
     if (result.code === 200) {
       req.userId = result.userId;
-      console.log(`passed student ${result.userId}`);
       next();
     } else if (result.code === 403) res.status(403).json({ success: false });
     else if (result.code === 500) res.status(500).json({ success: false });
@@ -53,12 +49,10 @@ const isStudent = async (req, res, next) => {
 };
 
 const isAdviser = async (req, res, next) => {
-  console.log("checking adviser");
   try {
     const result = await isUserAn("adviser", req.cookies);
     if (result.code === 200) {
       req.userId = result.userId;
-      console.log("is an adviser");
       next();
     } else if (result.code === 403) res.status(403).json({ success: false });
     else if (result.code === 500) res.status(500).json({ success: false });

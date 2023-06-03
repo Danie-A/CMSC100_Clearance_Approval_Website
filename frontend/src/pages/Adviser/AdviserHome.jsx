@@ -54,31 +54,45 @@ export default function ApproverHome() {
         };
 
         return (
-            <Dropdown
-                open={open}
-                trigger={<button onClick={handleOpen}>Dropdown</button>}
-                menu={[
-                    <button onClick={handleMenuOne}>Menu 1</button>,
-                    <button onClick={handleMenuTwo}>Menu 2</button>,
-                ]}
-            />
+            <>
+                <Dropdown
+                    open={open}
+                    trigger={<button onClick={handleOpen}>Dropdown</button>}
+                    menu={[
+                        <button onClick={handleMenuOne}>Menu 1</button>,
+                        <button onClick={handleMenuTwo}>Menu 2</button>,
+                    ]}
+                />
+
+            </>
+
         );
     };
 
     const Dropdown = ({ open, trigger, menu }) => {
-        return (
+        return (<>
+            <h3>{"Welcome adviser"}</h3>
+            {App}
             <div className="dropdown">
                 {trigger}
                 {open ? (
                     <ul className="menu">
                         {menu.map((menuItem, index) => (
                             <li key={index} className="menu-item">{menuItem}</li>
+                            
                         ))}
                     </ul>
                 ) : null}
             </div>
+        </>
         );
     };
+
+    return(
+        <>
+        Welcome Adviser!
+        </>
+    )
 }
 
 

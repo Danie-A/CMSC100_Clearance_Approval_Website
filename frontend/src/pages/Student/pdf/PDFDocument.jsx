@@ -52,7 +52,7 @@ const styles = {
         alignItems: "center",
     },
     heading: {
-        fontSize: 20,
+        fontSize: 19,
         fontWeight: "bold",
     },
     subHeading: {
