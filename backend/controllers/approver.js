@@ -1,6 +1,5 @@
 import { Approver } from "../models/approver.js";
 import { Student } from "../models/user.js";
-import { Application } from "../models/application.js";
 
 // get all pending applications of adviser's students
 const getPendingApplicationsByAdviser = async (req, res) => {
@@ -16,7 +15,7 @@ const getPendingApplicationsByAdviser = async (req, res) => {
       // const applications = await Application.find({ owner: { $in: studentIds }, status: "pending", current_step: 1 });
       res.status(200).json({ success: true, request: applications });
     } else {
-      res.status(404).json({ success: false, request: [] });
+      res.status(200).json({ success: false, request: [] });
     }
   } catch (error) {
     res.status(500).json({ success: false, request: [] });

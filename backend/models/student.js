@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 import mongoose from "mongoose";
 
 const studentSchema = mongoose.Schema({
@@ -16,3 +18,4 @@ const studentSchema = mongoose.Schema({
 const Student = mongoose.model("student", studentSchema);
 
 export { studentSchema, Student };
+>>>>>>> origin

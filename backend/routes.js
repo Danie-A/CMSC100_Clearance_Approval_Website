@@ -21,10 +21,15 @@ import {
   checkIfLoggedInApprover,
   editApproverAccount,
   deleteApproverAccount,
+  uploadCSV,
 } from "./controllers/admin.js";
 import { getPendingApplicationsByAdviser, getAllStudents } from "./controllers/approver.js";
 
 import { getLoggedIn, isStudent, isAdmin, isAdviser } from "./controllers/middleware.js";
+
+import multer from "multer";
+
+const upload = multer({ dest: "uploads/" });
 
 const setUpRoutes = (app) => {
   // auth
@@ -55,6 +60,7 @@ const setUpRoutes = (app) => {
   app.post("/add-approver", isAdmin, addApproverAccount);
   app.post("/edit-approver", isAdmin, editApproverAccount);
   app.post("/delete-approver", isAdmin, deleteApproverAccount);
+  app.post("/upload-csv-file", upload.single("file"), uploadCSV);
 
   app.post("/login-approver", loginApprover);
   app.post("/checkifloggedinapprover", checkIfLoggedInApprover);
