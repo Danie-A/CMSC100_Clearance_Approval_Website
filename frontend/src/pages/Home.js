@@ -150,6 +150,8 @@ export default function Home() {
 
   return (
     <>
+    <imageee id="image" src="https://i.pinimg.com/originals/0d/bd/79/0dbd79769623038b3999e2e1c32ccb64.png" alt="Image"></imageee>
+      <header id="header">Welcome To ClearMe</header>
       <h1>Sign Up for Students</h1>
       <form id="sign-up">
         <input id="s-fname" placeholder="First Name" required />
@@ -182,7 +184,7 @@ export default function Home() {
         <button onClick={logInAdmin}>Log In</button>
       </form>
 
-      <p>Note: Coordinate with the Admin to create an Approver account.</p>
+      <p class="note">Note: Coordinate with the Admin to create an Approver account.</p>
     </>
   );
 }
