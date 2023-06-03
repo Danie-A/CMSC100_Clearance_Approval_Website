@@ -6,7 +6,7 @@ import { RiReplyFill } from "react-icons/ri";
 import ReactModal from 'react-modal';
 import ViewRemarks from "../viewApplication/remarks/ViewRemarks.jsx";
 import { PDFDownloadLink } from '@react-pdf/renderer';
-import PDFDocument from '../pdf/PDFDocument.jsx';
+import PDFDocument from '../pdf/PDFDocument';
 
 export default function SingleNotif(props) {
 
