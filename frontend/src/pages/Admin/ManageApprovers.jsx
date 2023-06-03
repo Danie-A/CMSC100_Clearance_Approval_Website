@@ -98,26 +98,28 @@ function ManageApprovers() {
     <>
       {/* Displaying approvers */}
       <h3>Approvers</h3>
-      <span>Name </span>
-      <button onClick={() => setSortBy("name_asc")}>↑</button>
-      <button onClick={() => setSortBy("name_desc")}>↓</button> <br />
-      <input placeholder="Name" onChange={(e) => setNameFilter(e.target.value)} value={nameFilter} />
-      <button>Search</button>
+      
+      <input className="glass-effect-1" placeholder="Name" onChange={(e) => setNameFilter(e.target.value)} value={nameFilter} />
+      <button className="glass-effect-1">Search</button>
+
+      <button className="glass-effect-2" onClick={() => setSortBy("name_asc")}>↑</button>
+      <button className="glass-effect-2" onClick={() => setSortBy("name_desc")}>↓</button> <br />
+     
       <table>
         <tbody>
           <tr>
-            <td>Name</td>
+            {/* <td className="glass-effect-4">Name</td> */}
           </tr>
           {approversList
             .filter((e) => (e.first_name + " " + e.middle_name + " " + e.last_name).toLowerCase().includes(nameFilter.toLowerCase()))
             .map((approver, index) => (
               <tr key={index}>
-                <td>{approver.first_name + " " + approver.middle_name + " " + approver.last_name}</td>
+                <td className="glass-effect-4">{approver.first_name + " " + approver.middle_name + " " + approver.last_name}</td>
                 <td>
-                  <button onClick={() => handlePreEdit(approver)}>Edit</button>
+                  <button className="glass-effect-4" onClick={() => handlePreEdit(approver)}>Edit</button>
                 </td>
                 <td>
-                  <button onClick={() => handleDeleteApprover(approver._id)}>Delete</button>
+                  <button className="glass-effect-4" onClick={() => handleDeleteApprover(approver._id)}>Delete</button>
                 </td>
               </tr>
             ))}
@@ -127,24 +129,24 @@ function ManageApprovers() {
       <br />
       {/* Adding an approver */}
       <h3>Add an approver</h3>
-      <input placeholder="First name" value={addApproverInfo.first_name} onChange={(e) => setAddApproverInfo({ ...addApproverInfo, first_name: e.target.value })} />
-      <input placeholder="Middle name" value={addApproverInfo.middle_name} onChange={(e) => setAddApproverInfo({ ...addApproverInfo, middle_name: e.target.value })} />
-      <input placeholder="Last name" value={addApproverInfo.last_name} onChange={(e) => setAddApproverInfo({ ...addApproverInfo, last_name: e.target.value })} />
+      <input className="glass-effect-5" placeholder="First name" value={addApproverInfo.first_name} onChange={(e) => setAddApproverInfo({ ...addApproverInfo, first_name: e.target.value })} />
+      <input className="glass-effect-5" placeholder="Middle name" value={addApproverInfo.middle_name} onChange={(e) => setAddApproverInfo({ ...addApproverInfo, middle_name: e.target.value })} />
+      <input className="glass-effect-5" placeholder="Last name" value={addApproverInfo.last_name} onChange={(e) => setAddApproverInfo({ ...addApproverInfo, last_name: e.target.value })} />
       <br />
-      <input placeholder="email" value={addApproverInfo.email} onChange={(e) => setAddApproverInfo({ ...addApproverInfo, email: e.target.value })} />
-      <input type="password" placeholder="password" value={addApproverInfo.password} onChange={(e) => setAddApproverInfo({ ...addApproverInfo, password: e.target.value })} />
+      <input className="glass-effect-5" placeholder="Email" value={addApproverInfo.email} onChange={(e) => setAddApproverInfo({ ...addApproverInfo, email: e.target.value })} />
+      <input className="glass-effect-5" type="password" placeholder="Password" value={addApproverInfo.password} onChange={(e) => setAddApproverInfo({ ...addApproverInfo, password: e.target.value })} />
       <br />
       <button onClick={handleAddApprover}>Add</button>
       <br />
       <br />
       {/* Editing an approver */}
       <h3>Edit an approver</h3>
-      <input placeholder="First name" value={editApproverInfo.first_name} onChange={(e) => setEditApproverInfo({ ...editApproverInfo, first_name: e.target.value })} />
-      <input placeholder="Middle name" value={editApproverInfo.middle_name} onChange={(e) => setEditApproverInfo({ ...editApproverInfo, middle_name: e.target.value })} />
-      <input placeholder="Last name" value={editApproverInfo.last_name} onChange={(e) => setEditApproverInfo({ ...editApproverInfo, last_name: e.target.value })} />
+      <input className="glass-effect-5" placeholder="First name" value={editApproverInfo.first_name} onChange={(e) => setEditApproverInfo({ ...editApproverInfo, first_name: e.target.value })} />
+      <input className="glass-effect-5" placeholder="Middle name" value={editApproverInfo.middle_name} onChange={(e) => setEditApproverInfo({ ...editApproverInfo, middle_name: e.target.value })} />
+      <input className="glass-effect-5" placeholder="Last name" value={editApproverInfo.last_name} onChange={(e) => setEditApproverInfo({ ...editApproverInfo, last_name: e.target.value })} />
       <br />
-      <input placeholder="email" value={editApproverInfo.email} onChange={(e) => setEditApproverInfo({ ...editApproverInfo, email: e.target.value })} />
-      <input placeholder="password" disabled />
+      <input className="glass-effect-5" placeholder="email" value={editApproverInfo.email} onChange={(e) => setEditApproverInfo({ ...editApproverInfo, email: e.target.value })} />
+      <input className="glass-effect-5" placeholder="password" disabled />
       <br />
       <button onClick={handleEditApprover}>Edit</button>
     </>
