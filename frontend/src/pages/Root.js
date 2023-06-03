@@ -108,6 +108,11 @@ export default function Root() {
             return (
                 <nav>
                     <ul>
+                        <li className={`${location.pathname === "/adviser/search-students" ? "active" : ""}`}>
+                            <Link to="/adviser/search-students" className="nav-link">
+                                Advisees
+                            </Link>
+                        </li>
                         <li className={`${location.pathname === "/adviser/view-pending-applications" ? "active" : ""}`}>
                             <Link to="/adviser/view-pending-applications" className="nav-link">
                                 View Pending Applications

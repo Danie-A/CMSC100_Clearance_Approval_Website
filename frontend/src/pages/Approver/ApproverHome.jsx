@@ -2,7 +2,7 @@
 // import ButtonComponent from "./SortFunction";
 import * as React from 'react';
 
-export default function ApproverHome() {
+export default function ApproverHome(){
 
     // const [sortNames, setSortNames] = useState(['DATE', 'INCLUDES', '5-5-23', 'REMOVE', 'ADD', 'APPLY'])
 
@@ -31,57 +31,53 @@ export default function ApproverHome() {
     //     }
     //     <button>FILTER</button>
     //     <table>
-
+            
     //     </table>
     //     </>
     // );
 
     const App = () => {
         const [open, setOpen] = React.useState(false);
-
+      
         const handleOpen = () => {
-            setOpen(!open);
+          setOpen(!open);
         };
-
+      
         const handleMenuOne = () => {
-            // do something
-            setOpen(false);
+          // do something
+          setOpen(false);
         };
-
+      
         const handleMenuTwo = () => {
-            // do something
-            setOpen(false);
+          // do something
+          setOpen(false);
         };
-
+      
         return (
-            <Dropdown
-                open={open}
-                trigger={<button onClick={handleOpen}>Dropdown</button>}
-                menu={[
-                    <button onClick={handleMenuOne}>Menu 1</button>,
-                    <button onClick={handleMenuTwo}>Menu 2</button>,
-                ]}
-            />
+          <Dropdown
+            open={open}
+            trigger={<button onClick={handleOpen}>Dropdown</button>}
+            menu={[
+              <button onClick={handleMenuOne}>Menu 1</button>,
+              <button onClick={handleMenuTwo}>Menu 2</button>,
+            ]}
+          />
         );
-    };
-
-    const Dropdown = ({ open, trigger, menu }) => {
-        return (<>
-            <h3>{"Welcome adviser"}</h3>
-            <div className="dropdown">
-                {trigger}
-                {open ? (
-                    <ul className="menu">
-                        {menu.map((menuItem, index) => (
-                            <li key={index} className="menu-item">{menuItem}</li>
-                        ))}
-                    </ul>
-                ) : null}
-            </div>
-        </>
+      };
+      
+      const Dropdown = ({ open, trigger, menu }) => {
+        return (
+          <div className="dropdown">
+            {trigger}
+            {open ? (
+              <ul className="menu">
+                {menu.map((menuItem, index) => (
+                  <li key={index} className="menu-item">{menuItem}</li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
         );
-    };
+      };
 }
-
-
 
