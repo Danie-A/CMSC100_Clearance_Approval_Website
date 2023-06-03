@@ -55,6 +55,9 @@ const getStudentsWithPendingApplication = async (req, res) => {
   }
 };
 
+// set application current_step to 3 -- to be reviewed by clearance officer
+
+
 // get all students of adviser
 const getAllStudents = async (req, res) => {
   try {
@@ -77,5 +80,7 @@ const getAdviserName = async (req, res) => {
     res.status(500).json({ success: false });
   }
 };
+
+
 
 export { getPendingApplicationsByAdviser, getAllStudents, getAdviserName, getStudentsWithPendingApplication };

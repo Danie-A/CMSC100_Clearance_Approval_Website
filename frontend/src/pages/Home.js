@@ -146,8 +146,6 @@ export default function Home() {
       });
   };
 
-  // [] @up.edu.ph email validation
-
   return (
     <>
       <h1>Sign Up for Students</h1>

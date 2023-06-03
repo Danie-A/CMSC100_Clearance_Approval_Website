@@ -16,7 +16,6 @@ export default function SeeProfile({ handleCloseModal, student }) {
     ReactModal.setAppElement('#root'); // Set the app element
     const [showModal2, setShowModal2] = useState(false);
 
-
     // get last submission of student
     var lastIndex = (student.open_application.student_submissions.length) - 1;
     var latestSubmission = student.open_application.student_submissions[lastIndex];

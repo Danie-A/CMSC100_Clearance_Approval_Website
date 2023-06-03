@@ -5,8 +5,6 @@ import { AiFillFolderOpen } from "react-icons/ai";
 import SeeProfile from './SeeProfile.jsx';
 
 function AdviserViewPendingApplications() {
-
-
   // for react modal to view application of student
   const handleOpenModal = () => {
     setShowModal(true);
@@ -16,7 +14,6 @@ function AdviserViewPendingApplications() {
   };
   ReactModal.setAppElement('#root'); // Set the app element
   const [showModal, setShowModal] = useState(false);
-
 
   const [students, setStudents] = useState([]);
 
@@ -29,7 +26,7 @@ function AdviserViewPendingApplications() {
         .then((response) => response.json())
         .then((body) => {
           setStudents(body.students);
-          console.log('body students2 are', body.students)
+          console.log('body students are', body.students)
 
 
         });
