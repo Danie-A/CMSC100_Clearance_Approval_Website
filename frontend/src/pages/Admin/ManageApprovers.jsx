@@ -203,16 +203,18 @@ function ManageApprovers() {
           <button onClick={handleEditApprover}>Edit</button>
         </div>
       </ReactModal>
-      <ReactModal isOpen={showAddModal} style={modalStyle} onAfterClose={() => {}}>
+      <ReactModal isOpen={showAddModal} style={modalStyle} onAfterClose={() => { }}>
         <div className="d-flex flex-column gap-1 p-0 py-sm-3 px-sm-4 w-100 h-100 justify-content-between">
           <button type="button" className="btn-close btn-right" onClick={() => setShowAddModal(false)} />
           <h4 className="fw-semibold mb-4">Add an Adviser</h4>
+
           <input className="glass-effect-5 px-4" placeholder="First name" value={addApproverInfo.first_name} onChange={(e) => setAddApproverInfo({ ...addApproverInfo, first_name: e.target.value })} />
           <input className="glass-effect-5 px-4" placeholder="Middle name" value={addApproverInfo.middle_name} onChange={(e) => setAddApproverInfo({ ...addApproverInfo, middle_name: e.target.value })} />
           <input className="glass-effect-5 px-4" placeholder="Last name" value={addApproverInfo.last_name} onChange={(e) => setAddApproverInfo({ ...addApproverInfo, last_name: e.target.value })} />
-          <input className="glass-effect-5 px-4" placeholder="Email" value={addApproverInfo.email} onChange={(e) => setAddApproverInfo({ ...addApproverInfo, email: e.target.value })} />
+          <input className="glass-effect-5 px-4" placeholder="Email" type="email" value={addApproverInfo.email} onChange={(e) => setAddApproverInfo({ ...addApproverInfo, email: e.target.value })} required />
           <input className="glass-effect-5 px-4" type="password" placeholder="Password" value={addApproverInfo.password} onChange={(e) => setAddApproverInfo({ ...addApproverInfo, password: e.target.value })} />
           <button onClick={handleAddApprover}>Add</button>
+
         </div>
       </ReactModal>
     </>

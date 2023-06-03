@@ -67,7 +67,7 @@ function ViewAllApplications() {
             <div className="d-flex flex-column" style={{ width: "400px" }}>
               <h6 className="mx-auto fw-semibold">Remarks</h6>
               {currentStudent?.open_application.remarks.map((remark, index) => (
-                <div className="card glass-effect-4 p-2 px-sm-4 py-sm-3" key={index}>
+                <div className="card glass-effect-4 my-2 p-2 px-sm-4 py-sm-3" key={index}>
                   <div>{`Step ${remark.step}`}</div>
                   <div>{`Remarks: ${remark.remarks}`}</div>
                   <div>{`Date: ${new Date(remark.date).toLocaleString("en-US", options)}`}</div>
