@@ -5,13 +5,21 @@ import { useState } from 'react';
 
 
 export default function SeeProfile({ handleCloseModal, student }) {
+    // pending application id
+    const applicationId = student.open_application._id;
 
     // for react modal to view application of student
     const handleOpenModal2 = () => {
         setShowModal2(true);
     };
-    const handleCloseModal2 = () => {
-        setShowModal2(false);
+    const handleCloseModal2 = (isReturned) => {
+        if (isReturned) {
+            setShowModal2(false);
+            handleCloseModal(); // also close the see profile modal
+        } else {
+            setShowModal2(false); // just close the return pop up modal
+        }
+
     };
     ReactModal.setAppElement('#root'); // Set the app element
     const [showModal2, setShowModal2] = useState(false);
@@ -19,17 +27,17 @@ export default function SeeProfile({ handleCloseModal, student }) {
     const modalStyle = { content: { position: "absolute", height: "400px", maxWidth: "600px", display: "flex", flexDirection: "column", alignItems: "center", margin: "auto", justifyContent: "center" } };
 
     // get last submission of student
-    var lastIndex = (student.open_application.student_submissions.length) - 1;
-    var latestSubmission = student.open_application.student_submissions[lastIndex];
+    const lastIndex = (student.open_application.student_submissions.length) - 1;
+    const latestSubmission = student.open_application.student_submissions[lastIndex];
 
     // get github link and student remark
-    var github_link = latestSubmission['github_link'];
-    var date = latestSubmission['date'];
+    const github_link = latestSubmission['github_link'];
+    const date = latestSubmission['date'];
 
     var student_remark;
 
-    var step = student.open_application.current_step;
-    var status = student.open_application.status;
+    const step = student.open_application.current_step;
+    const status = student.open_application.status;
 
 
     function showLink() {
@@ -53,9 +61,19 @@ export default function SeeProfile({ handleCloseModal, student }) {
 
     }
 
-    function approveApp() {
+    const handleApprove = async (e) => {
+        e.preventDefault();
         // If Approve, set application step to 3
+        await fetch("http://localhost:3001/approve-application-adviser", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify({ applicationId: applicationId }),
+        })
+            .then((res) => res.json())
+            .then((body) => console.log(body));
 
+        handleCloseModal();
 
     }
 
@@ -90,7 +108,7 @@ export default function SeeProfile({ handleCloseModal, student }) {
 
         <br /><br />
 
-        <button onClick={approveApp}>Approve</button>
+        <button onClick={handleApprove}>Approve</button>
 
 
         <button onClick={handleOpenModal2}>Return</button>
@@ -103,7 +121,7 @@ export default function SeeProfile({ handleCloseModal, student }) {
             shouldCloseOnOverlayClick={false}
             appElement={document.getElementById('root')} // Set the app element
         >
-            <ReturnPopUp handleCloseModal2={handleCloseModal2} applicationId={student.open_application._id} />
+            <ReturnPopUp handleCloseModal2={handleCloseModal2} applicationId={applicationId} />
 
         </ReactModal>
 

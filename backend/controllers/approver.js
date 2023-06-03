@@ -63,7 +63,7 @@ const approveApplicationAdviser = async (req, res) => {
   const { applicationId } = req.body;
   try {
     await Application.findByIdAndUpdate(applicationId, { current_step: 3, status: "pending" });
-    res.status(200).json({ success: true });
+    res.status(200).json({ success: "Successfully approved by adviser and sent to clearance officer for checking" });
   } catch (error) {
     console.log(`Error in approver - approveApplicationAdviser: ${error}`);
     res.status(500).json({ success: false });

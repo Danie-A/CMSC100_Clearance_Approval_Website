@@ -3,7 +3,8 @@ import React from 'react';
 
 function ReturnPopUp({ handleCloseModal2, applicationId }) {
 
-    const handleReturn = async () => {
+    const handleReturn = async (e) => {
+        e.preventDefault();
         const remarks = document.getElementById("remark").value;
 
         // If Return, set application step to 2 status to returned
@@ -20,13 +21,13 @@ function ReturnPopUp({ handleCloseModal2, applicationId }) {
 
         // set empty field again
         document.getElementById("remark").value = "";
-        // close modal
-        handleCloseModal2();
+        // close modal - set isReturned to true to close the 2 modals
+        handleCloseModal2(true);
     };
 
 
     return (<>
-        <button type="button" className="btn-close btn-right" aria-label="Close" onClick={handleCloseModal2}></button>
+        <button type="button" className="btn-close btn-right" aria-label="Close" onClick={() => { handleCloseModal2(false) }}></button>
         <h5>Return Application to Student</h5>
         <form>
             <label htmlFor="remark">Adviser Remark:</label><br />

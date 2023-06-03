@@ -12,27 +12,24 @@ function AdviserViewPendingApplications() {
   const handleCloseModal = () => {
     setShowModal(false);
   };
+
   ReactModal.setAppElement('#root'); // Set the app element
   const [showModal, setShowModal] = useState(false);
-
   const [students, setStudents] = useState([]);
 
   // get advisees with pending applications
 
   useEffect(() => {
-    const e = async () => { // still not working
-
+    async function fetchData() {
       await fetch("http://localhost:3001/get-students-with-pending-application", { method: "GET", credentials: "include" })
         .then((response) => response.json())
         .then((body) => {
           setStudents(body.students);
-          console.log('body students are', body.students)
-
-
+          // console.log('body students are', body.students)
         });
-    };
-    e();
-  }, []);
+    }
+    fetchData();
+  }, [students]);
 
   function showStudents() {
     if (students.length > 0) {  // have students with pending applications
