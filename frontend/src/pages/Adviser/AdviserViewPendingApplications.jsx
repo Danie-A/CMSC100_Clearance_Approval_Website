@@ -18,7 +18,6 @@ function AdviserViewPendingApplications() {
   const [showModal, setShowModal] = useState(false);
 
 
-
   const [students, setStudents] = useState([]);
 
   // get advisees with pending applications
@@ -31,17 +30,20 @@ function AdviserViewPendingApplications() {
         .then((body) => {
           setStudents(body.students);
           console.log('body students2 are', body.students)
+
+
         });
     };
     e();
   }, []);
 
   function showStudents() {
-    if (students.length > 0) { // have students with pending applications
+    if (students.length > 0) {  // have students with pending applications
+
+      // [] open_application not equal to null
       return <div className="students-container">
 
         {students.map((student, index) => (
-
 
           <div key={index} className="student-item">
             {/* Student Name */}
@@ -58,12 +60,12 @@ function AdviserViewPendingApplications() {
               isOpen={showModal}
               contentLabel="Remarks"
               onRequestClose={handleCloseModal}
+              shouldCloseOnOverlayClick={false}
               appElement={document.getElementById('root')} // Set the app element
             >
               <SeeProfile handleCloseModal={handleCloseModal} student={student} />
 
             </ReactModal>
-
           </div>))}
 
 
