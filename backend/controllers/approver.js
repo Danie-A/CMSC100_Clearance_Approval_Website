@@ -72,6 +72,7 @@ const getAllStudents = async (req, res) => {
     res.status(200).json({ success: true, result: result });
   } catch (error) {
     res.status(500).json({ success: false, result: [], error: error });
+    button
   }
 };
 

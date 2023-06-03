@@ -85,7 +85,7 @@ function ViewPendingApplications() {
   return (
     <>
       <h3>View Pending Accounts</h3>
-      <span>Sort by:</span>
+      <span className="glass-effect">Sort by:</span>
       <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
         <option value="none">{"None"}</option>
         <option value="name_asc">{"Name (Ascending)"}</option>
@@ -109,6 +109,12 @@ function ViewPendingApplications() {
           ))}
         </tbody>
       </table>
+
+    <div id="image-container">
+    <img id="image5" src="https://i.pinimg.com/originals/70/2c/88/702c88766c91b0d333b220326dfb14ad.png" alt="Image">
+    </img>
+    </div>
+
       <br />
 
       {approving && (

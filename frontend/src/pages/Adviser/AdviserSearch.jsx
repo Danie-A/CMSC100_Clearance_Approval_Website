@@ -1,10 +1,24 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
 export default function AdviserSearch() {
 
     const [sortBy, setSortBy] = useState("none");
-    const [nameFilter, setNameFilter] = useState("");
+    // const [nameFilter, setNameFilter] = useState("");
+    // const [studNoFilter, setStudNoFilter] = useState("");
     const [studentsList, setStudentsList] = useState([]);
+    // const [studNoclicked, setStudNoClicked] = useState(false);
+    // const [nameclicked, setNameClicked] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const handleSearch = (event) => {
+        setSearchTerm(event.target.value);
+    };
+    const filteredItems = studentsList.filter((item) =>
+    (item.first_name + " " + item.middle_name + " " + item.last_name).toLowerCase().includes(searchTerm.toLowerCase()) ||
+    item.student_number.toString().includes(searchTerm)
+    );
+    const username = localStorage.getItem("username");
+  
+    // const [buttonPopup, setButtonPopup] = useState(false);
     // const [addStudentInfo, setAddStudentInfo] = useState(initialApproverState);
     // const [editStudentInfo, setEditStudentInfo] = useState(initialApproverState);
     // const handlePreEdit = (student) => {
@@ -29,11 +43,23 @@ export default function AdviserSearch() {
                 .then((body) => {
                     console.log(body.result);
                     setStudentsList(body.result);
-
                 });
         };
         e();
     }, []);
+
+    useEffect(() => {
+        switch (sortBy) {
+          case "name_asc":
+            setStudentsList((prevList) => [...prevList].sort((a, b) => a.last_name.localeCompare(b.last_name)));
+            break;
+          case "name_desc":
+            setStudentsList((prevList) => [...prevList].sort((a, b) => b.last_name.localeCompare(a.last_name)));
+            break;
+          default:
+            break;
+        }
+      }, [sortBy]);
 
     return (
         <>
@@ -50,29 +76,24 @@ export default function AdviserSearch() {
             <span>Name </span>
             <button onClick={() => setSortBy("name_asc")}>↑</button>
             <button onClick={() => setSortBy("name_desc")}>↓</button> <br />
-            <input placeholder="Student Name" onChange={(e) => setNameFilter(e.target.value)} value={nameFilter} />
-            <button>Search</button>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>Name</td>
-                    </tr>
-                    {studentsList
-                        .filter((e) => (e.first_name + " " + e.middle_name + " " + e.last_name).toLowerCase().includes(nameFilter.toLowerCase()))
-                        .map((student, index) => (
-                            <tr key={index}>
-                                <td>{student.first_name + " " + student.middle_name + " " + student.last_name}</td>
-                                {/* <td>
-                    <button onClick={() => handlePreEdit(approver)}>Edit</button>
-                    </td>
-                    <td>
-                    <button onClick={() => handleDeleteApprover(approver._id)}>Delete</button>
-                    </td> */}
-                            </tr>
-                        ))}
-                </tbody>
-            </table>
-            <br />
+            <div>
+      <input
+        type="text"
+        placeholder="Search"
+        value={searchTerm}
+        onChange={handleSearch}
+      />
+      <div>
+        {filteredItems.map((student, index) => (
+          <div key={index}>Student: {student.last_name + ", " + student.first_name + " " + student.middle_name}
+          <div>Student Number: {student.student_number}</div>
+          <div>Adviser: {username}</div>
+          <div>Application: {student.open_application}</div>
+          <br/>
+          </div>
+        ))}
+      </div>
+    </div>
             <br />
         </>
     )

@@ -148,6 +148,14 @@ export default function Home() {
 
   return (
     <>
+    {/* <div id="welcome-page"> */}
+    <div id="header-container">
+    <div id="glass-background">
+    <img id="image" src="https://i.pinimg.com/originals/38/4c/20/384c20132bda8dba92a55ddcebf29038.jpg" alt="Image"></img>
+    <header id="header">Welcome To ClearMe</header>
+    </div>
+    </div>
+
       <h1>Sign Up for Students</h1>
       <form id="sign-up">
         <input id="s-fname" placeholder="First Name" required />
@@ -180,7 +188,13 @@ export default function Home() {
         <button onClick={logInAdmin}>Log In</button>
       </form>
 
-      <p>Note: Coordinate with the Admin to create an Approver account.</p>
+      <p class="note">Note: Coordinate with the Admin to create an Approver account.</p>
+
+      <footer>
+      <p>Unlock the Path to Success with Effortless Efficiency: Experience Seamless Clearance Approval in the Institute of Computer Science</p>
+      </footer>
+    {/* </div> */}
+    
     </>
   );
 }
