@@ -1,7 +1,10 @@
 function AdminHome() {
   return (
     <>
-      <h3>{"Welcome admin"}</h3>
+    <div id = "welcome-admin">
+    <h3>{"Welcome admin"}</h3>
+    </div>
+     
     </>
   );
 }

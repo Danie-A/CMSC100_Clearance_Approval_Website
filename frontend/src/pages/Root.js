@@ -121,7 +121,7 @@ export default function Root() {
 
     return (
         <>
-            <div className="header-container d-flex justify-content-between align-items-center">
+            <div id="dashboard" className="header-container d-flex justify-content-between align-items-center">
                 <div className="header-text">
                     <p>
                         <FaCheckSquare size={24} color={"#5bc0de"} style={{ marginRight: "8px" }} />
@@ -131,7 +131,7 @@ export default function Root() {
                 <div className="d-flex align-items-center">
                     <FaUserCircle size={24} color={"#5bc0de"} />
                     <p className="mr-3 text-white account-name">{username}</p>
-                    <button type="button" onClick={logout} className="btn btn-info logout">
+                    <button type="button" onClick={logout} className="btn btn-info logout" style={{ borderRadius: "30px" }}>
                         Log Out
                     </button>
                 </div>

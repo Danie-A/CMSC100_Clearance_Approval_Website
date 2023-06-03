@@ -5,8 +5,10 @@ body {
         sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-image: url('https://i.pinimg.com/originals/13/9a/88/139a8872eeb9dfca447eb241afd2274e.png');
-    background-size: cover;
+    background-image: url('https://i.pinimg.com/564x/16/e2/69/16e2699ba8c7b8ad8e690310092e43c6.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    /* background-color: rgb(255, 236, 179); */
     color:rgb(66,66,66);
   }  
 
@@ -19,6 +21,14 @@ nav {
     background-color: #101223;
 
 }
+
+/* #welcome-page {
+    background-image: url('https://i.pinimg.com/originals/13/9a/88/139a8872eeb9dfca447eb241afd2274e.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: none;
+    padding: 0%;
+} */
 
 h5 {
     padding-top: 15px;
@@ -291,7 +301,22 @@ thead {
     align-items: center;
     height: 44vh;
   }
+
+  #dashboard {
+    background-color: #424242;
+    backdrop-filter: blur(80px);
+    /* padding: 10px; */
+    border-radius: 20px 20px 0px 0px;
+  }
   
+  /* #welcome-admin {
+    background-image: url("https://i.pinimg.com/originals/9b/0e/bb/9b0ebbf56da228fa54b2c57c18163c94.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 20px;
+    border-radius: 8px;
+  }   */
+
   #glass-background {
     background-color: rgba(255, 255, 255, 0.5); /* Glass background color with opacity */
     padding: 30px;
@@ -332,4 +357,5 @@ thead {
     font-size: 14px;
   }
   
+
   
