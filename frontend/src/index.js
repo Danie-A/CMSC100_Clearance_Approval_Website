@@ -16,6 +16,7 @@ import ViewApplication from './pages/Student/viewApplication/ViewApplication';
 import ManageApprovers from "./pages/Admin/ManageApprovers";
 import AdminHome from "./pages/Admin/AdminHome";
 import AdviserViewPendingApplications from "./pages/Adviser/AdviserViewPendingApplications";
+import GeneratePDF from "./pages/Student/pdf/GeneratePDF";
 
 // var userType = "student";
 // localStorage.setItem("userType", userType);
@@ -43,19 +44,6 @@ const checkIfLoggedIn = (route) =>
     });
 
 // // Send a POST request to API to check if the user is logged in. Redirect the user back to / if not logged in
-// const checkIfLoggedInOnDash = async () => {
-//   const res = await fetch("http://localhost:3001/checkifloggedin", {
-//     method: "POST",
-//     credentials: "include",
-//   });
-
-//   const payload = await res.json();
-//   if (payload.isLoggedIn) {
-//     return true;
-//   } else {
-//     return redirect("/");
-//   }
-// };
 
 // const checkIfLoggedInOnDashApprover = async () => {
 //   const res = await fetch("http://localhost:3001/checkifloggedinapprover", {
@@ -92,6 +80,7 @@ const router = createBrowserRouter([
       { path: "/student/notifications", element: <Notifications /> },
       { path: "/student/create-application", element: <CreateApplication /> },
       { path: "/student/view-application", element: <ViewApplication /> },
+      { path: "/student/generate-pdf", element: <GeneratePDF /> },
     ],
   },
   {

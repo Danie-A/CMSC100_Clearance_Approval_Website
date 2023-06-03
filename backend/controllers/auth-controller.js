@@ -70,6 +70,7 @@ const checkIfLoggedIn = async (req, res) => {
     } else {
       if (await Student.findById(tokenPayload._id)) {
         res.status(200).json({ isLoggedIn: "student" });
+        console.log("Student still logged in");
       } else if (await Approver.findById(tokenPayload._id)) {
         res.status(200).json({ isLoggedIn: "adviser" });
       } else {
