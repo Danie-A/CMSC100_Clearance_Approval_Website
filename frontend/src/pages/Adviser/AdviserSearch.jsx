@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
+import Popup from "./ViewApplication";
 
 export default function AdviserSearch() {
 
@@ -60,6 +61,8 @@ export default function AdviserSearch() {
                         .map((student, index) => (
                             <tr key={index}>
                                 <td>{student.first_name + " " + student.middle_name + " " + student.last_name}</td>
+                                <button>View Application</button>
+                                <Popup trigger={false}></Popup>
                                 {/* <td>
                     <button onClick={() => handlePreEdit(approver)}>Edit</button>
                     </td>

@@ -74,6 +74,7 @@ export default function ApproverHome() {
                     <ul className="menu">
                         {menu.map((menuItem, index) => (
                             <li key={index} className="menu-item">{menuItem}</li>
+                            
                         ))}
                     </ul>
                 ) : null}
@@ -81,6 +82,12 @@ export default function ApproverHome() {
         </>
         );
     };
+
+    return(
+        <>
+        Welcome Adviser!
+        </>
+    )
 }
 
 
