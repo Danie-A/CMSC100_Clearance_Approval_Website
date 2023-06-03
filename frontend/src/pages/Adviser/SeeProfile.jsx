@@ -1,15 +1,15 @@
-// // import React from 'react';
+// import React from 'react';
 
-// // export default function SeeProfile(props){
-// //     return (props.trigger)?(
-// //         <div>
-// //             <div>
-// //                 <button>CLOSE</button>
-// //                 {props.children}
-// //             </div>
-// //         </div>
-// //     ) : "";
-// // }
+// export default function SeeProfile(props){
+//     return (props.trigger)?(
+//         <div>
+//             <div>
+//                 <button>CLOSE</button>
+//                 {props.children}
+//             </div>
+//         </div>
+//     ) : "";
+// }
 // import { useState } from "react";
 // import ReactModal from "react-modal";
 // import { BiCommentDetail } from "react-icons/bi";

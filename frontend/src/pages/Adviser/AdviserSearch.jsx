@@ -6,8 +6,25 @@ export default function AdviserSearch() {
 
     const [sortBy, setSortBy] = useState("none");
     const [nameFilter, setNameFilter] = useState("");
+    const [studNoFilter, setStudNoFilter] = useState("");
     const [studentsList, setStudentsList] = useState([]);
-    const [buttonPopup, setButtonPopup] = useState(false);
+    const [studNoclicked, setStudNoClicked] = useState(false);
+    const [nameclicked, setNameClicked] = useState(false);
+
+
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearch = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const filteredItems = studentsList.filter((item) =>
+    (item.first_name + " " + item.middle_name + " " + item.last_name).toLowerCase().includes(searchTerm.toLowerCase()) ||
+    item.student_number.toString().includes(searchTerm)
+  );
+
+  
+    // const [buttonPopup, setButtonPopup] = useState(false);
     // const [addStudentInfo, setAddStudentInfo] = useState(initialApproverState);
     // const [editStudentInfo, setEditStudentInfo] = useState(initialApproverState);
     // const handlePreEdit = (student) => {
@@ -32,7 +49,6 @@ export default function AdviserSearch() {
                 .then((body) => {
                     console.log(body.result);
                     setStudentsList(body.result);
-
                 });
         };
         e();
@@ -66,31 +82,23 @@ export default function AdviserSearch() {
             <span>Name </span>
             <button onClick={() => setSortBy("name_asc")}>↑</button>
             <button onClick={() => setSortBy("name_desc")}>↓</button> <br />
-            <input placeholder="Student Name" onChange={(e) => setNameFilter(e.target.value)} value={nameFilter} />
-            <button>Search</button>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>Name</td>
-                    </tr>
-                    {studentsList
-                        .filter((e) => (e.first_name + " " + e.middle_name + " " + e.last_name).toLowerCase().includes(nameFilter.toLowerCase()))
-                        .map((student, index) => (
-                            <tr key={index}>
-                                <td>{student.first_name + " " + student.middle_name + " " + student.last_name}
-                                    {/* <button onClick={()=>setButtonPopup(true)}>See Profile</button> */}
-                                </td>
-                                {/* <button onClick={()=>setButtonPopup(true)}>See Profile</button> */}
-                                {/* <td>
-                    <button onClick={() => handlePreEdit(approver)}>Edit</button>
-                    </td>
-                    <td>
-                    <button onClick={() => handleDeleteApprover(approver._id)}>Delete</button>
-                    </td> */}
-                            </tr>
-                        ))}
-                </tbody>
-            </table>
+            <div>
+      <input
+        type="text"
+        placeholder="Search by name or number"
+        value={searchTerm}
+        onChange={handleSearch}
+      />
+      <div>
+        {filteredItems.map((student, index) => (
+          <div key={index}>Student: {student.first_name + " " + student.middle_name + " " + student.last_name}
+          <div>Student Number: {student.student_number}
+          </div>
+          <br/>
+          </div>
+        ))}
+      </div>
+    </div>
             {/* <SeeProfile trigger={buttonPopup}>
                     <h3>POPUP!</h3>
                 </SeeProfile> */}
