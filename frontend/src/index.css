@@ -302,6 +302,33 @@ thead {
     height: 44vh;
   }
 
+  #manage-approver {
+    background-color: #00838F;
+    backdrop-filter: blur(80px);
+    /* padding: 10px; */
+    border-radius: 0px 0px 20px 20px;
+  }
+
+  h3 {
+    font-size: 60px;
+  }
+
+  #image-admin {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-80%);
+  }
+
+  nav#manage-approver ul li:hover {
+    background-color: #FFA000; 
+    border-radius: 40px;
+  }
+  
+  nav#manage-approver ul li:hover a {
+    color: rgb(66,66,66); 
+  }
+
   #dashboard {
     background-color: #424242;
     backdrop-filter: blur(80px);
@@ -309,6 +336,43 @@ thead {
     border-radius: 20px 20px 0px 0px;
   }
   
+  .glass-effect {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 5px 10px;
+    font-size: 16px;
+    color: rgb(0, 131, 143);
+  }
+  
+  select {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 5px 10px;
+    font-size: 16px;
+    color: rgb(0, 131, 143);
+  }
+  
+  option {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  #image-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 55vh; /* Set the desired height or adjust as needed */
+  }
+  
+  #image5 {
+    max-width: 30%;
+    max-height: 30%;
+  }
+  
+
   /* #welcome-admin {
     background-image: url("https://i.pinimg.com/originals/9b/0e/bb/9b0ebbf56da228fa54b2c57c18163c94.png");
     background-size: cover;
@@ -317,6 +381,10 @@ thead {
     border-radius: 8px;
   }   */
 
+  h3:hover {
+    color: #00838F;
+  }
+  
   #glass-background {
     background-color: rgba(255, 255, 255, 0.5); /* Glass background color with opacity */
     padding: 30px;

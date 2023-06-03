@@ -89,7 +89,7 @@ export default function Root() {
             );
         } else if (userType === "admin") {
             return (
-                <nav>
+                <nav id = "manage-approver">
                     <ul>
                         <li className={`${location.pathname === "/admin/view-pending-applications" ? "active" : ""}`}>
                             <Link to="/admin/view-pending-applications" className="nav-link">
