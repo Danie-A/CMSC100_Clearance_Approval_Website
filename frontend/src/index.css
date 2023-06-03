@@ -526,6 +526,11 @@ h3:hover {
   color: #00838F;
 }
 
+h4:hover {
+
+  color: #00838F;
+}
+
 #glass-background {
   background-color: rgba(255, 255, 255, 0.5);
   /* Glass background color with opacity */

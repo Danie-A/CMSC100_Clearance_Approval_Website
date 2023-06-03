@@ -20,12 +20,10 @@ function AdminHome() {
 
   return (
     <>
-      <div id="welcome-admin">
-        <h3>{"Welcome admin"}</h3>
-        <span>Csv file: </span> <br />
-        <form></form>
+      <div id="welcome-admin" className="container d-flex flex-column align-items-start">
+        <h3 className="my-4">{"Welcome admin"}</h3>
+        <span>Csv file: </span>
         <input type="file" name="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
-        <br />
         <button onClick={handleCSVUpload}>Submit</button>
         <img id="image" src="https://i.pinimg.com/originals/1b/0f/b0/1b0fb0ed95b7ee77ac662af8adcc29e7.png" alt="admin-home"></img>
       </div>

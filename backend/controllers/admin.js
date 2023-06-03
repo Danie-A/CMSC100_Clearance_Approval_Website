@@ -58,7 +58,7 @@ const rejectStudentAccount = async (req, res) => {
 // get all advisers
 const getAllAdvisers = async (req, res) => {
   try {
-    const result = await Approver.find({});
+    const result = await Approver.find({}).select("-password");
     res.status(200).json({ success: true, result: result });
   } catch (error) {
     res.status(500).json({ success: false, result: [], error: error });
@@ -97,8 +97,14 @@ const addApproverAccount = async (req, res) => {
 
 // edit an approver account
 const editApproverAccount = async (req, res) => {
-  const { approverId, updatedApprover } = req.body;
-
+  const { updatedApprover, approverId } = req.body;
+  updatedApprover.initials_surname =
+    updatedApprover.first_name
+      .split(" ")
+      .map((word) => word.charAt(0))
+      .join("") +
+    updatedApprover.middle_name.toUpperCase().charAt(0) +
+    updatedApprover.last_name.toUpperCase().replace(/ /g, "");
   try {
     const found = await Approver.findById(approverId);
     if (found) {
@@ -109,7 +115,7 @@ const editApproverAccount = async (req, res) => {
     }
   } catch (error) {
     console.log(`Error: ${error}`);
-    res.status(500).json({ success: true });
+    res.status(500).json({ success: false });
   }
 };
 
