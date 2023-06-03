@@ -10,18 +10,14 @@ export default function AdviserSearch() {
     const [studentsList, setStudentsList] = useState([]);
     const [studNoclicked, setStudNoClicked] = useState(false);
     const [nameclicked, setNameClicked] = useState(false);
-
-
     const [searchTerm, setSearchTerm] = useState('');
-
     const handleSearch = (event) => {
         setSearchTerm(event.target.value);
     };
-
     const filteredItems = studentsList.filter((item) =>
     (item.first_name + " " + item.middle_name + " " + item.last_name).toLowerCase().includes(searchTerm.toLowerCase()) ||
     item.student_number.toString().includes(searchTerm)
-  );
+    );
 
   
     // const [buttonPopup, setButtonPopup] = useState(false);
@@ -57,10 +53,10 @@ export default function AdviserSearch() {
     useEffect(() => {
         switch (sortBy) {
           case "name_asc":
-            setStudentsList((prevList) => [...prevList].sort((a, b) => a.first_name.localeCompare(b.first_name)));
+            setStudentsList((prevList) => [...prevList].sort((a, b) => a.last_name.localeCompare(b.last_name)));
             break;
           case "name_desc":
-            setStudentsList((prevList) => [...prevList].sort((a, b) => b.first_name.localeCompare(a.first_name)));
+            setStudentsList((prevList) => [...prevList].sort((a, b) => b.last_name.localeCompare(a.last_name)));
             break;
           default:
             break;
@@ -85,13 +81,13 @@ export default function AdviserSearch() {
             <div>
       <input
         type="text"
-        placeholder="Search by name or number"
+        placeholder="Search"
         value={searchTerm}
         onChange={handleSearch}
       />
       <div>
         {filteredItems.map((student, index) => (
-          <div key={index}>Student: {student.first_name + " " + student.middle_name + " " + student.last_name}
+          <div key={index}>Student: {student.last_name + ", " + student.first_name + " " + student.middle_name}
           <div>Student Number: {student.student_number}
           </div>
           <br/>
