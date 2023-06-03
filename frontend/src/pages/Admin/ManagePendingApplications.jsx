@@ -6,6 +6,20 @@ function ManagePendingApplications() {
   const [isRejectingOpen, setIsRejectingOpen] = useState(false);
   const [currentStudent, setCurrentStudent] = useState(null);
   const [remarks, setRemarks] = useState("");
+  ReactModal.setAppElement("#root");
+  const modalStyle = {
+    content: {
+      position: "absolute",
+      height: "300px",
+      maxWidth: "450px",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      margin: "auto",
+      borderRadius: "15px",
+      backgroundColor: "#ffffff95",
+    },
+  };
 
   useEffect(() => {
     const e = async () => {
@@ -18,8 +32,6 @@ function ManagePendingApplications() {
     };
     e();
   }, []);
-
-  const modalStyle = { content: { position: "absolute", height: "250px", maxWidth: "450px", display: "flex", flexDirection: "column", alignItems: "center", margin: "auto" } };
 
   const handlePreReject = async (application) => {
     setIsRejectingOpen(true);
@@ -64,35 +76,27 @@ function ManagePendingApplications() {
   ReactModal.setAppElement("#root");
   return (
     <>
-      <h3>Manage Pending Applications</h3>
+      <div className="container d-flex flex-column">
+        <h3 className="my-4">Manage Pending Applications</h3>
+        {students?.map((student, index) => (
+          <div className="card glass-effect-4 p-2 py-sm-3 px-sm-5 m-1 d-flex flex-row justify-content-between align-items-center" key={index}>
+            <div className="fw-semibold">{student.first_name + " " + student.middle_name + " " + student.last_name}</div>
+            <div className="d-flex flex-row gap-2">
+              <button onClick={() => handleApprove(student.open_application._id)}>Approve</button>
+              <button onClick={() => handlePreReject(student)}>Return</button>
+            </div>
+          </div>
+        ))}
+      </div>
 
       <ReactModal isOpen={isRejectingOpen} style={modalStyle} onAfterClose={() => setRemarks("")}>
-        <div className="d-flex flex-column gap-3 w-100 h-100 justify-content-between">
+        <div className="d-flex flex-column gap-1 p-0 py-sm-3 px-sm-4 w-100 h-100 justify-content-between">
           <button type="button" className="btn-close btn-right" onClick={() => setIsRejectingOpen(false)} />
           <h4>{"Rejecting " + currentStudent?.first_name}</h4>
           <textarea type="text" rows="4" placeholder="Remarks" value={remarks} onChange={(e) => setRemarks(e.target.value)} />
           <button onClick={handleReject}>Return</button>
         </div>
       </ReactModal>
-
-      <table>
-        <tbody>
-          <tr>
-            <td>Name</td>
-          </tr>
-          {students?.map((student, index) => (
-            <tr key={index}>
-              <td>{student.first_name + " " + student.middle_name + " " + student.last_name}</td>
-              <td>
-                <button onClick={() => handleApprove(student.open_application._id)}>Approve</button>
-              </td>
-              <td>
-                <button onClick={() => handlePreReject(student)}>Return</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
     </>
   );
 }
