@@ -35,10 +35,8 @@ const getOpenApplication = async (req, res) => {
       const foundApplication = await Application.findById(found.open_application);
       if (foundApplication) res.status(200).json({ success: true, data: foundApplication });
       else res.status(500).json({ success: false });
-    }
-    else res.status(500).json({ success: false });
-  }
-  catch (error) {
+    } else res.status(500).json({ success: false });
+  } catch (error) {
     console.log(`Error: ${error}`);
     res.status(500).json({ succes: false });
   }
@@ -77,20 +75,19 @@ const getClearedApplications = async (req, res) => {
 
 // add student submission
 // revise current_step and link/remark
-// submitting step1 (github link) 
+// submitting step1 (github link)
 const addStudentSubmissionAdviser = async (req, res) => {
   const { current_step, github_link, student_remark } = req.body;
   const studentId = req.userId;
   try {
     const foundStudent = await Student.findById(studentId);
     if (foundStudent) {
-      await Application.findByIdAndUpdate(foundStudent.open_application,
-        {
-          $set: {
-            current_step: current_step,
-            status: "pending"
-          }
-        });
+      await Application.findByIdAndUpdate(foundStudent.open_application, {
+        $set: {
+          current_step: current_step,
+          status: "pending",
+        },
+      });
       await Application.findByIdAndUpdate(foundStudent.open_application, {
         $push: {
           student_submissions: {
@@ -198,5 +195,15 @@ const getAdviserDetails = async (req, res) => {
   }
 };
 
-
-export { viewStudentInfo, getAdviserDetails, createApplication, deleteApplication, getApplicationsOfStudent, getClearedApplications, addStudentSubmissionClearanceOfficer, addStudentSubmissionAdviser, viewOpenApplicationInfo, getOpenApplication };
+export {
+  viewStudentInfo,
+  getAdviserDetails,
+  createApplication,
+  deleteApplication,
+  getApplicationsOfStudent,
+  getClearedApplications,
+  addStudentSubmissionClearanceOfficer,
+  addStudentSubmissionAdviser,
+  viewOpenApplicationInfo,
+  getOpenApplication,
+};

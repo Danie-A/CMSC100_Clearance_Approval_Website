@@ -10,15 +10,16 @@ import Dashboard from "./pages/Dashboard";
 import Root from "./pages/Root";
 import Applications from "./pages/Student/applications/Applications";
 import Notifications from "./pages/Student/notifications/Notifications";
-import CreateApplication from './pages/Student/viewApplication/CreateApplication';
+import CreateApplication from "./pages/Student/viewApplication/CreateApplication";
 import ViewPendingApplications from "./pages/Admin/ViewPendingApplications";
-import ViewApplication from './pages/Student/viewApplication/ViewApplication';
+import ViewApplication from "./pages/Student/viewApplication/ViewApplication";
 import ManageApprovers from "./pages/Admin/ManageApprovers";
 import AdminHome from "./pages/Admin/AdminHome";
 import AdviserViewPendingApplications from "./pages/Adviser/AdviserViewPendingApplications";
 import GeneratePDF from "./pages/Student/pdf/GeneratePDF";
 import AdviserHome from "./pages/Adviser/AdviserHome";
 import AdviserSearch from "./pages/Adviser/AdviserSearch";
+import ManagePendingApplications from "./pages/Admin/ManagePendingApplications";
 
 // var userType = "student";
 // localStorage.setItem("userType", userType);
@@ -92,7 +93,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/adviser", element: <AdviserHome /> },
       { path: "/adviser/view-pending-applications", element: <AdviserViewPendingApplications /> },
-      { path: "/adviser/search-students", element: <AdviserSearch /> }
+      { path: "/adviser/search-students", element: <AdviserSearch /> },
     ],
   },
   {
@@ -101,7 +102,8 @@ const router = createBrowserRouter([
     loader: () => checkIfLoggedIn("admin"),
     children: [
       { path: "/admin", element: <AdminHome /> },
-      { path: "/admin/view-pending-applications", element: <ViewPendingApplications /> },
+      { path: "/admin/view-pending-accounts", element: <ViewPendingApplications /> },
+      { path: "/admin/manage-pending-applications", element: <ManagePendingApplications /> },
       { path: "/admin/manage-approvers", element: <ManageApprovers /> },
     ],
   },
