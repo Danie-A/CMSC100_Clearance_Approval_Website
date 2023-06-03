@@ -32,13 +32,28 @@ export default function AdviserSearch() {
                 .then((body) => {
                     console.log(body.result);
                     setStudentsList(body.result);
+
                 });
         };
         e();
     }, []);
 
+    useEffect(() => {
+        switch (sortBy) {
+          case "name_asc":
+            setStudentsList((prevList) => [...prevList].sort((a, b) => a.first_name.localeCompare(b.first_name)));
+            break;
+          case "name_desc":
+            setStudentsList((prevList) => [...prevList].sort((a, b) => b.first_name.localeCompare(a.first_name)));
+            break;
+          default:
+            break;
+        }
+      }, [sortBy]);
+
     return (
         <>
+            <p>Delete Later {sortBy}</p>
             {/* <input placeholder="SEARCH" />
         <button>SORT</button>
         <button>FILTER</button>
@@ -63,7 +78,7 @@ export default function AdviserSearch() {
                         .map((student, index) => (
                             <tr key={index}>
                                 <td>{student.first_name + " " + student.middle_name + " " + student.last_name}
-                                    <button onClick={()=>setButtonPopup(true)}>See Profile</button>
+                                    {/* <button onClick={()=>setButtonPopup(true)}>See Profile</button> */}
                                 </td>
                                 {/* <button onClick={()=>setButtonPopup(true)}>See Profile</button> */}
                                 {/* <td>
@@ -76,9 +91,9 @@ export default function AdviserSearch() {
                         ))}
                 </tbody>
             </table>
-            <SeeProfile trigger={buttonPopup}>
+            {/* <SeeProfile trigger={buttonPopup}>
                     <h3>POPUP!</h3>
-                </SeeProfile>
+                </SeeProfile> */}
             <br />
             <br />
         </>
