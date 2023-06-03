@@ -25,7 +25,6 @@ import {
 import { getPendingApplicationsByAdviser, getAllStudents } from "./controllers/approver.js";
 
 import { getLoggedIn, isStudent, isAdmin, isAdviser } from "./controllers/middleware.js";
-import { application } from "express";
 
 const setUpRoutes = (app) => {
   // auth
@@ -62,7 +61,7 @@ const setUpRoutes = (app) => {
 
   // approver
   app.get("/get-pending-applications-adviser", isAdviser, getPendingApplicationsByAdviser);
-  app.get("/adviser/search-students", isAdviser, getAllStudents)
+  app.get("/search-students", isAdviser, getAllStudents)
 
   // general
   app.post("/getLoggedIn", getLoggedIn);
