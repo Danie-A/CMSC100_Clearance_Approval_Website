@@ -110,10 +110,10 @@ function ViewPendingApplications() {
         </tbody>
       </table>
 
-    <div id="image-container">
-    <img id="image5" src="https://i.pinimg.com/originals/70/2c/88/702c88766c91b0d333b220326dfb14ad.png" alt="Image">
-    </img>
-    </div>
+      <div id="image-container">
+        <img id="image5" src="https://i.pinimg.com/originals/70/2c/88/702c88766c91b0d333b220326dfb14ad.png" alt="view-pending-applications">
+        </img>
+      </div>
 
       <br />
 

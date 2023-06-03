@@ -31,7 +31,7 @@ function ViewAllApplications() {
           </div>
         </div>
       ))}
-      <ReactModal isOpen={showModal} style={modalStyle} onAfterClose={() => {}}>
+      <ReactModal isOpen={showModal} style={modalStyle} onAfterClose={() => { }}>
         <div className="d-flex flex-column gap-3 w-100 h-100 justify-content-start">
           <button type="button" className="btn-close btn-right" onClick={() => setShowModal(false)} />
           <h4>{currentStudent?.first_name + "'s Application"}</h4>
@@ -44,7 +44,7 @@ function ViewAllApplications() {
                   <div>{`Step: ${submission.step}`}</div>
                   <div>
                     {`Github Link: `}
-                    <a href={submission.github_link} target="_blank">
+                    <a href={submission.github_link} target="_blank" rel="noreferrer">
                       {submission.github_link}
                     </a>
                   </div>
