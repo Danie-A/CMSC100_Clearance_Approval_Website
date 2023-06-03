@@ -4,6 +4,7 @@ import ReturnPopUp from './ReturnPopUp';
 import { useState } from 'react';
 import Remark from '../Student/viewApplication/remarks/Remark';
 import { BiCommentDetail } from 'react-icons/bi';
+import Submission from './Submission';
 
 export default function SeeProfile({ handleCloseModal, student }) {
     const username = localStorage.getItem("username"); // username of adviser
@@ -32,7 +33,6 @@ export default function SeeProfile({ handleCloseModal, student }) {
     };
 
     const [showSubmission, setShowSubmission] = useState(false);
-
 
     // for react modal to view application of student
     const handleOpenModal2 = () => {
@@ -123,19 +123,38 @@ export default function SeeProfile({ handleCloseModal, student }) {
     }
 
     // list of submissions of student regarding the application
-    function viewSubmissions(student_submissions) {
+    function viewSubmissions(submissions) {
+
+        const sortedSubmissions = submissions.sort((a, b) => {
+            if (a._id > b._id) {
+                return -1; // Sort in descending order
+            } else if (a._id < b._id) {
+                return 1;
+            }
+            return 0;
+        });
+
         return (
-            <div>
-                {student_submissions.map((submission, index) => (
-                    <div key={index}>
-                        <p>{submission.remark}</p>
-                        <p>{submission.step}</p>
-                        <p>{submission.date}</p>
-                        <p>{username}</p>
+            <div className='whole-container'>
+
+                <button type="button" className="btn-close btn-right" aria-label="Close" onClick={handleCloseModal}></button>
+
+                <h5>Student Submissions</h5>
+
+                <div className="remark-container">
+
+                    <div>
+                        {sortedSubmissions.map((sub, index) => (
+                            <Submission key={index} github_link={sub.github_link} remark={sub} step={sub.step} date={sub.date.slice(0, 10)} />
+                        ))}
                     </div>
-                ))}
+
+                </div>
+
             </div>
+
         );
+
     }
 
 
@@ -202,8 +221,16 @@ export default function SeeProfile({ handleCloseModal, student }) {
                 </ReactModal>
 
                 <button onClick={handleOpenSubmission}>View Student Submissions</button>
+                <ReactModal
+                    isOpen={showSubmission}
+                    contentLabel="Submissions"
+                    onRequestClose={handleCloseSubmission}
+                    appElement={document.getElementById('root')} // Set the app element
+                >
+                    {viewSubmissions(student.open_application.student_submissions)}
 
-                {/*  showSubmissions(student.open_application.student_submissions) */}
+                </ReactModal>
+
 
             </div>
             <br /><br />
