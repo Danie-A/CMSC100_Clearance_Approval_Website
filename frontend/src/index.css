@@ -309,6 +309,13 @@ thead {
     border-radius: 0px 0px 20px 20px;
   }
 
+  #manage-adviser {
+    background-color: #00838F;
+    backdrop-filter: blur(80px);
+    /* padding: 10px; */
+    border-radius: 0px 0px 20px 20px;
+  }
+
   h3 {
     font-size: 60px;
   }
@@ -325,7 +332,16 @@ thead {
     border-radius: 40px;
   }
   
+  nav#manage-adviser ul li:hover {
+    background-color: #FFA000; 
+    border-radius: 40px;
+  }
+
   nav#manage-approver ul li:hover a {
+    color: rgb(66,66,66); 
+  }
+
+  nav#manage-adviser ul li:hover a {
     color: rgb(66,66,66); 
   }
 

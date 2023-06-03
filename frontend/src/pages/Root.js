@@ -106,7 +106,7 @@ export default function Root() {
             );
         } else if (userType === "adviser") {
             return (
-                <nav>
+                <nav id = "manage-adviser">
                     <ul>
                         <li className={`${location.pathname === "/adviser/view-pending-applications" ? "active" : ""}`}>
                             <Link to="/adviser/view-pending-applications" className="nav-link">
