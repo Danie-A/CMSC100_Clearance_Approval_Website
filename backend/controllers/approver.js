@@ -56,6 +56,12 @@ const getStudentsWithPendingApplication = async (req, res) => {
 };
 
 // set application current_step to 3 -- to be reviewed by clearance officer
+// const setApplicationStep3 = async (req, res) => {
+//   const applicationId = req.body.applicationId;
+//   try {
+
+
+
 
 
 // get all students of adviser
