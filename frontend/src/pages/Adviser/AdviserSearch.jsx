@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import Popup from "./ViewApplication";
+import ViewApplication from "./ViewApplication";
 
 export default function AdviserSearch() {
 
     const [sortBy, setSortBy] = useState("none");
     const [nameFilter, setNameFilter] = useState("");
     const [studentsList, setStudentsList] = useState([]);
+    const [buttonPopup, setButtonPopup] = useState(false);
     // const [addStudentInfo, setAddStudentInfo] = useState(initialApproverState);
     // const [editStudentInfo, setEditStudentInfo] = useState(initialApproverState);
     // const handlePreEdit = (student) => {
@@ -61,8 +63,10 @@ export default function AdviserSearch() {
                         .map((student, index) => (
                             <tr key={index}>
                                 <td>{student.first_name + " " + student.middle_name + " " + student.last_name}</td>
-                                <button>View Application</button>
-                                <Popup trigger={false}></Popup>
+                                <button onClick={()=>setButtonPopup(true)}>View Application</button>
+                                <ViewApplication trigger={buttonPopup}>
+                                    <h3>POPUP!</h3>
+                                </ViewApplication>
                                 {/* <td>
                     <button onClick={() => handlePreEdit(approver)}>Edit</button>
                     </td>
