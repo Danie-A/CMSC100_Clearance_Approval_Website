@@ -5,11 +5,14 @@ import { useState, useEffect } from "react";
 export default function Applications() {
 
     const [applicationList, setApplicationList] = useState([]);
+    const [spinner, setSpinner] = useState(false);
+
 
     useEffect(() => {
         async function fetchData() {
             try {
 
+                setSpinner(true);
                 const applicationListResponse = await fetch('http://localhost:3001/get-applications-of-student', { method: "GET", credentials: "include" });
 
                 const payload = await applicationListResponse.json();
@@ -17,6 +20,7 @@ export default function Applications() {
 
                 if (payload && payload.data) {
                     setApplicationList(payload.data);
+                    setSpinner(false);
                     //alert("Successfully found application info!");
                 } else {
                     setApplicationList([]);
@@ -28,6 +32,7 @@ export default function Applications() {
         }
 
         fetchData();
+
     }, []);
 
     const sortedApplicationList = applicationList.sort((a, b) => {
@@ -38,6 +43,23 @@ export default function Applications() {
         }
         return 0;
     });
+
+    function showList() {
+        if (spinner) {
+            return <tbody>
+                <tr><td><div className="spinner-border text-dark" role="status">
+                </div></td></tr>
+            </tbody>
+        } else if (applicationList.length === 0) {
+            return <tbody>
+                <tr><td>No applications yet.</td></tr>
+            </tbody>
+        }
+        else
+            return (<tbody>{sortedApplicationList.map((application) => (
+                <SingleApp key={application._id} application={application} />
+            ))}</tbody>);
+    }
 
     return (
         <div className='whole-container'>
@@ -52,11 +74,7 @@ export default function Applications() {
                         <th>Option</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {sortedApplicationList.map((application) => (
-                        <SingleApp key={application._id} application={application} />
-                    ))}
-                </tbody>
+                {showList()}
             </table>
         </div>
     );

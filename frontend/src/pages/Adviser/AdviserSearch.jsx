@@ -24,54 +24,54 @@ export default function AdviserSearch() {
 
     useEffect(() => {
         const e = async () => {
-          await fetch("http://localhost:3001/search-students", { method: "GET", credentials: "include" })
-            .then((response) => response.json())
-            .then((body) => {
-              console.log(body.result);
-              setStudentsList(body.result);
-            });
+            await fetch("http://localhost:3001/search-students", { method: "GET", credentials: "include" })
+                .then((response) => response.json())
+                .then((body) => {
+                    console.log(body.result);
+                    setStudentsList(body.result);
+                });
         };
         e();
-      }, []);
+    }, []);
 
-    return(
+    return (
         <>
-        {/* <input placeholder="SEARCH" />
+            {/* <input placeholder="SEARCH" />
         <button>SORT</button>
         <button>FILTER</button>
         <ul>
             
         </ul> */}
-        
-        {/* Displaying students */}
-        <h3>Advisees</h3>
-        <span>Name </span>
-        <button onClick={() => setSortBy("name_asc")}>↑</button>
-        <button onClick={() => setSortBy("name_desc")}>↓</button> <br />
-        <input placeholder="Student Name" onChange={(e) => setNameFilter(e.target.value)} value={nameFilter} />
-        <button>Search</button>
-        <table>
-            <tbody>
-            <tr>
-                <td>Name</td>
-            </tr>
-            {studentsList
-                .filter((e) => (e.first_name + " " + e.middle_name + " " + e.last_name).toLowerCase().includes(nameFilter.toLowerCase()))
-                .map((student, index) => (
-                <tr key={index}>
-                    <td>{student.first_name + " " + student.middle_name + " " + student.last_name}</td>
-                    {/* <td>
+
+            {/* Displaying students */}
+            <h3>Advisees</h3>
+            <span>Name </span>
+            <button onClick={() => setSortBy("name_asc")}>↑</button>
+            <button onClick={() => setSortBy("name_desc")}>↓</button> <br />
+            <input placeholder="Student Name" onChange={(e) => setNameFilter(e.target.value)} value={nameFilter} />
+            <button>Search</button>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                    </tr>
+                    {studentsList
+                        .filter((e) => (e.first_name + " " + e.middle_name + " " + e.last_name).toLowerCase().includes(nameFilter.toLowerCase()))
+                        .map((student, index) => (
+                            <tr key={index}>
+                                <td>{student.first_name + " " + student.middle_name + " " + student.last_name}</td>
+                                {/* <td>
                     <button onClick={() => handlePreEdit(approver)}>Edit</button>
                     </td>
                     <td>
                     <button onClick={() => handleDeleteApprover(approver._id)}>Delete</button>
                     </td> */}
-                </tr>
-                ))}
-            </tbody>
-        </table>
-        <br />
-        <br />
+                            </tr>
+                        ))}
+                </tbody>
+            </table>
+            <br />
+            <br />
         </>
     )
 }

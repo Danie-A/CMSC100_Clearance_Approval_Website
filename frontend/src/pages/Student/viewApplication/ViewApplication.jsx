@@ -31,8 +31,16 @@ export default function ViewApplication() {
 
     const deleteModalSize = {
         content: {
-            width: "500px", // Set the desired width
-            height: "300px", // Set the desired height
+            maxWidth: "600px", // Set the desired width
+            maxHeight: "280px", // Set the desired height
+            display: "flex",
+            flexDirection: "column", // Set flexbox direction if needed
+            justifyContent: "center", // Set flexbox alignment properties
+            flexWrap: "wrap",
+            alignItems: "flex-start",
+            top: "25%", // Position the modal at the center vertically
+            left: "25%", // Position the modal at the center horizontally
+            transform: "translate(-25%, -25%)", // Adjust the positioning based on modal size
         },
     };
 
@@ -99,6 +107,7 @@ export default function ViewApplication() {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify(applicationDocu)
         })
             .then((response) => response.json()) // get the response
@@ -140,6 +149,7 @@ export default function ViewApplication() {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify(applicationDocu)
         })
             .then((response) => response.json()) // get the response
@@ -147,6 +157,10 @@ export default function ViewApplication() {
                 console.log(data);
                 if (data.success) { // if success is true
                     alert("Successfully submitted returned application to adviser!");
+                    // change application status to pending
+
+
+
                     // redirect to homepage
                     window.location.href = "/student";
                 } else { // success: false
@@ -163,6 +177,11 @@ export default function ViewApplication() {
     }
 
     function showContent() {
+        if (!application) {
+            return <div className="spinner-border text-dark" role="status">
+
+            </div>
+        }
         if (application.current_step === 1) {
             // pending to be reviewed by adviser - still at step 1
             return <div className="form-container">
@@ -205,10 +224,18 @@ export default function ViewApplication() {
             return <div className="form-container">
                 <p>Status: Returned</p>
                 <p>Step 3: Clearance Officer</p>
-                <button className="btn btn-warning notifBtn">
+                <button className="btn btn-warning notifBtn" onClick={handleOpenModal}>
                     <BiCommentDetail className="mr-2" style={{ marginRight: '8px' }} />
                     View Remarks
                 </button>
+                <ReactModal
+                    isOpen={showModal}
+                    contentLabel="Show Remarks"
+                    onRequestClose={handleCloseModal}
+                    appElement={document.getElementById('root')} // Set the app element
+                >
+                    <ViewRemarks handleCloseModal={handleCloseModal} />
+                </ReactModal>
                 <br></br>
                 <form>
                     <label htmlFor="student-remark">Student Remark:</label><br />
@@ -234,7 +261,7 @@ export default function ViewApplication() {
     return (
         <div className="whole-container">
             <button onClick={handleOpenModal2} className="btn btn-danger">
-                <MdDelete color="white" />
+                <MdDelete color="white" />  Close Current Application
             </button>
             <ReactModal
                 style={deleteModalSize}
@@ -244,10 +271,15 @@ export default function ViewApplication() {
                 appElement={document.getElementById('root')} // Set the app element
             >
                 <DeletePopUp handleCloseModal={handleCloseModal2} />
+
+
             </ReactModal>
 
-            <h5>View Clearance Application</h5>
-            {application && showContent()}
+            <div className="view-app-container">
+                <h5>View Clearance Application</h5>
+                {showContent()}
+            </div>
+
         </div>
     );
 }

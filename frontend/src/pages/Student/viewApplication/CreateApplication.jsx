@@ -39,8 +39,9 @@ export default function CreateApplication() {
 
     return (
         <div className="whole-container">
-            <h5>Create Clearance Application</h5>
-            <div className="form-container">
+            <div className="view-app-container">
+                <h5>Create Clearance Application</h5>
+
                 <p>Status: Open</p>
                 <p>Step 1: Pre-Adviser</p>
                 <form>

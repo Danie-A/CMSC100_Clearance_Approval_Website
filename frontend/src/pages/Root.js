@@ -3,9 +3,9 @@ import { FaUserCircle, FaCheckSquare } from "react-icons/fa";
 import Cookies from "universal-cookie";
 import { useState, useEffect } from "react";
 
+
 export default function Root() {
     const location = useLocation();
-
     const username = localStorage.getItem("username");
     const userType = localStorage.getItem("userType");
 
@@ -37,9 +37,8 @@ export default function Root() {
     function logout() {
         const cookies = new Cookies();
         cookies.remove("authToken");
-
         localStorage.removeItem("username");
-
+        localStorage.removeItem("userType");
         setIsLoggedIn(false);
         navigate("/");
     }
@@ -124,10 +123,6 @@ export default function Root() {
             );
         }
     }
-
-    // if approver clearance officer different navbar
-
-    // if approver adviser different navbar
 
     return (
         <>
