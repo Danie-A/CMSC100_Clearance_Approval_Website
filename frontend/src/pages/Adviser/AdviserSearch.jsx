@@ -29,6 +29,7 @@ export default function AdviserSearch() {
                 .then((body) => {
                     console.log(body.result);
                     setStudentsList(body.result);
+
                 });
         };
         e();
@@ -36,6 +37,7 @@ export default function AdviserSearch() {
 
     return (
         <>
+            <p>Delete Later {sortBy}</p>
             {/* <input placeholder="SEARCH" />
         <button>SORT</button>
         <button>FILTER</button>

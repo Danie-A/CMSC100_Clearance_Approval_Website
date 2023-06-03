@@ -44,8 +44,6 @@ function ViewRemarks({ handleCloseModal }) {
         let commenterIs = ""; // initialize commenterIs, containing the name of clearance officer/adviser
         return (
             sortedRemarks.map((remark, index) => {
-
-
                 if (remark.commenter === "admin") {
                     commenterIs = "Clearance Officer Lorem Ipsum"; // hard code name of admin/clearance officer since admin is only 1 person
                 } else {
@@ -63,7 +61,6 @@ function ViewRemarks({ handleCloseModal }) {
         <div className='whole-container'>
 
             <button type="button" className="btn-close btn-right" aria-label="Close" onClick={handleCloseModal}></button>
-
 
             <h5>Returned Remarks</h5>
 
