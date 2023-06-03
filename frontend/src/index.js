@@ -20,6 +20,7 @@ import GeneratePDF from "./pages/Student/pdf/GeneratePDF";
 import AdviserHome from "./pages/Adviser/AdviserHome";
 import AdviserSearch from "./pages/Adviser/AdviserSearch";
 import ManagePendingApplications from "./pages/Admin/ManagePendingApplications";
+import ViewAllApplications from "./pages/Admin/ViewAllApplications";
 
 // var userType = "student";
 // localStorage.setItem("userType", userType);
@@ -104,6 +105,7 @@ const router = createBrowserRouter([
       { path: "/admin", element: <AdminHome /> },
       { path: "/admin/view-pending-accounts", element: <ViewPendingApplications /> },
       { path: "/admin/manage-pending-applications", element: <ManagePendingApplications /> },
+      { path: "/admin/view-all-applications", element: <ViewAllApplications /> },
       { path: "/admin/manage-approvers", element: <ManageApprovers /> },
     ],
   },

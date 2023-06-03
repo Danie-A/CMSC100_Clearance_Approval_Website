@@ -25,13 +25,9 @@ import {
   getStudentApplicationAdmin,
   clearStudentApplication,
   rejectStudentApplicationAdmin,
+  getAllApplications,
 } from "./controllers/admin.js";
-import {
-  getPendingApplicationsByAdviser,
-  getStudentsWithPendingApplication,
-  getAllStudents,
-  getAdviserName
-} from "./controllers/approver.js";
+import { getPendingApplicationsByAdviser, getStudentsWithPendingApplication, getAllStudents, getAdviserName } from "./controllers/approver.js";
 
 import { getLoggedIn, isStudent, isAdmin, isAdviser } from "./controllers/middleware.js";
 
@@ -72,15 +68,16 @@ const setUpRoutes = (app) => {
   app.post("/get-student-application-admin", isAdmin, getStudentApplicationAdmin);
   app.post("/clear-student-application", isAdmin, clearStudentApplication);
   app.post("/reject-student-application-admin", isAdmin, rejectStudentApplicationAdmin);
+  app.post("/get-all-applications", isAdmin, getAllApplications);
 
   app.post("/login-approver", loginApprover);
   app.post("/checkifloggedinapprover", checkIfLoggedInApprover);
 
   // approver
   app.get("/get-pending-applications-adviser", isAdviser, getPendingApplicationsByAdviser);
-  app.get("/search-students", isAdviser, getAllStudents)
-  app.get("/get-students-with-pending-application", isAdviser, getStudentsWithPendingApplication)
-  app.get("/get-adviser-name", isAdviser, getAdviserName)
+  app.get("/search-students", isAdviser, getAllStudents);
+  app.get("/get-students-with-pending-application", isAdviser, getStudentsWithPendingApplication);
+  app.get("/get-adviser-name", isAdviser, getAdviserName);
 
   // general
   app.post("/getLoggedIn", getLoggedIn);

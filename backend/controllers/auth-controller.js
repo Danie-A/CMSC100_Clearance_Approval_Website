@@ -28,7 +28,7 @@ const loginStudent = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await Student.findOne({ email: email });
+    const user = await Student.findOne({ email: email, status: "approved" });
     if (!user) return res.status(404).json({ success: false });
     user.comparePassword(password, (err, isMatch) => {
       if (err || !isMatch) return res.send({ success: false });
@@ -53,7 +53,6 @@ const checkIfLoggedIn = async (req, res) => {
     } else {
       if (await Student.findById(tokenPayload._id)) {
         res.status(200).json({ isLoggedIn: "student" });
-        console.log("Student still logged in");
       } else if (await Approver.findById(tokenPayload._id)) {
         res.status(200).json({ isLoggedIn: "adviser" });
       } else {
