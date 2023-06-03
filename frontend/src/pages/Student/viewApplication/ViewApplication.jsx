@@ -31,21 +31,18 @@ export default function ViewApplication() {
 
     const deleteModalSize = {
         content: {
+            margin: "auto",
             maxWidth: "600px", // Set the desired width
             maxHeight: "280px", // Set the desired height
             display: "flex",
             flexDirection: "column", // Set flexbox direction if needed
             justifyContent: "center", // Set flexbox alignment properties
-            flexWrap: "wrap",
-            alignItems: "flex-start",
-            top: "25%", // Position the modal at the center vertically
-            left: "25%", // Position the modal at the center horizontally
-            transform: "translate(-25%, -25%)", // Adjust the positioning based on modal size
+            alignItems: "center",
+            alignContent: "center",
         },
     };
 
     ReactModal.setAppElement('#root'); // Set the app element
-
     const [student, setStudent] = useState(null);
     const [application, setApplication] = useState(null);
 
