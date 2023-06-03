@@ -1,12 +1,15 @@
 import { signUpStudent, loginStudent, checkIfLoggedIn, logInAsAdmin } from "./controllers/auth-controller.js";
 import {
   viewStudentInfo,
+  getAdviserDetails,
   createApplication,
   deleteApplication,
   getApplicationsOfStudent,
+  getOpenApplication,
+  getClearedApplications,
   addStudentSubmissionClearanceOfficer,
   addStudentSubmissionAdviser,
-  viewOpenApplicationInfo,
+  viewOpenApplicationInfo
 } from "./controllers/student.js";
 import {
   getPendingApplications,
@@ -20,7 +23,8 @@ import {
   deleteApproverAccount,
   uploadCSV,
 } from "./controllers/admin.js";
-import { getPendingApplicationsByAdviser } from "./controllers/approver.js";
+import { getPendingApplicationsByAdviser, getAllStudents } from "./controllers/approver.js";
+
 import { getLoggedIn, isStudent, isAdmin, isAdviser } from "./controllers/middleware.js";
 
 import multer from "multer";
@@ -43,6 +47,9 @@ const setUpRoutes = (app) => {
   app.post("/add-student-submission-clearance-officer", isStudent, addStudentSubmissionClearanceOfficer);
   app.post("/view-open-application-info", viewOpenApplicationInfo);
   app.get("/get-applications-of-student", isStudent, getApplicationsOfStudent);
+  app.get("/get-cleared-applications", isStudent, getClearedApplications);
+  app.get("/get-open-application", isStudent, getOpenApplication);
+  app.get("/get-adviser-details", isStudent, getAdviserDetails);
 
   // admin
   app.post("/login-admin", logInAsAdmin);
@@ -60,6 +67,7 @@ const setUpRoutes = (app) => {
 
   // approver
   app.get("/get-pending-applications-adviser", isAdviser, getPendingApplicationsByAdviser);
+  app.get("/search-students", isAdviser, getAllStudents)
 
   // general
   app.post("/getLoggedIn", getLoggedIn);

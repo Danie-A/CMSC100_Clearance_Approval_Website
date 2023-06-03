@@ -102,3 +102,56 @@ needle.post(
 // needle.get("http://localhost:3001/get-all-approvers", (err, res) => console.log(res.body));
 
 // needle.post("http://localhost:3001/delete-approver", { approverId: "6471d39cfd663db0a7295286" }, (err, res) => console.log(res.body));
+
+
+/**
+ 
+sample
+
+{
+  "_id": {
+    "$oid": "6476ee06b9db7ec1fa6b86cf"
+  },
+  "owner": {
+    "$oid": "6476a763ec861a3e3bb821d1"
+  },
+  "current_step": 1,
+  "status": "pending",
+  "student_submissions": [
+    {
+      "github_link": "ayawkonapls.com",
+      "step": 1,
+      "_id": {
+        "$oid": "6476ee06b9db7ec1fa6b86d0"
+      },
+      "date": {
+        "$date": "2023-05-31T06:49:42.024Z"
+      }
+    }
+  ],
+  "remarks": [
+    {
+      "remarks": "wrong github link sent",
+      "step": 2,
+      "date": {
+        "$date": "2023-05-31T06:49:42.024Z"
+      },
+      "commenter": {
+        "$oid": "6476aa06ec861a3e3bb82207"
+      }
+    },
+    {
+      "remarks": "unpaid tuition",
+      "step": 3,
+      "date": {
+        "$date": "2023-05-31T06:49:42.024Z"
+      },
+      "commenter": "admin"
+    }
+  ],
+  "__v": 0
+}
+
+
+
+ */
