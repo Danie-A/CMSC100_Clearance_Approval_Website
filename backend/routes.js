@@ -9,7 +9,7 @@ import {
   getClearedApplications,
   addStudentSubmissionClearanceOfficer,
   addStudentSubmissionAdviser,
-  viewOpenApplicationInfo
+  viewOpenApplicationInfo,
 } from "./controllers/student.js";
 import {
   getPendingApplications,
@@ -22,6 +22,9 @@ import {
   editApproverAccount,
   deleteApproverAccount,
   uploadCSV,
+  getStudentApplicationAdmin,
+  clearStudentApplication,
+  rejectStudentApplicationAdmin,
 } from "./controllers/admin.js";
 import { getPendingApplicationsByAdviser, getAllStudents } from "./controllers/approver.js";
 
@@ -61,13 +64,16 @@ const setUpRoutes = (app) => {
   app.post("/edit-approver", isAdmin, editApproverAccount);
   app.post("/delete-approver", isAdmin, deleteApproverAccount);
   app.post("/upload-csv-file", upload.single("file"), uploadCSV);
+  app.post("/get-student-application-admin", isAdmin, getStudentApplicationAdmin);
+  app.post("/clear-student-application", isAdmin, clearStudentApplication);
+  app.post("/reject-student-application-admin", isAdmin, rejectStudentApplicationAdmin);
 
   app.post("/login-approver", loginApprover);
   app.post("/checkifloggedinapprover", checkIfLoggedInApprover);
 
   // approver
   app.get("/get-pending-applications-adviser", isAdviser, getPendingApplicationsByAdviser);
-  app.get("/search-students", isAdviser, getAllStudents)
+  app.get("/search-students", isAdviser, getAllStudents);
 
   // general
   app.post("/getLoggedIn", getLoggedIn);
