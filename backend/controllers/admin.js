@@ -1,5 +1,6 @@
 import { Student } from "../models/user.js";
 import { Approver } from "../models/approver.js";
+import { Application } from "../models/application.js";
 import jwt from "jsonwebtoken";
 import csvParser from "csv-parser";
 import fs from "fs";
@@ -181,6 +182,43 @@ const uploadCSV = async (req, res) => {
     });
 };
 
+const getStudentApplicationAdmin = async (req, res) => {
+  try {
+    const result = await Student.find({ open_application: { $ne: null } })
+      .select("-password")
+      .populate({ path: "open_application", match: { status: "pending", current_step: 3 } })
+      .exec();
+    const filteredResult = result.filter((student) => student.open_application != null);
+    res.status(200).json({ success: true, request: filteredResult });
+  } catch (error) {
+    console.log(`Error in admin - getStudentApplicationAdmin(): ${error}`);
+    res.status(500).json({ success: false });
+  }
+};
+
+const clearStudentApplication = async (req, res) => {
+  const { applicationId } = req.body;
+  try {
+    const foundApplication = await Application.findByIdAndUpdate(applicationId, { status: "cleared" });
+    await Student.findByIdAndUpdate(foundApplication.owner, { open_application: null, $push: { closed_applications: foundApplication._id } });
+    res.status(200).json({ success: true });
+  } catch (error) {
+    console.log(`Error in admin - clearStudentApplication(): ${error}`);
+    res.status(500).json({ success: false });
+  }
+};
+
+const rejectStudentApplicationAdmin = async (req, res) => {
+  const { applicationId, remarks } = req.body;
+  try {
+    await Application.findByIdAndUpdate(applicationId, { status: "returned", $push: { remarks: { remarks: remarks, step: 3 } } });
+    res.status(200).json({ success: true });
+  } catch (error) {
+    console.log(`Error in admin - rejectStudentApplicationAdmin(): ${error}`);
+    res.status(500).json({ success: false });
+  }
+};
+
 export {
   getPendingApplications,
   approveStudentAccount,
@@ -192,4 +230,7 @@ export {
   editApproverAccount,
   deleteApproverAccount,
   uploadCSV,
+  getStudentApplicationAdmin,
+  clearStudentApplication,
+  rejectStudentApplicationAdmin,
 };

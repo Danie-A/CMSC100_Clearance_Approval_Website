@@ -208,15 +208,36 @@ thead {
     justify-content: flex-start;
 }
 
-/* .btn-primary {
-    background-color: #404252;
-    border: none;
+.students-container {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 30px;
+    width: 100%;
 }
 
-.btn-primary:hover {
-    transition: 0.3s;
-    background-color: #101223;
-} */
+.student-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    gap: 1em;
+    /* background-color: #D2D4DA; */
+    background-color: #30313d;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.614);
+    color: white;
+    /* color: black; */
+}
+
+.student-item:hover {
+    background-color: rgb(40, 42, 58);
+    transition: 0.4s;
+    border-radius: 10px;
+    scale: 1.009;
+}
+
 
 .btn-right {
     position: absolute;
