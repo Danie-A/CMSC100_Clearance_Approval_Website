@@ -22,7 +22,7 @@ function ViewAllApplications() {
 
   return (
     <div className="container">
-      <h3 className="my-5">View All Applications</h3>
+      <h3 className="my-5">View Application Details</h3>
       {students.map((student, index) => (
         <div className="card my-3 p-3 d-flex flex-row justify-content-between align-items-center" key={index}>
           <div className="fw-semibold ms-0 ms-sm-4">{student.first_name + " " + student.middle_name + " " + student.last_name}</div>

@@ -99,9 +99,9 @@ export default function Root() {
                 Manage Pending Applications
               </Link>
             </li>
-            <li className={`${location.pathname === "/admin/view-all-applications" ? "active" : ""}`}>
-              <Link to="/admin/view-all-applications" className="nav-link">
-                View All Applications
+            <li className={`${location.pathname === "/admin/view-applications-details" ? "active" : ""}`}>
+              <Link to="/admin/view-applications-details" className="nav-link">
+                View Application Details
               </Link>
             </li>
             <li className={`${location.pathname === "/admin/manage-approvers" ? "active" : ""}`}>
