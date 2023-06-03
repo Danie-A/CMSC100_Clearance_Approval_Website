@@ -16,6 +16,8 @@ export default function SeeProfile({ handleCloseModal, student }) {
     ReactModal.setAppElement('#root'); // Set the app element
     const [showModal2, setShowModal2] = useState(false);
 
+    const modalStyle = { content: { position: "absolute", height: "400px", maxWidth: "600px", display: "flex", flexDirection: "column", alignItems: "center", margin: "auto", justifyContent: "center" } };
+
     // get last submission of student
     var lastIndex = (student.open_application.student_submissions.length) - 1;
     var latestSubmission = student.open_application.student_submissions[lastIndex];
@@ -94,13 +96,14 @@ export default function SeeProfile({ handleCloseModal, student }) {
         <button onClick={handleOpenModal2}>Return</button>
         {/* Pop Up Another Modal to Add Remark */}
         <ReactModal
+            style={modalStyle}
             isOpen={showModal2}
             contentLabel="Return to Student with Remark"
             onRequestClose={handleCloseModal2}
             shouldCloseOnOverlayClick={false}
             appElement={document.getElementById('root')} // Set the app element
         >
-            <ReturnPopUp handleCloseModal2={handleCloseModal2} />
+            <ReturnPopUp handleCloseModal2={handleCloseModal2} applicationId={student.open_application._id} />
 
         </ReactModal>
 
