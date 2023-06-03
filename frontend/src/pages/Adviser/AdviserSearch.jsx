@@ -5,11 +5,11 @@ import SeeProfile from "./SeeProfile";
 export default function AdviserSearch() {
 
     const [sortBy, setSortBy] = useState("none");
-    const [nameFilter, setNameFilter] = useState("");
-    const [studNoFilter, setStudNoFilter] = useState("");
+    // const [nameFilter, setNameFilter] = useState("");
+    // const [studNoFilter, setStudNoFilter] = useState("");
     const [studentsList, setStudentsList] = useState([]);
-    const [studNoclicked, setStudNoClicked] = useState(false);
-    const [nameclicked, setNameClicked] = useState(false);
+    // const [studNoclicked, setStudNoClicked] = useState(false);
+    // const [nameclicked, setNameClicked] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const handleSearch = (event) => {
         setSearchTerm(event.target.value);
@@ -18,7 +18,7 @@ export default function AdviserSearch() {
     (item.first_name + " " + item.middle_name + " " + item.last_name).toLowerCase().includes(searchTerm.toLowerCase()) ||
     item.student_number.toString().includes(searchTerm)
     );
-
+    const username = localStorage.getItem("username");
   
     // const [buttonPopup, setButtonPopup] = useState(false);
     // const [addStudentInfo, setAddStudentInfo] = useState(initialApproverState);
@@ -88,8 +88,9 @@ export default function AdviserSearch() {
       <div>
         {filteredItems.map((student, index) => (
           <div key={index}>Student: {student.last_name + ", " + student.first_name + " " + student.middle_name}
-          <div>Student Number: {student.student_number}
-          </div>
+          <div>Student Number: {student.student_number}</div>
+          <div>Adviser: {username}</div>
+          <div>Application: {student.open_application}</div>
           <br/>
           </div>
         ))}
