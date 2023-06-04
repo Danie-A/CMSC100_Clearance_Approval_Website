@@ -458,9 +458,22 @@ nav#manage-student ul li:hover a {
 }
 
 input[type="file"] {
-  opacity: 0; /* Hide the default file input button */
-  position: absolute; /* Position it on top of the styled button */
-  z-index: -1; /* Move it behind the styled button */
+  display: none;
+}
+
+.custom-file-upload {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.custom-file-upload:hover {
+  background-color: rgba(238, 238, 238, 0.41);
 }
 
 .button-stylee {

@@ -11,9 +11,10 @@ import setUpRoutes from "./routes.js";
 const app = express();
 
 // connect to Mongo DB
-await mongoose.connect("mongodb://127.0.0.1:27017/AUTH");
-const DATABASE_URI = "mongodb://127.0.0.1:27017/AUTH";
-// const DATABASE_URI = "mongodb+srv://jpsabile:VUNVL7QcJ2tYPbZr@jpsabile.nvysktb.mongodb.net/clearME?retryWrites=true&w=majority";
+// await mongoose.connect("mongodb://127.0.0.1:27017/AUTH");
+// const DATABASE_URI = "mongodb://127.0.0.1:27017/AUTH";
+const DATABASE_URI =
+  "mongodb+srv://jpsabile:VUNVL7QcJ2tYPbZr@jpsabile.nvysktb.mongodb.net/clearME?retryWrites=true&w=majority";
 await mongoose
   .connect(DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connect to MongoDB"))
@@ -30,7 +31,10 @@ app.use(cookieParser());
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS,POST");
-  res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers,Access-Control-Allow-Methods,Origin,Accept,Content-Type,X-Requested-With,Cookie");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Access-Control-Allow-Headers,Access-Control-Allow-Methods,Origin,Accept,Content-Type,X-Requested-With,Cookie"
+  );
   res.setHeader("Access-Control-Allow-Credentials", "true");
   next();
 });
