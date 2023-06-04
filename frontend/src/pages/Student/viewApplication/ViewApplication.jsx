@@ -179,7 +179,7 @@ export default function ViewApplication() {
 
             </div>
         }
-        if (application.current_step === 1) {
+        if (application.current_step === 1 || (application.current_step === 2 && application.status === "pending")) {
             // pending to be reviewed by adviser - still at step 1
             return <div className="form-container">
 
@@ -209,7 +209,7 @@ export default function ViewApplication() {
                 <form>
                     <label htmlFor="link">GitHub Link:</label><br />
                     <input type="text" id="link" name="link" required /><br />
-                    <label htmlFor="link">Student Remark:</label><br />
+                    <label htmlFor="remark">Student Remark:</label><br />
                     <input type="text" id="remark" name="remark" required /><br />
                     <input type="submit" onClick={handleResubmitAdviser} className="btn btn-primary" value="Submit" />
                 </form>
@@ -249,6 +249,7 @@ export default function ViewApplication() {
             </div>
 
         } else {
+            // pending to be reviewed by adviser - still at step 2
             // else go back to home using redirect
             // window.location.href = "/student";
         }

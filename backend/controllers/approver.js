@@ -55,6 +55,36 @@ const getStudentsWithPendingApplication = async (req, res) => {
   }
 };
 
+// set application current_step to 3 -- to be reviewed by clearance officer
+// const setApplicationStep3 = async (req, res) => {
+//   const applicationId = req.body.applicationId;
+//   try {
+const approveApplicationAdviser = async (req, res) => {
+  const { applicationId } = req.body;
+  try {
+    await Application.findByIdAndUpdate(applicationId, { current_step: 3, status: "pending" });
+    res.status(200).json({ success: "Successfully approved by adviser and sent to clearance officer for checking" });
+  } catch (error) {
+    console.log(`Error in approver - approveApplicationAdviser: ${error}`);
+    res.status(500).json({ success: false });
+  }
+};
+
+// returnApplicationAdviser
+const returnApplicationAdviser = async (req, res) => {
+  const adviserId = req.userId;
+  const { applicationId, remarks } = req.body;
+  try {
+    await Application.findByIdAndUpdate(applicationId, { current_step: 2, status: "returned", $push: { remarks: { remarks: remarks, step: 2, commenter: adviserId } } });
+    res.status(200).json({ success: "Successfully returned application to student." });
+  } catch (error) {
+    console.log(`Error in adviser - returnApplicationAdviser(): ${error}`);
+    res.status(500).json({ success: false });
+  }
+
+};
+
+
 // get all students of adviser
 const getAllStudents = async (req, res) => {
   try {
@@ -79,4 +109,6 @@ const getAdviserName = async (req, res) => {
   }
 };
 
-export { getPendingApplicationsByAdviser, getAllStudents, getAdviserName, getStudentsWithPendingApplication };
+
+
+export { approveApplicationAdviser, returnApplicationAdviser, getPendingApplicationsByAdviser, getAllStudents, getAdviserName, getStudentsWithPendingApplication };

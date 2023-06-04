@@ -45,7 +45,7 @@ function ViewRemarks({ handleCloseModal }) {
         return (
             sortedRemarks.map((remark, index) => {
                 if (remark.commenter === "admin") {
-                    commenterIs = "Clearance Officer Lorem Ipsum"; // hard code name of admin/clearance officer since admin is only 1 person
+                    commenterIs = "Clearance Officer Josephine Batumbakal Dipapakabog"; // hard code name of admin/clearance officer since admin is only 1 person
                 } else {
                     commenterIs = "Adviser " + adviser.first_name + " " + adviser.last_name; // name of adviser
                 }

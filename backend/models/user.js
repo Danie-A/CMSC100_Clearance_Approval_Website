@@ -6,7 +6,7 @@ const studentSchema = new mongoose.Schema({
   middle_name: { type: String, required: true },
   last_name: { type: String, required: true },
   student_number: { type: String, unique: true, required: true },
-  email: { type: String, required: true },
+  email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   status: { type: String, default: "pending" },
   open_application: { type: mongoose.Schema.Types.ObjectId, ref: "application", default: null },

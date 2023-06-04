@@ -146,8 +146,6 @@ export default function Home() {
       });
   };
 
-  // [] @up.edu.ph email validation
-
   return (
     <>
     {/* <div id="welcome-page"> */}
@@ -194,10 +192,10 @@ export default function Home() {
       <p class="note">Note: Coordinate with the Admin to create an Approver account.</p>
 
       <footer>
-      <p>Unlock the Path to Success with Effortless Efficiency: Experience Seamless Clearance Approval in the Institute of Computer Science</p>
+        <p>Unlock the Path to Success with Effortless Efficiency: Experience Seamless Clearance Approval in the Institute of Computer Science</p>
       </footer>
-    {/* </div> */}
-    
+      {/* </div> */}
+
     </>
   );
 }
