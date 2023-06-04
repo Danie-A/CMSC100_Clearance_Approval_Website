@@ -46,8 +46,8 @@ h5 {
     /*cross axis*/
     align-items: flex-start;
     width: 100%;
-    margin-bottom: 20px;
-}
+    /* margin-bottom: 20px;*/
+} 
 
 /* .header-welcome {
     margin-bottom: 20px;   
@@ -412,8 +412,20 @@ h1 {
     border-radius: 0px 0px 20px 20px;
   }
 
+  h2 {
+    font-size: 60px;
+  }
+
   h3 {
     font-size: 60px;
+  }
+
+  big-font {
+    font-size: 3em;
+  }
+
+  .welcome-adviser {
+    font-size: 3eam;
   }
 
 #image-admin {
@@ -633,6 +645,10 @@ option {
   }   */
 
   h3:hover {
+    color: #00838F;
+  }
+
+  h2:hover {
     color: #00838F;
   }
 
