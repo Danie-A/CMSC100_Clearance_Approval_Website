@@ -64,7 +64,7 @@ export default function Applications() {
     return (
         <div className='whole-container'>
 
-            <h5>Clearance Applications</h5>
+        <h2 id="clearance-applications-heading">Clearance Applications</h2>
 
             <table className="table table-hover table-colored">
                 <thead>

@@ -64,7 +64,7 @@ export default function Root() {
         }
       }
       return (
-        <nav>
+        <nav id="manage-student">
           <ul>
             <li className={`${location.pathname === "/student" ? "active" : ""}`}>
               <Link to="/student" className="nav-link">

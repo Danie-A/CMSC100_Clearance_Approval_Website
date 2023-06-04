@@ -43,7 +43,7 @@ export default function Dashboard() {
   function showContent() {
     if (openApplication) {
       return <div className="whole-container">
-        <p>You have a pending clearance application.</p>
+        <p10>You have a pending clearance application.</p10>
         <button type="button" className="btn btn-primary"><Link to="/student/view-application" className="nav-link">View Clearance Application</Link></button>
         {/* <ReactModal
           isOpen={showModal}
@@ -59,10 +59,10 @@ export default function Dashboard() {
 
     } else {
       return <div className="whole-container">
-        <p>You have no pending clearance application.</p>
-        <button type="button" className="btn btn-primary"><Link to="/student/create-application" className="nav-link">Create Clearance Application</Link></button>
+        <p9>You have no pending clearance application.</p9>
+        <button type="button" className="glass-effect-10"><Link to="/student/create-application" className="nav-link">Create Clearance Application</Link></button>
         <br></br>
-        <button type="button" className="btn btn-primary" onClick={viewMyInfo}>View My Info</button>
+        <button type="button" className="glass-effect-10" onClick={viewMyInfo}>View My Info</button>
       </div>
     }
   }

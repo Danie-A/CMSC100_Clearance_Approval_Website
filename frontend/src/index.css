@@ -123,7 +123,9 @@ input {
 }
 
 .table-colored {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+    /* border-radius: 30px; */
 }
 
 thead {
@@ -316,6 +318,29 @@ thead {
     
   }
 
+  .glass-effect-10:hover {
+    background-color: #00838F;
+  }
+   
+  p9 {
+    font-size: 40px;
+    margin-bottom: 1%;
+  }
+
+  p10 {
+    font-size: 40px;
+    margin-bottom: 1%;
+  }
+
+  .h10 {
+    font-size: 40px;
+    margin-bottom: 1%;
+  }
+
+  #clearance-applications-heading {
+    font-size: 40px; 
+  }
+
   #header-container {
     display: flex;
     justify-content: center;
@@ -331,6 +356,13 @@ thead {
   }
 
   #manage-adviser {
+    background-color: #00838F;
+    backdrop-filter: blur(80px);
+    /* padding: 10px; */
+    border-radius: 0px 0px 20px 20px;
+  }
+
+  #manage-student {
     background-color: #00838F;
     backdrop-filter: blur(80px);
     /* padding: 10px; */
@@ -358,11 +390,20 @@ thead {
     border-radius: 40px;
   }
 
+  nav#manage-student ul li:hover {
+    background-color: #FFA000; 
+    border-radius: 40px;
+  }
+
   nav#manage-approver ul li:hover a {
     color: rgb(66,66,66); 
   }
 
   nav#manage-adviser ul li:hover a {
+    color: rgb(66,66,66); 
+  }
+
+  nav#manage-student ul li:hover a {
     color: rgb(66,66,66); 
   }
 
@@ -439,6 +480,18 @@ thead {
     margin-top: .5%;
     margin-bottom: 2%;
   }
+
+  .glass-effect-10 {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 10px;
+    font-size: 16px;
+    color: #2a2a2a;
+    margin-top: -0.8%;
+    margin-bottom: -0.8%;
+  }
   
   .name-manage-approver {
     display: flex;
@@ -495,7 +548,27 @@ thead {
   h3:hover {
     color: #00838F;
   }
+
+  p9:hover {
+    color: #00838F;
+  }
+
+  p10:hover {
+    color: #00838F;
+  }
+
+  #clearance-applications-heading:hover {
+    color: #00838F;
+  }
   
+  #notification:hover {
+    color: #00838F;
+  }
+
+  #notification {
+    font-size:40px;
+  }
+
   #glass-background {
     background-color: rgba(255, 255, 255, 0.5); /* Glass background color with opacity */
     padding: 30px;
