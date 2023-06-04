@@ -10,6 +10,7 @@ const initialApproverState = {
 };
 
 function ManageApprovers() {
+  ReactModal.setAppElement("#root");
   const [sortBy, setSortBy] = useState("none");
   const [nameFilter, setNameFilter] = useState("");
   const [approversList, setApproversList] = useState([]);
@@ -32,21 +33,14 @@ function ManageApprovers() {
       backgroundColor: "#ffffff75",
     },
   };
-  ReactModal.setAppElement("#root");
 
   useEffect(() => {
-    const e = async () => {
-      await fetch("http://localhost:3001/get-all-advisers", {
-        method: "GET",
-        credentials: "include",
-      })
-        .then((response) => response.json())
-        .then((body) => {
-          console.log(body.result);
-          setApproversList(body.result);
-        });
-    };
-    e();
+    fetch("http://localhost:3001/get-all-advisers", {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((body) => setApproversList(body.result));
   }, []);
 
   useEffect(() => {
@@ -78,14 +72,10 @@ function ManageApprovers() {
       credentials: "include",
     })
       .then((response) => response.json())
-      .then((body) => {
-        setApproversList(body.result);
-      });
+      .then((body) => setApproversList(body.result));
   };
 
   const handleEditApprover = async () => {
-    console.log(editApproverId);
-    console.log(editApproverInfo);
     if (editApproverId) {
       await fetch("http://localhost:3001/edit-approver", {
         method: "POST",
@@ -134,7 +124,6 @@ function ManageApprovers() {
   };
 
   const handlePreEdit = (approver) => {
-    console.log(approver);
     setShowEditModal(true);
     setEditApproverId(approver._id);
     setEditApproverInfo({

@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 
 function ManagePendingApplications() {
+  ReactModal.setAppElement("#root");
   const [students, setStudents] = useState([]);
   const [isRejectingOpen, setIsRejectingOpen] = useState(false);
   const [currentStudent, setCurrentStudent] = useState(null);
   const [remarks, setRemarks] = useState("");
-  ReactModal.setAppElement("#root");
   const modalStyle = {
     content: {
       position: "absolute",
@@ -22,15 +22,12 @@ function ManagePendingApplications() {
   };
 
   useEffect(() => {
-    const e = async () => {
-      await fetch("http://localhost:3001/get-student-application-admin", { method: "POST", credentials: "include" })
-        .then((res) => res.json())
-        .then((body) => {
-          console.log(body);
-          if (body.success) setStudents(body.request);
-        });
-    };
-    e();
+    fetch("http://localhost:3001/get-student-application-admin", {
+      method: "POST",
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((body) => body.success && setStudents(body.request));
   }, []);
 
   const handlePreReject = async (application) => {
@@ -43,17 +40,21 @@ function ManagePendingApplications() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify({ applicationId: currentStudent.open_application._id, remarks: remarks }),
+      body: JSON.stringify({
+        applicationId: currentStudent.open_application._id,
+        remarks: remarks,
+        commenter: "admin",
+      }),
     })
       .then((res) => res.json())
       .then((body) => console.log(body));
     setIsRejectingOpen(false);
-    await fetch("http://localhost:3001/get-student-application-admin", { method: "POST", credentials: "include" })
+    await fetch("http://localhost:3001/get-student-application-admin", {
+      method: "POST",
+      credentials: "include",
+    })
       .then((res) => res.json())
-      .then((body) => {
-        console.log(body);
-        if (body.success) setStudents(body.request);
-      });
+      .then((body) => body.success && setStudents(body.request));
   };
 
   const handleApprove = async (applicationId) => {
@@ -62,15 +63,13 @@ function ManagePendingApplications() {
       headers: { "Content-Type": "application/json" },
       credentials: "include",
       body: JSON.stringify({ applicationId: applicationId }),
+    });
+    await fetch("http://localhost:3001/get-student-application-admin", {
+      method: "POST",
+      credentials: "include",
     })
       .then((res) => res.json())
-      .then((body) => console.log(body));
-    await fetch("http://localhost:3001/get-student-application-admin", { method: "POST", credentials: "include" })
-      .then((res) => res.json())
-      .then((body) => {
-        console.log(body);
-        if (body.success) setStudents(body.request);
-      });
+      .then((body) => body.success && setStudents(body.request));
   };
 
   ReactModal.setAppElement("#root");
@@ -79,21 +78,51 @@ function ManagePendingApplications() {
       <div className="container d-flex flex-column">
         <h3 className="my-4">Manage Pending Applications</h3>
         {students?.map((student, index) => (
-          <div className="card glass-effect-4 p-2 py-sm-3 px-sm-5 m-1 d-flex flex-row justify-content-between align-items-center" key={index}>
-            <div className="fw-semibold">{student.first_name + " " + student.middle_name + " " + student.last_name}</div>
+          <div
+            className="card glass-effect-4 p-2 py-sm-3 px-sm-5 m-1 d-flex flex-row justify-content-between align-items-center"
+            key={index}
+          >
+            <div className="fw-semibold">
+              {student.first_name +
+                " " +
+                student.middle_name +
+                " " +
+                student.last_name}
+            </div>
             <div className="d-flex flex-row gap-2">
-              <button onClick={() => handleApprove(student.open_application._id)}>Approve</button>
+              <button
+                onClick={() => handleApprove(student.open_application._id)}
+              >
+                Approve
+              </button>
               <button onClick={() => handlePreReject(student)}>Return</button>
             </div>
           </div>
         ))}
       </div>
 
-      <ReactModal isOpen={isRejectingOpen} style={modalStyle} onAfterClose={() => setRemarks("")}>
+      <ReactModal
+        isOpen={isRejectingOpen}
+        style={modalStyle}
+        onAfterClose={() => setRemarks("")}
+      >
         <div className="d-flex flex-column gap-1 p-0 py-sm-3 px-sm-4 w-100 h-100 justify-content-between">
-          <button type="button" className="btn-close btn-right" onClick={() => setIsRejectingOpen(false)} />
-          <h4>{"Rejecting " + currentStudent?.first_name}</h4>
-          <textarea type="text" rows="4" placeholder="Remarks" value={remarks} onChange={(e) => setRemarks(e.target.value)} />
+          <button
+            type="button"
+            className="btn-close btn-right"
+            onClick={() => setIsRejectingOpen(false)}
+          />
+          <h5 style={{ paddingBottom: 8 }}>
+            {"Returning " + currentStudent?.first_name + "'s Application"}
+          </h5>
+          <textarea
+            type="text"
+            rows="4"
+            placeholder="Remarks"
+            value={remarks}
+            onChange={(e) => setRemarks(e.target.value)}
+          />
+          <br />
           <button onClick={handleReject}>Return</button>
         </div>
       </ReactModal>
