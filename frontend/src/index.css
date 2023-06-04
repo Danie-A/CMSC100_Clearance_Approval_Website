@@ -45,6 +45,16 @@ h5 {
     justify-content: flex-start;
     /*cross axis*/
     align-items: flex-start;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* .header-welcome {
+    margin-bottom: 20px;   
+} */
+
+.sign-upforstudents {
+    margin-top: 20px;
 }
 
 .header-text {
@@ -346,7 +356,10 @@ thead {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 44vh;
+    height: 50vh;
+    margin-bottom: 10px;
+
+
   }
 
   #manage-approver {
@@ -510,7 +523,7 @@ thead {
     font-size: 16px;
     color: #424242;
     width: 4%;
-    margin-bottom: 20px;
+   
   }
 
   .glass-effect-1 {
@@ -636,6 +649,7 @@ thead {
     font-size: 60px;
     color: rgb(255, 160, 0);
     transition: color 0.3s;
+    /* margin-bottom: 20px; */
   }
   
   #header:hover {

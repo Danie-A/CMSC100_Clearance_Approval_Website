@@ -157,8 +157,9 @@ export default function Home() {
     <header id="header">Welcome To ClearMe</header>
     </div>
     </div>
+    <br></br>
 
-      <h1>Sign Up for Students</h1>
+      <h1 id="sign-up-forstudents">Sign Up for Students</h1>
       <form id="sign-up">
         <input id="s-fname" placeholder="First Name" required />
         <input id="s-mname" placeholder="Middle Name" required />
