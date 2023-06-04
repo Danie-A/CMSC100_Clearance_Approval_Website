@@ -1,19 +1,27 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import ReactModal from 'react-modal';
+import ReactModal from "react-modal";
 import { AiFillFolderOpen } from "react-icons/ai";
-import SeeProfile from './SeeProfile.jsx';
+import SeeProfile from "./SeeProfile.jsx";
 
 function AdviserViewPendingApplications() {
   // for react modal to view application of student
-  const handleOpenModal = (index) => {
+  const handleOpenModal = index => {
     setShowModal(index);
   };
-  const handleCloseModal = () => {
+  const handleCloseModal = async () => {
     setShowModal(-1);
+    await fetch("http://localhost:3001/get-students-with-pending-application", {
+      method: "GET",
+      credentials: "include",
+    })
+      .then(response => response.json())
+      .then(body => {
+        setStudents(body.students);
+      });
   };
 
-  ReactModal.setAppElement('#root'); // Set the app element
+  ReactModal.setAppElement("#root"); // Set the app element
   const [showModal, setShowModal] = useState(-1);
   const [students, setStudents] = useState([]);
 
@@ -21,18 +29,21 @@ function AdviserViewPendingApplications() {
 
   useEffect(() => {
     async function fetchData() {
-      await fetch("http://localhost:3001/get-students-with-pending-application", { method: "GET", credentials: "include" })
-        .then((response) => response.json())
-        .then((body) => {
+      await fetch("http://localhost:3001/get-students-with-pending-application", {
+        method: "GET",
+        credentials: "include",
+      })
+        .then(response => response.json())
+        .then(body => {
           setStudents(body.students);
-          // console.log('body students are', body.students)
         });
     }
     fetchData();
-  }, [students]);
+  }, []);
 
   function showStudents() {
-    if (students.length > 0) {  // have students with pending applications
+    if (students.length > 0) {
+      // have students with pending applications
 
       return (
         <div className="students-container">
@@ -40,13 +51,15 @@ function AdviserViewPendingApplications() {
             <div key={index} className="student-item">
               {/* Student Name */}
               <div>
-                <p>{student.first_name} {student.last_name}</p>
+                <p>
+                  {student.first_name} {student.last_name}
+                </p>
               </div>
 
               {/* View Application Button */}
               <div>
                 <button className="btn btn-primary notifBtn" onClick={() => handleOpenModal(index)}>
-                  <AiFillFolderOpen className="mr-2" style={{ marginRight: '8px' }} />
+                  <AiFillFolderOpen className="mr-2" style={{ marginRight: "8px" }} />
                   View Application
                 </button>
               </div>
@@ -57,7 +70,7 @@ function AdviserViewPendingApplications() {
                 contentLabel="Remarks"
                 onRequestClose={handleCloseModal}
                 shouldCloseOnOverlayClick={false}
-                appElement={document.getElementById('root')} // Set the app element
+                appElement={document.getElementById("root")} // Set the app element
               >
                 <SeeProfile handleCloseModal={handleCloseModal} student={student} />
               </ReactModal>
@@ -65,11 +78,8 @@ function AdviserViewPendingApplications() {
           ))}
         </div>
       );
-
-
-
     } else {
-      return <div>You have no advisees with a pending application.</div>
+      return <div>You have no advisees with a pending application.</div>;
     }
   }
 
@@ -80,6 +90,5 @@ function AdviserViewPendingApplications() {
     </div>
   );
 }
-
 
 export default AdviserViewPendingApplications;

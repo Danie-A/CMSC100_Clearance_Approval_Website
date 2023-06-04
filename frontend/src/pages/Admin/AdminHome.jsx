@@ -11,8 +11,8 @@ function AdminHome() {
         method: "POST",
         body: formData,
       })
-        .then((res) => res.json())
-        .then((body) => {
+        .then(res => res.json())
+        .then(body => {
           if (body.success) alert("Successfully uploaded CSV file!");
           else alert("Error uploading CSV file!");
         });
@@ -23,18 +23,11 @@ function AdminHome() {
 
   return (
     <>
-      <div
-        id="welcome-admin"
-        className="container d-flex flex-column align-items-start"
-      >
+      <div id="welcome-admin" className="container d-flex flex-column align-items-start">
         <h3 className="my-4">{"Welcome admin"}</h3>
         <span>CSV File to Map Students with their Adviser: </span>
         <label class="custom-file-upload">
-          <input
-            type="file"
-            name="file"
-            onChange={(e) => setSelectedFile(e.target.files[0])}
-          />
+          <input type="file" name="file" onChange={e => setSelectedFile(e.target.files[0])} />
           Click to Upload CSV
         </label>
         <button onClick={handleCSVUpload}>Submit</button>

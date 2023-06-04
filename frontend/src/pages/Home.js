@@ -18,8 +18,32 @@ export default function Home() {
     }
   }, [isLoggedIn, navigate]);
 
+  function clearSignUpFields() {
+    document.getElementById("s-fname").value = ""; // clear fields again
+    document.getElementById("s-mname").value = "";
+    document.getElementById("s-lname").value = "";
+    document.getElementById("s-sno").value = "";
+    document.getElementById("s-email").value = "";
+    document.getElementById("s-password").value = "";
+  }
+
   function signUp(e) {
     e.preventDefault();
+    // Regular expression for email validation
+    var sno = document.getElementById("s-sno").value;
+    var email = document.getElementById("s-email").value;
+    var emailRegex = /^[^\s@]+@up\.edu\.ph$/;
+    var snoRegex = /^\d{4}-\d{5}$/;
+
+    if (!emailRegex.test(email)) {
+      // Display an error message or perform any desired actions
+      alert("ERROR: Invalid Email Address! Make sure it is a UP Mail: @up.edu.ph");
+      return false; // Prevent form submission
+    } else if (!snoRegex.test(sno)) {
+      // Display an error message or perform any desired actions
+      alert("ERROR: Invalid input format! Please enter in the format: ____-_____");
+      return false; // Prevent form submission
+    }
     // form validation goes here
     fetch("http://localhost:3001/signup-student", {
       method: "POST",
@@ -35,12 +59,16 @@ export default function Home() {
         password: document.getElementById("s-password").value,
       }),
     })
-      .then((response) => response.json())
-      .then((body) => {
+      .then(response => response.json())
+      .then(body => {
         if (body.success) {
           alert("SUCCESS: You have successfully signed up!");
+          clearSignUpFields();
         } else {
-          alert("ERROR: Failed to sign up.");
+          alert(
+            "ERROR: Failed to sign up. The account may already exist. You may also have entered invalid account details."
+          );
+          clearSignUpFields();
         }
       });
   }
@@ -60,8 +88,8 @@ export default function Home() {
         password: document.getElementById("ls-password").value,
       }),
     })
-      .then((response) => response.json())
-      .then((body) => {
+      .then(response => response.json())
+      .then(body => {
         if (body.success) {
           setIsLoggedIn("student");
           console.log("logged in");
@@ -75,7 +103,11 @@ export default function Home() {
 
           localStorage.setItem("username", body.username);
         } else {
-          alert("Log in failed");
+          alert(
+            "Failed to Log In. Admin must approve your account first or you may have entered the wrong credentials."
+          );
+          document.getElementById("ls-email").value = "";
+          document.getElementById("ls-password").value = "";
         }
       });
   }
@@ -95,8 +127,8 @@ export default function Home() {
         password: document.getElementById("la-password").value,
       }),
     })
-      .then((response) => response.json())
-      .then((body) => {
+      .then(response => response.json())
+      .then(body => {
         if (body.success) {
           setIsLoggedIn("adviser");
           // successful log in. store the token as a cookie
@@ -109,12 +141,14 @@ export default function Home() {
 
           localStorage.setItem("username", body.username);
         } else {
-          alert("Log in failed");
+          alert("Log In for Adviser Failed. You may have entered the wrong credentials.");
+          document.getElementById("la-email").value = "";
+          document.getElementById("la-password").value = "";
         }
       });
   }
 
-  const logInAdmin = (e) => {
+  const logInAdmin = e => {
     e.preventDefault();
 
     fetch("http://localhost:3001/login-admin", {
@@ -127,8 +161,8 @@ export default function Home() {
         password: document.getElementById("lad-password").value,
       }),
     })
-      .then((response) => response.json())
-      .then((body) => {
+      .then(response => response.json())
+      .then(body => {
         if (body.success) {
           setIsLoggedIn("admin");
           // successful log in. store the token as a cookie
@@ -141,14 +175,13 @@ export default function Home() {
 
           localStorage.setItem("username", body.username);
         } else {
-          alert("Log in failed");
+          alert("Log In for Admin Failed");
         }
       });
   };
 
   return (
     <>
-      {/* <div id="welcome-page"> */}
       <div id="header-container">
         <div id="glass-background">
           <img
@@ -162,52 +195,28 @@ export default function Home() {
       <br></br>
 
       <h1 id="sign-up-forstudents">Sign Up for Students</h1>
+
       <form id="sign-up">
         <input id="s-fname" placeholder="First Name" required />
         <input id="s-mname" placeholder="Middle Name" required />
         <input id="s-lname" placeholder="Last Name" required />
-        <input id="s-sno" placeholder="Student Number" required />
+        <input id="s-sno" pattern="\d{4}-\d{5}" placeholder="Student Number" required />
         <input type="email" id="s-email" placeholder="UP Mail" required />
-        <input
-          id="s-password"
-          type="password"
-          placeholder="Password"
-          required
-        />
+        <input id="s-password" type="password" placeholder="Password" required />
         <button onClick={signUp}>Sign Up</button>
       </form>
 
       <h1>Log In for Students</h1>
       <form id="log-in-student">
-        <input
-          type="email"
-          id="ls-email"
-          placeholder="Student Email"
-          required
-        />
-        <input
-          id="ls-password"
-          type="password"
-          placeholder="Student Password"
-          required
-        />
+        <input type="email" id="ls-email" placeholder="Student Email" required />
+        <input id="ls-password" type="password" placeholder="Student Password" required />
         <button onClick={logInStudent}>Log In</button>
       </form>
 
-      <h1>Log In for Approvers</h1>
+      <h1>Log In for Advisers</h1>
       <form id="log-in-approver">
-        <input
-          type="email"
-          id="la-email"
-          placeholder="Approver Email"
-          required
-        />
-        <input
-          id="la-password"
-          type="password"
-          placeholder="Approver Password"
-          required
-        />
+        <input type="email" id="la-email" placeholder="Adviser Email" required />
+        <input id="la-password" type="password" placeholder="Adviser Password" required />
         <button onClick={logInApprover}>Log In</button>
       </form>
 
@@ -218,17 +227,14 @@ export default function Home() {
         <button onClick={logInAdmin}>Log In</button>
       </form>
 
-      <p class="note">
-        Note: Coordinate with the Admin to create an Approver account.
-      </p>
+      <p class="note">Note: Coordinate with the Admin to create an Adviser account.</p>
 
       <footer>
         <p>
-          Unlock the Path to Success with Effortless Efficiency: Experience
-          Seamless Clearance Approval in the Institute of Computer Science
+          Unlock the Path to Success with Effortless Efficiency: Experience Seamless Clearance Approval in the Institute
+          of Computer Science
         </p>
       </footer>
-      {/* </div> */}
     </>
   );
 }

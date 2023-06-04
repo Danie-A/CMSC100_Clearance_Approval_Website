@@ -26,13 +26,13 @@ import ViewAllApplications from "./pages/Admin/ViewAllApplications";
 // localStorage.setItem("userType", userType);
 
 // Send a POST request to API to check if the user is logged in. Redirect the user to /student if already logged in
-const checkIfLoggedIn = (route) =>
+const checkIfLoggedIn = route =>
   fetch("http://localhost:3001/checkifloggedin", {
     method: "POST",
     credentials: "include",
   })
-    .then((res) => res.json())
-    .then((payload) => {
+    .then(res => res.json())
+    .then(payload => {
       if (payload.isLoggedIn === "student" && route !== "student") {
         localStorage.setItem("userType", "student");
         return redirect("/student");
@@ -106,7 +106,7 @@ const router = createBrowserRouter([
       { path: "/admin/view-pending-accounts", element: <ViewPendingApplications /> },
       { path: "/admin/manage-pending-applications", element: <ManagePendingApplications /> },
       { path: "/admin/view-applications-details", element: <ViewAllApplications /> },
-      { path: "/admin/manage-approvers", element: <ManageApprovers /> },
+      { path: "/admin/manage-advisers", element: <ManageApprovers /> },
     ],
   },
 ]);
