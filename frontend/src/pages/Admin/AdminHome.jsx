@@ -22,8 +22,13 @@ function AdminHome() {
     <>
       <div id="welcome-admin">
         <h3>{"Welcome admin"}</h3>
-        <span>Csv file: </span> <br />
+        <span id="csv">Csv file: </span> <br />
         <form></form>
+        
+        <label for="file-upload" class="button-stylee">
+        
+        </label>
+
         <input type="file" name="file" onChange={(e) => setSelectedFile(e.target.files[0])} />
         <br />
         <button onClick={handleCSVUpload}>Submit</button>

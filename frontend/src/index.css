@@ -6,7 +6,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-image: url('https://i.pinimg.com/564x/16/e2/69/16e2699ba8c7b8ad8e690310092e43c6.jpg');
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     /* background-color: rgb(255, 236, 179); */
     color:rgb(66,66,66);
@@ -425,6 +425,37 @@ thead {
     color: rgb(0, 131, 143);
   }
 
+  input[type="file"] {
+    opacity: 0; /* Hide the default file input button */
+    position: absolute; /* Position it on top of the styled button */
+    z-index: -1; /* Move it behind the styled button */
+  }
+  
+  .button-stylee {
+    display: inline-block;
+    padding: 10px 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    color: black;
+    margin-bottom: 5px;
+    width: 200px;
+  }
+  
+  .button-stylee::before {
+    content: "Choose File";
+  }
+  
+  .button-stylee:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  #csv{
+    font-size: 25px;
+  }
+
   .glass-effect-5 {
     background-color: rgba(255, 255, 255, 0.5);
     border: none;
@@ -468,6 +499,18 @@ thead {
     font-size: 16px;
     color: #424242;
     width: 4%;
+  }
+
+  .glass-effect-13 {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 13px 13px;
+    font-size: 16px;
+    color: #424242;
+    width: 4%;
+    margin-bottom: 20px;
   }
 
   .glass-effect-1 {

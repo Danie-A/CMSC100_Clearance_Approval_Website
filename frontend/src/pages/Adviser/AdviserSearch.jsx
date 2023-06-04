@@ -73,10 +73,11 @@ export default function AdviserSearch() {
 
             {/* Displaying students */}
             <h3>Advisees</h3>
-            <span>Name </span>
+            <span className="glass-effect-13">Name </span>
             <button onClick={() => setSortBy("name_asc")}>↑</button>
             <button onClick={() => setSortBy("name_desc")}>↓</button> <br />
             <div>
+            <br></br>
       <input
         type="text"
         placeholder="Search"
