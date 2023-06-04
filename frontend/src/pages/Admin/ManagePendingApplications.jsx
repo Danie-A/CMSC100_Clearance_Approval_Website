@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 
 function ManagePendingApplications() {
+  ReactModal.setAppElement("#root");
   const [students, setStudents] = useState([]);
   const [isRejectingOpen, setIsRejectingOpen] = useState(false);
   const [currentStudent, setCurrentStudent] = useState(null);
   const [remarks, setRemarks] = useState("");
-  ReactModal.setAppElement("#root");
   const modalStyle = {
     content: {
       position: "absolute",
@@ -22,15 +22,9 @@ function ManagePendingApplications() {
   };
 
   useEffect(() => {
-    const e = async () => {
-      await fetch("http://localhost:3001/get-student-application-admin", { method: "POST", credentials: "include" })
-        .then((res) => res.json())
-        .then((body) => {
-          console.log(body);
-          if (body.success) setStudents(body.request);
-        });
-    };
-    e();
+    fetch("http://localhost:3001/get-student-application-admin", { method: "POST", credentials: "include" })
+      .then((res) => res.json())
+      .then((body) => body.success && setStudents(body.request));
   }, []);
 
   const handlePreReject = async (application) => {
@@ -44,16 +38,11 @@ function ManagePendingApplications() {
       headers: { "Content-Type": "application/json" },
       credentials: "include",
       body: JSON.stringify({ applicationId: currentStudent.open_application._id, remarks: remarks }),
-    })
-      .then((res) => res.json())
-      .then((body) => console.log(body));
+    });
     setIsRejectingOpen(false);
     await fetch("http://localhost:3001/get-student-application-admin", { method: "POST", credentials: "include" })
       .then((res) => res.json())
-      .then((body) => {
-        console.log(body);
-        if (body.success) setStudents(body.request);
-      });
+      .then((body) => body.success && setStudents(body.request));
   };
 
   const handleApprove = async (applicationId) => {
@@ -62,15 +51,10 @@ function ManagePendingApplications() {
       headers: { "Content-Type": "application/json" },
       credentials: "include",
       body: JSON.stringify({ applicationId: applicationId }),
-    })
-      .then((res) => res.json())
-      .then((body) => console.log(body));
+    });
     await fetch("http://localhost:3001/get-student-application-admin", { method: "POST", credentials: "include" })
       .then((res) => res.json())
-      .then((body) => {
-        console.log(body);
-        if (body.success) setStudents(body.request);
-      });
+      .then((body) => body.success && setStudents(body.request));
   };
 
   ReactModal.setAppElement("#root");

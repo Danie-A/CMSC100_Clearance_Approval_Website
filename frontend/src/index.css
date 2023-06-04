@@ -567,6 +567,19 @@ nav#manage-adviser ul li:hover a {
     margin-bottom: 2%;
   }
 
+  .glass-effect-1a {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* padding: 10px 10px; */
+    font-size: 16px;
+    color: #2a2a2a;
+    /* margin-top: .5%;
+    margin-bottom: 2%; */
+  }
+
+
   .glass-effect-10 {
     background-color: rgba(255, 255, 255, 0.5);
     border: none;

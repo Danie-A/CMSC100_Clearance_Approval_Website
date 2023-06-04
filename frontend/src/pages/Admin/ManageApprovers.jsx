@@ -4,6 +4,7 @@ import ReactModal from "react-modal";
 const initialApproverState = { first_name: "", middle_name: "", last_name: "", email: "", password: "" };
 
 function ManageApprovers() {
+  ReactModal.setAppElement("#root");
   const [sortBy, setSortBy] = useState("none");
   const [nameFilter, setNameFilter] = useState("");
   const [approversList, setApproversList] = useState([]);
@@ -25,18 +26,11 @@ function ManageApprovers() {
       backgroundColor: "#ffffff75",
     },
   };
-  ReactModal.setAppElement("#root");
 
   useEffect(() => {
-    const e = async () => {
-      await fetch("http://localhost:3001/get-all-advisers", { method: "GET", credentials: "include" })
-        .then((response) => response.json())
-        .then((body) => {
-          console.log(body.result);
-          setApproversList(body.result);
-        });
-    };
-    e();
+    fetch("http://localhost:3001/get-all-advisers", { method: "GET", credentials: "include" })
+      .then((response) => response.json())
+      .then((body) => setApproversList(body.result));
   }, []);
 
   useEffect(() => {
@@ -61,14 +55,10 @@ function ManageApprovers() {
     });
     await fetch("http://localhost:3001/get-all-advisers", { method: "GET", credentials: "include" })
       .then((response) => response.json())
-      .then((body) => {
-        setApproversList(body.result);
-      });
+      .then((body) => setApproversList(body.result));
   };
 
   const handleEditApprover = async () => {
-    console.log(editApproverId);
-    console.log(editApproverInfo);
     if (editApproverId) {
       await fetch("http://localhost:3001/edit-approver", {
         method: "POST",
@@ -108,7 +98,6 @@ function ManageApprovers() {
   };
 
   const handlePreEdit = (approver) => {
-    console.log(approver);
     setShowEditModal(true);
     setEditApproverId(approver._id);
     setEditApproverInfo({
@@ -203,7 +192,7 @@ function ManageApprovers() {
           <button onClick={handleEditApprover}>Edit</button>
         </div>
       </ReactModal>
-      <ReactModal isOpen={showAddModal} style={modalStyle} onAfterClose={() => { }}>
+      <ReactModal isOpen={showAddModal} style={modalStyle} onAfterClose={() => {}}>
         <div className="d-flex flex-column gap-1 p-0 py-sm-3 px-sm-4 w-100 h-100 justify-content-between">
           <button type="button" className="btn-close btn-right" onClick={() => setShowAddModal(false)} />
           <h4 className="fw-semibold mb-4">Add an Adviser</h4>
@@ -214,7 +203,6 @@ function ManageApprovers() {
           <input className="glass-effect-5 px-4" placeholder="Email" type="email" value={addApproverInfo.email} onChange={(e) => setAddApproverInfo({ ...addApproverInfo, email: e.target.value })} required />
           <input className="glass-effect-5 px-4" type="password" placeholder="Password" value={addApproverInfo.password} onChange={(e) => setAddApproverInfo({ ...addApproverInfo, password: e.target.value })} />
           <button onClick={handleAddApprover}>Add</button>
-
         </div>
       </ReactModal>
     </>
