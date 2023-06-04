@@ -38,9 +38,10 @@ export default function CreateApplication() {
     }
 
     return (
+       
         <div className="whole-container">
             <div className="view-app-container">
-                <h5>Create Clearance Application</h5>
+                <h12 id= "create-application">Create Clearance Application</h12>
 
                 <p>Status: Open</p>
                 <p>Step 1: Pre-Adviser</p>

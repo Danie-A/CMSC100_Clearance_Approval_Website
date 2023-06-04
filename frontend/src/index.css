@@ -6,7 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url("https://i.pinimg.com/564x/16/e2/69/16e2699ba8c7b8ad8e690310092e43c6.jpg");
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
   /* background-color: rgb(255, 236, 179); */
   color: rgb(66, 66, 66);
@@ -22,11 +22,11 @@ nav {
 }
 
 /* #welcome-page {
-    background-image: url('https://i.pinimg.com/originals/13/9a/88/139a8872eeb9dfca447eb241afd2274e.png');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    border: none;
-    padding: 0%;
+  background-image: url('https://i.pinimg.com/originals/13/9a/88/139a8872eeb9dfca447eb241afd2274e.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border: none;
+  padding: 0%;
 } */
 
 h5 {
@@ -44,6 +44,16 @@ h5 {
   justify-content: flex-start;
   /*cross axis*/
   align-items: flex-start;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* .header-welcome {
+  margin-bottom: 20px;   
+} */
+
+.sign-upforstudents {
+  margin-top: 20px;
 }
 
 .header-text {
@@ -120,7 +130,9 @@ input {
 }
 
 .table-colored {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  /* border-radius: 30px; */
 }
 
 thead {
@@ -173,13 +185,14 @@ thead {
   display: flex;
   flex-direction: column;
   width: 75%;
-  border-radius: 10px;
+  border-radius: 40px;
   border-color: #b3b5bd;
   border-width: 2px;
   border-style: solid;
   margin: 20px 0px 10px 0px;
   padding: 40px 80px 40px 80px;
-  background-color: #f3f4f8;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
   color: black;
 }
 
@@ -281,20 +294,20 @@ thead {
 }
 
 /* #sign-up {
-    display: flex;
-    flex-direction: row;
-    /* align-items: center; 
-  } 
-  
-  /* #sign-up-btn {
-    border-radius: 40px;
-    font-family: 'Raleway', sans-serif;
-  } */
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; 
+} 
+
+/* #sign-up-btn {
+  border-radius: 40px;
+  font-family: 'Raleway', sans-serif;
+} */
 /* #sign-up {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  } */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
 
 input[id="s-fname"],
 input[id="s-mname"],
@@ -337,11 +350,35 @@ h1 {
   font-size: xx-large;
 }
 
+.glass-effect-10:hover {
+  background-color: #00838f;
+}
+
+p9 {
+  font-size: 40px;
+  margin-bottom: 1%;
+}
+
+p10 {
+  font-size: 40px;
+  margin-bottom: 1%;
+}
+
+.h10 {
+  font-size: 40px;
+  margin-bottom: 1%;
+}
+
+#clearance-applications-heading {
+  font-size: 40px;
+}
+
 #header-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 44vh;
+  height: 50vh;
+  margin-bottom: 10px;
 }
 
 #manage-approver {
@@ -352,6 +389,13 @@ h1 {
 }
 
 #manage-adviser {
+  background-color: #00838f;
+  backdrop-filter: blur(80px);
+  /* padding: 10px; */
+  border-radius: 0px 0px 20px 20px;
+}
+
+#manage-student {
   background-color: #00838f;
   backdrop-filter: blur(80px);
   /* padding: 10px; */
@@ -379,11 +423,20 @@ nav#manage-adviser ul li:hover {
   border-radius: 40px;
 }
 
+nav#manage-student ul li:hover {
+  background-color: #ffa000;
+  border-radius: 40px;
+}
+
 nav#manage-approver ul li:hover a {
   color: rgb(66, 66, 66);
 }
 
 nav#manage-adviser ul li:hover a {
+  color: rgb(66, 66, 66);
+}
+
+nav#manage-student ul li:hover a {
   color: rgb(66, 66, 66);
 }
 
@@ -402,6 +455,37 @@ nav#manage-adviser ul li:hover a {
   padding: 6px 6px;
   font-size: 16px;
   color: rgb(0, 131, 143);
+}
+
+input[type="file"] {
+  opacity: 0; /* Hide the default file input button */
+  position: absolute; /* Position it on top of the styled button */
+  z-index: -1; /* Move it behind the styled button */
+}
+
+.button-stylee {
+  display: inline-block;
+  padding: 10px 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  color: black;
+  margin-bottom: 5px;
+  width: 200px;
+}
+
+.button-stylee::before {
+  content: "Choose File";
+}
+
+.button-stylee:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#csv {
+  font-size: 25px;
 }
 
 .glass-effect-5 {
@@ -434,7 +518,7 @@ nav#manage-adviser ul li:hover a {
   color: #424242;
   /* width: 8%; */
   /* margin-top: 10%;
-    margin-bottom: 10%; */
+  margin-bottom: 10%; */
 }
 
 .glass-effect-2 {
@@ -445,7 +529,18 @@ nav#manage-adviser ul li:hover a {
   padding: 8px 8px;
   font-size: 16px;
   color: #424242;
-  width: 10%;
+  width: 4%;
+}
+
+.glass-effect-13 {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 13px 13px;
+  font-size: 16px;
+  color: #424242;
+  width: 4%;
 }
 
 .glass-effect-1 {
@@ -458,6 +553,18 @@ nav#manage-adviser ul li:hover a {
   color: #2a2a2a;
   margin-top: 0.5%;
   margin-bottom: 2%;
+}
+
+.glass-effect-10 {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 10px;
+  font-size: 16px;
+  color: #2a2a2a;
+  margin-top: -0.8%;
+  margin-bottom: -0.8%;
 }
 
 .name-manage-approver {
@@ -504,28 +611,55 @@ option {
 }
 
 /* #welcome-admin {
-    background-image: url("https://i.pinimg.com/originals/9b/0e/bb/9b0ebbf56da228fa54b2c57c18163c94.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 20px;
-    border-radius: 8px;
-  }   */
+  background-image: url("https://i.pinimg.com/originals/9b/0e/bb/9b0ebbf56da228fa54b2c57c18163c94.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px;
+  border-radius: 8px;
+}   */
 
 h3:hover {
   color: #00838f;
 }
 
-h4:hover {
+p9:hover {
   color: #00838f;
 }
 
+p10:hover {
+  color: #00838f;
+}
+
+#clearance-applications-heading:hover {
+  color: #00838f;
+}
+
+#notification:hover {
+  color: #00838f;
+}
+
+#notification {
+  font-size: 40px;
+}
+
+#create-application:hover {
+  color: #00838f;
+}
+
+#create-application {
+  font-size: 40px;
+}
+
 #glass-background {
-  background-color: rgba(255, 255, 255, 0.5);
-  /* Glass background color with opacity */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ); /* Glass background color with opacity */
   padding: 30px;
   border-radius: 50px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  /* Shadow effect */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
 }
 
 #header {
@@ -535,6 +669,7 @@ h4:hover {
   font-size: 60px;
   color: rgb(255, 160, 0);
   transition: color 0.3s;
+  /* margin-bottom: 20px; */
 }
 
 #header:hover {

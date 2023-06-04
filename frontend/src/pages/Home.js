@@ -148,15 +148,16 @@ export default function Home() {
 
   return (
     <>
-      {/* <div id="welcome-page"> */}
-      <div id="header-container">
-        <div id="glass-background">
-          <img id="image" src="https://i.pinimg.com/originals/38/4c/20/384c20132bda8dba92a55ddcebf29038.jpg" alt="home"></img>
-          <header id="header">Welcome To ClearMe</header>
-        </div>
-      </div>
+    {/* <div id="welcome-page"> */}
+    <div id="header-container">
+    <div id="glass-background">
+    <img id="image" src="https://i.pinimg.com/originals/38/4c/20/384c20132bda8dba92a55ddcebf29038.jpg" pics="Image"></img>
+    <header id="header">Welcome To ClearMe</header>
+    </div>
+    </div>
+    <br></br>
 
-      <h1>Sign Up for Students</h1>
+      <h1 id="sign-up-forstudents">Sign Up for Students</h1>
       <form id="sign-up">
         <input id="s-fname" placeholder="First Name" required />
         <input id="s-mname" placeholder="Middle Name" required />
