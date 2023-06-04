@@ -1,11 +1,11 @@
 body {
   margin: 40px;
-  font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('https://i.pinimg.com/564x/16/e2/69/16e2699ba8c7b8ad8e690310092e43c6.jpg');
+  background-image: url("https://i.pinimg.com/564x/16/e2/69/16e2699ba8c7b8ad8e690310092e43c6.jpg");
   background-size: 100%;
   background-repeat: no-repeat;
   /* background-color: rgb(255, 236, 179); */
@@ -13,13 +13,12 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 nav {
   background-color: #101223;
-
 }
 
 /* #welcome-page {
@@ -38,7 +37,7 @@ h5 {
 
 .header-container {
   display: flex;
-  background-color: #28283A;
+  background-color: #28283a;
   padding-top: 10px;
   /*main axis*/
   flex-direction: row;
@@ -71,11 +70,9 @@ h5 {
   padding-top: 8px;
 }
 
-
 .align-items-center {
   padding-right: 10px;
 }
-
 
 ul {
   color: #b3cde0;
@@ -131,7 +128,6 @@ thead {
   /* Replace with your desired header color */
   color: #ffffff;
   /* Replace with your desired text color */
-
 }
 
 .notif-container {
@@ -178,12 +174,12 @@ thead {
   flex-direction: column;
   width: 75%;
   border-radius: 10px;
-  border-color: #B3B5BD;
+  border-color: #b3b5bd;
   border-width: 2px;
   border-style: solid;
   margin: 20px 0px 10px 0px;
   padding: 40px 80px 40px 80px;
-  background-color: #F3F4F8;
+  background-color: #f3f4f8;
   color: black;
 }
 
@@ -225,11 +221,9 @@ thead {
   border-radius: 20px;
 }
 
-
 .notifBtn {
   margin-right: 20px;
 }
-
 
 .form-container {
   display: flex;
@@ -269,7 +263,6 @@ thead {
   border-radius: 10px;
   scale: 1.009;
 }
-
 
 .btn-right {
   position: absolute;
@@ -329,7 +322,7 @@ button {
 
 button:hover {
   border: none;
-  border-radius: 25px;
+  border-radius: 22px;
   transition: 0.3s;
   background-color: rgb(242, 242, 242);
   box-shadow: 0 2px 14px rgba(0, 0, 0, 0.218);
@@ -342,7 +335,6 @@ button:hover {
 
 h1 {
   font-size: xx-large;
-
 }
 
 #header-container {
@@ -353,14 +345,14 @@ h1 {
 }
 
 #manage-approver {
-  background-color: #00838F;
+  background-color: #00838f;
   backdrop-filter: blur(80px);
   /* padding: 10px; */
   border-radius: 0px 0px 20px 20px;
 }
 
 #manage-adviser {
-  background-color: #00838F;
+  background-color: #00838f;
   backdrop-filter: blur(80px);
   /* padding: 10px; */
   border-radius: 0px 0px 20px 20px;
@@ -378,12 +370,12 @@ h3 {
 }
 
 nav#manage-approver ul li:hover {
-  background-color: #FFA000;
+  background-color: #ffa000;
   border-radius: 40px;
 }
 
 nav#manage-adviser ul li:hover {
-  background-color: #FFA000;
+  background-color: #ffa000;
   border-radius: 40px;
 }
 
@@ -422,7 +414,6 @@ nav#manage-adviser ul li:hover a {
   color: #424242;
 }
 
-
 .glass-effect-3 {
   background-color: rgba(255, 255, 255, 0.5);
   border: none;
@@ -454,7 +445,7 @@ nav#manage-adviser ul li:hover a {
   padding: 8px 8px;
   font-size: 16px;
   color: #424242;
-  width: 4%;
+  width: 10%;
 }
 
 .glass-effect-1 {
@@ -465,7 +456,7 @@ nav#manage-adviser ul li:hover a {
   padding: 10px 10px;
   font-size: 16px;
   color: #2a2a2a;
-  margin-top: .5%;
+  margin-top: 0.5%;
   margin-bottom: 2%;
 }
 
@@ -484,7 +475,6 @@ nav#manage-adviser ul li:hover a {
   font-size: 20px;
   color: rgba(0, 0, 0, 0.87);
 }
-
 
 select {
   background-color: rgba(255, 255, 255, 0.5);
@@ -513,7 +503,6 @@ option {
   max-height: 30%;
 }
 
-
 /* #welcome-admin {
     background-image: url("https://i.pinimg.com/originals/9b/0e/bb/9b0ebbf56da228fa54b2c57c18163c94.png");
     background-size: cover;
@@ -523,12 +512,11 @@ option {
   }   */
 
 h3:hover {
-  color: #00838F;
+  color: #00838f;
 }
 
 h4:hover {
-
-  color: #00838F;
+  color: #00838f;
 }
 
 #glass-background {
