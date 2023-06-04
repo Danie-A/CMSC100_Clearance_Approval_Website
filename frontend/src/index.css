@@ -179,13 +179,14 @@ thead {
     display: flex;
     flex-direction: column;
     width: 75%;
-    border-radius: 10px;
+    border-radius: 40px;
     border-color: #B3B5BD;
     border-width: 2px;
     border-style: solid;
     margin: 20px 0px 10px 0px;
     padding: 40px 80px 40px 80px;
-    background-color: #F3F4F8;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
     color: black;
 }
 
@@ -568,6 +569,15 @@ thead {
   #notification {
     font-size:40px;
   }
+
+  #create-application:hover {
+    color: #00838F;
+  }
+
+  #create-application {
+    font-size:40px;
+  }
+  
 
   #glass-background {
     background-color: rgba(255, 255, 255, 0.5); /* Glass background color with opacity */
