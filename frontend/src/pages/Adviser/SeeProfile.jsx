@@ -38,7 +38,7 @@ export default function SeeProfile({ handleCloseModal, student }) {
   const handleOpenModal2 = () => {
     setShowModal2(true);
   };
-  const handleCloseModal2 = isReturned => {
+  const handleCloseModal2 = (isReturned) => {
     if (isReturned) {
       setShowModal2(false);
       handleCloseModal(); // also close the see profile modal
@@ -64,7 +64,8 @@ export default function SeeProfile({ handleCloseModal, student }) {
 
   // get last submission of student
   const lastIndex = student.open_application.student_submissions.length - 1;
-  const latestSubmission = student.open_application.student_submissions[lastIndex];
+  const latestSubmission =
+    student.open_application.student_submissions[lastIndex];
 
   // get github link and student remark
   const github_link = latestSubmission["github_link"];
@@ -129,7 +130,12 @@ export default function SeeProfile({ handleCloseModal, student }) {
 
     return (
       <div className="whole-container">
-        <button type="button" className="btn-close btn-right" aria-label="Close" onClick={handleCloseRemark}></button>
+        <button
+          type="button"
+          className="btn-close btn-right"
+          aria-label="Close"
+          onClick={handleCloseRemark}
+        ></button>
 
         <h5>Returned Remarks</h5>
 
@@ -192,7 +198,7 @@ export default function SeeProfile({ handleCloseModal, student }) {
     );
   }
 
-  const handleApprove = async e => {
+  const handleApprove = async (e) => {
     e.preventDefault();
     // If Approve, set application step to 3
     await fetch("http://localhost:3001/approve-application-adviser", {
@@ -201,8 +207,8 @@ export default function SeeProfile({ handleCloseModal, student }) {
       credentials: "include",
       body: JSON.stringify({ applicationId: applicationId }),
     })
-      .then(res => res.json())
-      .then(body => console.log(body));
+      .then((res) => res.json())
+      .then((body) => console.log(body));
 
     handleCloseModal();
   };
@@ -224,7 +230,12 @@ export default function SeeProfile({ handleCloseModal, student }) {
 
   return (
     <>
-      <button type="button" className="btn-close btn-right" aria-label="Close" onClick={handleCloseModal}></button>
+      <button
+        type="button"
+        className="btn-close btn-right"
+        aria-label="Close"
+        onClick={handleCloseModal}
+      ></button>
 
       <div className="whole-container">
         <br></br>
@@ -245,7 +256,13 @@ export default function SeeProfile({ handleCloseModal, student }) {
         </div>
         {showLink()}
         <br />
-        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
           <button onClick={handleOpenRemark} style={{ marginRight: 12 }}>
             <BiCommentDetail className="mr-2" style={{ marginRight: "8px" }} />
             View Adviser Remarks
@@ -275,7 +292,13 @@ export default function SeeProfile({ handleCloseModal, student }) {
         </div>
         <br />
         <br />
-        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
           <button onClick={handleApprove} style={{ marginRight: 12 }}>
             Approve
           </button>
@@ -291,7 +314,10 @@ export default function SeeProfile({ handleCloseModal, student }) {
         shouldCloseOnOverlayClick={false}
         appElement={document.getElementById("root")} // Set the app element
       >
-        <ReturnPopUp handleCloseModal2={handleCloseModal2} applicationId={applicationId} />
+        <ReturnPopUp
+          handleCloseModal2={handleCloseModal2}
+          applicationId={applicationId}
+        />
       </ReactModal>
     </>
   );

@@ -5,17 +5,17 @@ function AdminHome() {
 
   const handleCSVUpload = async () => {
     try {
-      const formData = new FormData();
-      formData.append("file", selectedFile);
-      fetch("http://localhost:3001/upload-csv-file", {
-        method: "POST",
-        body: formData,
-      })
-        .then(res => res.json())
-        .then(body => {
-          if (body.success) alert("Successfully uploaded CSV file!");
-          else alert("Error uploading CSV file!");
-        });
+      if (!selectedFile) alert("Upload a csv first!");
+      else {
+        const formData = new FormData();
+        formData.append("file", selectedFile);
+        fetch("http://localhost:3001/upload-csv-file", { method: "POST", body: formData })
+          .then(res => res.json())
+          .then(body => {
+            if (body.success) alert("Successfully uploaded CSV file!");
+            else alert("Error uploading CSV file!");
+          });
+      }
     } catch (error) {
       console.log("Error uploading file:", error);
     }

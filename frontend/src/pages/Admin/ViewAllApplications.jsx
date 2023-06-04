@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ReactModal from "react-modal";
 
+const options = { year: "numeric", month: "long", day: "2-digit", hour: "numeric", minute: "numeric", second: "numeric" };
+
 function ViewAllApplications() {
+  ReactModal.setAppElement("#root");
   const [students, setStudents] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [currentStudent, setCurrentStudent] = useState(null);
@@ -18,8 +21,6 @@ function ViewAllApplications() {
       backgroundColor: "#ffffff95",
     },
   };
-  const options = { year: "numeric", month: "long", day: "2-digit", hour: "numeric", minute: "numeric", second: "numeric" };
-  ReactModal.setAppElement("#root");
 
   useEffect(() => {
     fetch("http://localhost:3001/get-all-applications", { method: "POST", credentials: "include" })
@@ -34,28 +35,28 @@ function ViewAllApplications() {
 
   return (
     <div className="container">
-      <h3 className="my-5">View Application Details</h3>
+      <h3 className="my-5">{"View Application Details"}</h3>
       {students.map((student, index) => (
         <div className="card glass-effect-4 my-3 p-3 d-flex flex-row justify-content-between align-items-center" key={index}>
           <div className="fw-semibold ms-0 ms-sm-4">{student.first_name + " " + student.middle_name + " " + student.last_name}</div>
           <button className="btn glass-effect-4 px-1 px-sm-4" onClick={() => handleOpenApplication(student)}>
-            View Application
+            {"View Application"}
           </button>
         </div>
       ))}
-      <ReactModal isOpen={showModal} style={modalStyle} onAfterClose={() => { }}>
+      <ReactModal isOpen={showModal} style={modalStyle}>
         <div className="d-flex flex-column gap-3 p-0 py-sm-3 px-sm-4 w-100 h-100 justify-content-start">
           <button type="button" className="btn-close btn-right" onClick={() => setShowModal(false)} />
           <h4 className="fw-semibold mb-4">{currentStudent?.first_name + "'s Application"}</h4>
 
           <div className="d-flex flex-row gap-3 w-100 justify-content-center">
             <div className="d-flex flex-column" style={{ width: "400px" }}>
-              <h6 className="mx-auto fw-semibold">Submissions</h6>
+              <h6 className="mx-auto fw-semibold">{"Submissions"}</h6>
               {currentStudent?.open_application.student_submissions.map((submission, index) => (
                 <div className="card glass-effect-4 m-1 p-2 px-sm-4 py-sm-3" key={index}>
                   <div>{`Step: ${submission.step}`}</div>
                   <div>
-                    {`Github Link: `}
+                    {"Github Link: "}
                     <a href={submission.github_link} target="_blank" rel="noreferrer">
                       {submission.github_link}
                     </a>

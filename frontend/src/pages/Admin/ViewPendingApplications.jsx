@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 
 function ViewPendingApplications() {
+  ReactModal.setAppElement("#root");
   const [sortBy, setSortBy] = useState("none");
   const [studentsList, setStudentsList] = useState([]);
   const [approversList, setApproversList] = useState([]);
@@ -21,17 +22,13 @@ function ViewPendingApplications() {
       backgroundColor: "#ffffff75",
     },
   };
-  ReactModal.setAppElement("#root");
 
   useEffect(() => {
-    const e = async () => {
-      await fetch("http://localhost:3001/get-pending-applications", { method: "GET", credentials: "include" })
-        .then((response) => response.json())
-        .then((body) => {
-          setStudentsList(body.request);
-        });
-    };
-    e();
+    fetch("http://localhost:3001/get-pending-applications", { method: "GET", credentials: "include" })
+      .then((response) => response.json())
+      .then((body) => {
+        setStudentsList(body.request);
+      });
   }, []);
 
   useEffect(() => {
@@ -53,24 +50,16 @@ function ViewPendingApplications() {
     }
   }, [sortBy]);
 
-  useEffect(() => console.log(adviser));
-
   const handleReject = async (studentId) => {
     await fetch("http://localhost:3001/reject-student-account", {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ studentId: studentId }),
-    })
-      .then((response) => response.json())
-      .then((body) => {
-        console.log(body);
-      });
+    });
     await fetch("http://localhost:3001/get-pending-applications", { method: "GET", credentials: "include" })
       .then((response) => response.json())
-      .then((body) => {
-        setStudentsList(body.request);
-      });
+      .then((body) => setStudentsList(body.request));
   };
 
   const preApprove = async (student) => {
@@ -95,18 +84,15 @@ function ViewPendingApplications() {
     setApproving(null);
     await fetch("http://localhost:3001/get-pending-applications", { method: "GET", credentials: "include" })
       .then((response) => response.json())
-      .then((body) => {
-        setStudentsList(body.request);
-      });
-    setApproving(null);
+      .then((body) => setStudentsList(body.request));
   };
 
   return (
     <>
       <div className="container d-flex flex-column">
-        <h3 className="my-4">View Pending Accounts</h3>
+        <h3 className="my-4">{"View Pending Accounts"}</h3>
         <div className="d-flex flex-row gap-2 my-2">
-          <span className="glass-effect px-3">Sort by:</span>
+          <span className="glass-effect px-3">{"Sort by:"}</span>
           <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
             <option value="none">{"None"}</option>
             <option value="name_asc">{"Name (Ascending)"}</option>
@@ -117,43 +103,22 @@ function ViewPendingApplications() {
         </div>
         <div className="my-2">
           {studentsList?.map((student, index) => (
-            <div className="card glass-effect-4 p-2 py-sm-3 px-sm-5 m-2 d-flex flex-row justify-content-between align-items-center">
+            <div className="card glass-effect-4 p-2 py-sm-3 px-sm-5 m-2 d-flex flex-row justify-content-between align-items-center" key={index}>
               <div className="fw-semibold">{student.first_name + " " + student.middle_name + " " + student.last_name}</div>
               <div>{student.student_number}</div>
               <div className="d-flex flex-row gap-2">
-                <button onClick={() => preApprove(student)}>Approve</button>
-                <button onClick={() => handleReject(student._id)}>Reject</button>
+                <button onClick={() => preApprove(student)}>{"Approve"}</button>
+                <button onClick={() => handleReject(student._id)}>{"Reject"}</button>
               </div>
             </div>
           ))}
         </div>
 
         <div id="image-container">
-          <img id="image5" src="https://i.pinimg.com/originals/70/2c/88/702c88766c91b0d333b220326dfb14ad.png" alt="view-pending-applications">
-          </img>
+          <img id="image5" src="https://i.pinimg.com/originals/70/2c/88/702c88766c91b0d333b220326dfb14ad.png" alt="view-pending-applications"></img>
         </div>
-
-        <br />
-
-        {approving && (
-          <>
-            <h3>Approving A Student</h3>
-            <h6>{"Approving " + approving.first_name}</h6>
-            <div className="d-flex flex-row">
-              <span>{"Select an Adviser: "}</span>
-              <select value={adviser} onChange={(e) => setAdviser(e.target.value)}>
-                {approversList?.map((approver, index) => (
-                  <option value={approver._id} key={index}>
-                    {approver.first_name + " " + approver.middle_name + " " + approver.last_name}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <button onClick={handleApprove}>Approve</button>
-          </>
-        )}
       </div>
-      <ReactModal isOpen={showApproveModal} style={modalStyle} onAfterClose={() => { }}>
+      <ReactModal isOpen={showApproveModal} style={modalStyle}>
         <div className="d-flex flex-column gap-1 p-0 py-sm-3 px-sm-4 w-100 h-100 justify-content-between">
           <button type="button" className="btn-close btn-right" onClick={() => setShowApproveModal(false)} />
           <h4 className="fw-semibold mb-4">{"Approving " + approving?.first_name}</h4>
@@ -167,7 +132,7 @@ function ViewPendingApplications() {
               ))}
             </select>
           </div>
-          <button onClick={handleApprove}>Approve</button>
+          <button onClick={handleApprove}>{"Approve"}</button>
         </div>
       </ReactModal>
     </>

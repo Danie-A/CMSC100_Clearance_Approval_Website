@@ -1,10 +1,6 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
-import jwt from "jsonwebtoken";
-
-// import UserSchema from "./models/user.js";
-import "./models/user.js";
 import setUpRoutes from "./routes.js";
 
 // initialize the server
@@ -19,9 +15,6 @@ await mongoose
   .connect(DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connect to MongoDB"))
   .catch((err) => console.log(err));
-
-// register User model with Mongoose
-// mongoose.model("User", UserSchema);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

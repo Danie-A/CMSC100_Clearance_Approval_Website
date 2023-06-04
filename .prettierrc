@@ -1,7 +1,0 @@
-{
-  "printWidth": 120,
-  "htmlWhitespaceSensitivity": "ignore",
-  "vueIndentScriptAndStyle": false,
-  "braceStyle": "end-expand",
-  "arrowParens": "avoid"
-}

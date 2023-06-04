@@ -5,17 +5,16 @@ import { Application } from "../models/application.js";
 // get all pending applications of adviser's students
 const getPendingApplicationsByAdviser = async (req, res) => {
   const adviserId = req.userId;
-  console.log(`AdviserId: ${adviserId}`);
   try {
     const found = await Approver.findById(adviserId);
     if (found) {
-      const students = await Student.find({ adviser: adviserId })
+      const students = await Student.find({ adviser: adviserId });
       const applications = await Application.find({
         owner: { $in: students },
         $or: [
           { status: "pending", current_step: 1 },
-          { status: "pending", current_step: 2 }
-        ]
+          { status: "pending", current_step: 2 },
+        ],
       });
 
       res.status(200).json({ success: true, applications: applications, students: students });
@@ -29,20 +28,18 @@ const getPendingApplicationsByAdviser = async (req, res) => {
 
 const getStudentsWithPendingApplication = async (req, res) => {
   const adviserId = req.userId;
-  console.log(`AdviserId: ${adviserId}`);
   try {
     const found = await Approver.findById(adviserId);
     if (found) {
-      const students = await Student.find({ adviser: adviserId })
-        .populate({
-          path: "open_application",
-          match: {
-            $or: [
-              { status: "pending", current_step: 1 },
-              { status: "pending", current_step: 2 },
-            ],
-          },
-        });
+      const students = await Student.find({ adviser: adviserId }).populate({
+        path: "open_application",
+        match: {
+          $or: [
+            { status: "pending", current_step: 1 },
+            { status: "pending", current_step: 2 },
+          ],
+        },
+      });
 
       const filteredStudents = students.filter((student) => student.open_application != null);
       // Further processing or sending the applications in the response
@@ -81,9 +78,7 @@ const returnApplicationAdviser = async (req, res) => {
     console.log(`Error in adviser - returnApplicationAdviser(): ${error}`);
     res.status(500).json({ success: false });
   }
-
 };
-
 
 // get all students of adviser
 const getAllStudents = async (req, res) => {
@@ -93,7 +88,7 @@ const getAllStudents = async (req, res) => {
     res.status(200).json({ success: true, result: result });
   } catch (error) {
     res.status(500).json({ success: false, result: [], error: error });
-    button
+    button;
   }
 };
 
@@ -108,7 +103,5 @@ const getAdviserName = async (req, res) => {
     res.status(500).json({ success: false });
   }
 };
-
-
 
 export { approveApplicationAdviser, returnApplicationAdviser, getPendingApplicationsByAdviser, getAllStudents, getAdviserName, getStudentsWithPendingApplication };
