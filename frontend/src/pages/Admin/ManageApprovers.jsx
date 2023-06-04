@@ -16,8 +16,7 @@ function ManageApprovers() {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
   const [addApproverInfo, setAddApproverInfo] = useState(initialApproverState);
-  const [editApproverInfo, setEditApproverInfo] =
-    useState(initialApproverState);
+  const [editApproverInfo, setEditApproverInfo] = useState(initialApproverState);
   const [editApproverId, setEditApproverId] = useState(null);
   const modalStyle = {
     content: {
@@ -40,8 +39,8 @@ function ManageApprovers() {
         method: "GET",
         credentials: "include",
       })
-        .then((response) => response.json())
-        .then((body) => {
+        .then(response => response.json())
+        .then(body => {
           console.log(body.result);
           setApproversList(body.result);
         });
@@ -52,21 +51,17 @@ function ManageApprovers() {
   useEffect(() => {
     switch (sortBy) {
       case "name_asc":
-        setApproversList((prevList) =>
-          [...prevList].sort((a, b) => a.first_name.localeCompare(b.first_name))
-        );
+        setApproversList(prevList => [...prevList].sort((a, b) => a.first_name.localeCompare(b.first_name)));
         break;
       case "name_desc":
-        setApproversList((prevList) =>
-          [...prevList].sort((a, b) => b.first_name.localeCompare(a.first_name))
-        );
+        setApproversList(prevList => [...prevList].sort((a, b) => b.first_name.localeCompare(a.first_name)));
         break;
       default:
         break;
     }
   }, [sortBy]);
 
-  const handleDeleteApprover = async (approverId) => {
+  const handleDeleteApprover = async approverId => {
     await fetch("http://localhost:3001/delete-approver", {
       method: "POST",
       credentials: "include",
@@ -77,8 +72,8 @@ function ManageApprovers() {
       method: "GET",
       credentials: "include",
     })
-      .then((response) => response.json())
-      .then((body) => {
+      .then(response => response.json())
+      .then(body => {
         setApproversList(body.result);
       });
   };
@@ -96,8 +91,8 @@ function ManageApprovers() {
           updatedApprover: editApproverInfo,
         }),
       })
-        .then((response) => response.json())
-        .then((body) => !body.success && alert("Failed to edit"));
+        .then(response => response.json())
+        .then(body => !body.success && alert("Failed to edit"));
       setEditApproverId(null);
       setShowEditModal(false);
       setEditApproverInfo(initialApproverState);
@@ -105,8 +100,8 @@ function ManageApprovers() {
         method: "GET",
         credentials: "include",
       })
-        .then((response) => response.json())
-        .then((body) => {
+        .then(response => response.json())
+        .then(body => {
           setApproversList(body.result);
         });
     }
@@ -119,21 +114,21 @@ function ManageApprovers() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(addApproverInfo),
     })
-      .then((response) => response.json())
-      .then((body) => body.success && setAddApproverInfo(initialApproverState));
+      .then(response => response.json())
+      .then(body => body.success && setAddApproverInfo(initialApproverState));
     setShowAddModal(false);
     setAddApproverInfo(initialApproverState);
     await fetch("http://localhost:3001/get-all-advisers", {
       method: "GET",
       credentials: "include",
     })
-      .then((response) => response.json())
-      .then((body) => {
+      .then(response => response.json())
+      .then(body => {
         setApproversList(body.result);
       });
   };
 
-  const handlePreEdit = (approver) => {
+  const handlePreEdit = approver => {
     console.log(approver);
     setShowEditModal(true);
     setEditApproverId(approver._id);
@@ -159,20 +154,14 @@ function ManageApprovers() {
             <input
               className="glass-effect-1 m-0 px-4"
               placeholder="Name"
-              onChange={(e) => setNameFilter(e.target.value)}
+              onChange={e => setNameFilter(e.target.value)}
               value={nameFilter}
             />
             <button className="glass-effect-1 m-0 px-3 me-3">Search</button>
-            <button
-              className="glass-effect-2 m-0 px-3"
-              onClick={() => setSortBy("name_asc")}
-            >
+            <button className="glass-effect-2 m-0 px-3" onClick={() => setSortBy("name_asc")}>
               ↑
             </button>
-            <button
-              className="glass-effect-2 m-0 px-3"
-              onClick={() => setSortBy("name_desc")}
-            >
+            <button className="glass-effect-2 m-0 px-3" onClick={() => setSortBy("name_desc")}>
               ↓
             </button>
           </div>
@@ -184,10 +173,8 @@ function ManageApprovers() {
         {/* <table>
           <tbody> */}
         {approversList
-          .filter((e) =>
-            (e.first_name + " " + e.middle_name + " " + e.last_name)
-              .toLowerCase()
-              .includes(nameFilter.toLowerCase())
+          .filter(e =>
+            (e.first_name + " " + e.middle_name + " " + e.last_name).toLowerCase().includes(nameFilter.toLowerCase())
           )
           .map((approver, index) => (
             <div
@@ -195,23 +182,13 @@ function ManageApprovers() {
               key={index}
             >
               <div className="fw-semibold">
-                {approver.first_name +
-                  " " +
-                  approver.middle_name +
-                  " " +
-                  approver.last_name}
+                {approver.first_name + " " + approver.middle_name + " " + approver.last_name}
               </div>
               <div className="d-flex flex-row gap-3">
-                <button
-                  className="glass-effect-4 px-4"
-                  onClick={() => handlePreEdit(approver)}
-                >
+                <button className="glass-effect-4 px-4" onClick={() => handlePreEdit(approver)}>
                   Edit
                 </button>
-                <button
-                  className="glass-effect-4 px-4"
-                  onClick={() => handleDeleteApprover(approver._id)}
-                >
+                <button className="glass-effect-4 px-4" onClick={() => handleDeleteApprover(approver._id)}>
                   Delete
                 </button>
               </div>
@@ -222,11 +199,7 @@ function ManageApprovers() {
       {/* Editing an approver */}
       <ReactModal isOpen={showEditModal} style={modalStyle}>
         <div className="d-flex flex-column gap  -1 p-0 py-sm-3 px-sm-4 w-100 h-100 justify-content-between">
-          <button
-            type="button"
-            className="btn-close btn-right"
-            onClick={() => setShowEditModal(false)}
-          />
+          <button type="button" className="btn-close btn-right" onClick={() => setShowEditModal(false)} />
           <h4 className="fw-semibold mb-4">Edit an Adviser</h4>
           <div className="d-flex align-items-center gap-3">
             <label>First Name: </label>
@@ -234,7 +207,7 @@ function ManageApprovers() {
               className="glass-effect-5 flex-grow-1 px-3"
               placeholder="First name"
               value={editApproverInfo.first_name}
-              onChange={(e) =>
+              onChange={e =>
                 setEditApproverInfo({
                   ...editApproverInfo,
                   first_name: e.target.value,
@@ -248,7 +221,7 @@ function ManageApprovers() {
               className="glass-effect-5 flex-grow-1 px-3"
               placeholder="Middle name"
               value={editApproverInfo.middle_name}
-              onChange={(e) =>
+              onChange={e =>
                 setEditApproverInfo({
                   ...editApproverInfo,
                   middle_name: e.target.value,
@@ -262,7 +235,7 @@ function ManageApprovers() {
               className="glass-effect-5 flex-grow-1 px-3"
               placeholder="Last name"
               value={editApproverInfo.last_name}
-              onChange={(e) =>
+              onChange={e =>
                 setEditApproverInfo({
                   ...editApproverInfo,
                   last_name: e.target.value,
@@ -276,7 +249,7 @@ function ManageApprovers() {
               className="glass-effect-5 flex-grow-1 px-3"
               placeholder="email"
               value={editApproverInfo.email}
-              onChange={(e) =>
+              onChange={e =>
                 setEditApproverInfo({
                   ...editApproverInfo,
                   email: e.target.value,
@@ -288,24 +261,16 @@ function ManageApprovers() {
           <button onClick={handleEditApprover}>Edit</button>
         </div>
       </ReactModal>
-      <ReactModal
-        isOpen={showAddModal}
-        style={modalStyle}
-        onAfterClose={() => {}}
-      >
+      <ReactModal isOpen={showAddModal} style={modalStyle} onAfterClose={() => {}}>
         <div className="d-flex flex-column gap-1 p-0 py-sm-3 px-sm-4 w-100 h-100 justify-content-between">
-          <button
-            type="button"
-            className="btn-close btn-right"
-            onClick={() => setShowAddModal(false)}
-          />
+          <button type="button" className="btn-close btn-right" onClick={() => setShowAddModal(false)} />
           <h4 className="fw-semibold mb-4">Add an Adviser</h4>
 
           <input
             className="glass-effect-5 px-4"
             placeholder="First name"
             value={addApproverInfo.first_name}
-            onChange={(e) =>
+            onChange={e =>
               setAddApproverInfo({
                 ...addApproverInfo,
                 first_name: e.target.value,
@@ -316,7 +281,7 @@ function ManageApprovers() {
             className="glass-effect-5 px-4"
             placeholder="Middle name"
             value={addApproverInfo.middle_name}
-            onChange={(e) =>
+            onChange={e =>
               setAddApproverInfo({
                 ...addApproverInfo,
                 middle_name: e.target.value,
@@ -327,7 +292,7 @@ function ManageApprovers() {
             className="glass-effect-5 px-4"
             placeholder="Last name"
             value={addApproverInfo.last_name}
-            onChange={(e) =>
+            onChange={e =>
               setAddApproverInfo({
                 ...addApproverInfo,
                 last_name: e.target.value,
@@ -339,9 +304,7 @@ function ManageApprovers() {
             placeholder="Email"
             type="email"
             value={addApproverInfo.email}
-            onChange={(e) =>
-              setAddApproverInfo({ ...addApproverInfo, email: e.target.value })
-            }
+            onChange={e => setAddApproverInfo({ ...addApproverInfo, email: e.target.value })}
             required
           />
           <input
@@ -349,7 +312,7 @@ function ManageApprovers() {
             type="password"
             placeholder="Password"
             value={addApproverInfo.password}
-            onChange={(e) =>
+            onChange={e =>
               setAddApproverInfo({
                 ...addApproverInfo,
                 password: e.target.value,

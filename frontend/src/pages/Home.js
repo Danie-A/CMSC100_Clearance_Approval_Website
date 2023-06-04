@@ -41,7 +41,7 @@ export default function Home() {
       return false; // Prevent form submission
     } else if (!snoRegex.test(sno)) {
       // Display an error message or perform any desired actions
-      alert("ERROR: Invalid input format! Please enter in the format: ____-_____");
+      alert("ERROR: Invalid Student Number Format. Please enter in the format: ____-_____");
       return false; // Prevent form submission
     }
     // form validation goes here
@@ -176,6 +176,8 @@ export default function Home() {
           localStorage.setItem("username", body.username);
         } else {
           alert("Log In for Admin Failed");
+          document.getElementById("lad-email").value = "";
+          document.getElementById("lad-password").value = "";
         }
       });
   };
@@ -205,21 +207,21 @@ export default function Home() {
         <input id="s-password" type="password" placeholder="Password" required />
         <button onClick={signUp}>Sign Up</button>
       </form>
-
+      <br />
       <h1>Log In for Students</h1>
       <form id="log-in-student">
         <input type="email" id="ls-email" placeholder="Student Email" required />
         <input id="ls-password" type="password" placeholder="Student Password" required />
         <button onClick={logInStudent}>Log In</button>
       </form>
-
+      <br />
       <h1>Log In for Advisers</h1>
       <form id="log-in-approver">
         <input type="email" id="la-email" placeholder="Adviser Email" required />
         <input id="la-password" type="password" placeholder="Adviser Password" required />
         <button onClick={logInApprover}>Log In</button>
       </form>
-
+      <br />
       <h1>Log In for Admin</h1>
       <form id="log-in-admin">
         <input id="lad-email" placeholder="Admin Email" />
@@ -228,7 +230,9 @@ export default function Home() {
       </form>
 
       <p class="note">Note: Coordinate with the Admin to create an Adviser account.</p>
-
+      <br />
+      <br />
+      <br />
       <footer>
         <p>
           Unlock the Path to Success with Effortless Efficiency: Experience Seamless Clearance Approval in the Institute
