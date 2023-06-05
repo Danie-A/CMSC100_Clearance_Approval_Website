@@ -2,9 +2,9 @@
 # ClearMe
    
 ## Authors: 
-![2 - jPwWtuo](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/bf56b464-0593-422f-b104-b0ca12359712)
-![3 - 9H5ZC4l](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/1b83da2f-c696-4ee0-82b9-9dc2284273c1)
-![1 - uiK0Yr9](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/a97a8865-a5d4-4697-9aa2-1cd7db15a6f9)
+![2 - jPwWtuo](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/bf56b464-0593-422f-b104-b0ca12359712 | width=200)
+![3 - 9H5ZC4l](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/1b83da2f-c696-4ee0-82b9-9dc2284273c1 | width=200)
+![1 - uiK0Yr9](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/a97a8865-a5d4-4697-9aa2-1cd7db15a6f9 | width=200)
 Danielle Lei Araez   
 Katrina Gonzales   
 Laurenz Repaso  
