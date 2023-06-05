@@ -90,7 +90,14 @@ export default function ApproverHome() {
 
     return(
         <>
-        Welcome Adviser!
+        <div id="welcome-admin" className="container d-flex flex-column align-items-start">
+        <h3 className="my-4">{"Welcome adviser"}</h3>
+        <img
+          id="image"
+          src="https://i.pinimg.com/originals/1b/0f/b0/1b0fb0ed95b7ee77ac662af8adcc29e7.png"
+          alt="admin-home"
+        ></img>
+        </div>
         </>
     )
 }
