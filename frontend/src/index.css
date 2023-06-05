@@ -34,17 +34,17 @@ h5 {
 }
 
 .header-container {
-  display: flex;
-  background-color: #28283a;
-  padding-top: 10px;
-  /*main axis*/
-  flex-direction: row;
-  justify-content: flex-start;
-  /*cross axis*/
-  align-items: flex-start;
-  width: 100%;
-  margin-bottom: 20px;
-}
+    display: flex;
+    background-color: #28283A;
+    padding-top: 10px;
+    /*main axis*/
+    flex-direction: row;
+    justify-content: flex-start;
+    /*cross axis*/
+    align-items: flex-start;
+    width: 100%;
+    /* margin-bottom: 20px;*/
+} 
 
 /* .header-welcome {
   margin-bottom: 20px;   
@@ -407,9 +407,21 @@ p10 {
   border-radius: 0px 0px 20px 20px;
 }
 
-h3 {
-  font-size: 60px;
-}
+  h2 {
+    font-size: 60px;
+  }
+
+  h3 {
+    font-size: 60px;
+  }
+
+  big-font {
+    font-size: 3em;
+  }
+
+  .welcome-adviser {
+    font-size: 3eam;
+  }
 
 #image-admin {
   position: absolute;
@@ -652,9 +664,13 @@ h3:hover {
   color: #00838f;
 }
 
-p9:hover {
-  color: #00838f;
-}
+  h2:hover {
+    color: #00838F;
+  }
+
+  p9:hover {
+    color: #00838F;
+  }
 
 p10:hover {
   color: #00838f;
