@@ -58,9 +58,10 @@ export default function AdviserSearch() {
         <br></br>
         <input
           type="text"
-          placeholder="Search"
+          placeholder="Search by Student Number or Name"
           value={searchTerm}
           onChange={handleSearch}
+          className="search-input"
         />
         <div>
           {filteredItems.map((student, index) => (

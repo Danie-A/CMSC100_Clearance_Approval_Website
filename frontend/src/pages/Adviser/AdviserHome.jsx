@@ -39,7 +39,7 @@ export default function ApproverHome() {
 
     const Dropdown = ({ open, trigger, menu }) => {
         return (<>
-            <h3>{"Welcome adviser"}</h3>
+            <h2>{"Welcome Adviser"}</h2>
             {App}
             <div className="dropdown">
                 {trigger}
@@ -58,8 +58,9 @@ export default function ApproverHome() {
 
     return (
         <>
-            <h3 className="my-2">{"Welcome Adviser!"}</h3>
+            <h2 className="my-2">{"Welcome Adviser!"}</h2>
             <p className="mx-3">Click on the other tabs to start.</p>
+            <img id="image" src="https://i.pinimg.com/originals/1b/0f/b0/1b0fb0ed95b7ee77ac662af8adcc29e7.png" alt="admin-home"></img>
         </>
     )
 }

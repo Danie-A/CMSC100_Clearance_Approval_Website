@@ -117,8 +117,7 @@ export default function SeeProfile({ handleCloseModal, student }) {
     }
   }
 
-  // remarks of adviser to student
-  function viewRemarks(remarks) {
+  function viewRemarksIfElse(remarks) {
     const sortedRemarks = remarks.sort((a, b) => {
       if (a._id > b._id) {
         return -1; // Sort in descending order
@@ -127,6 +126,29 @@ export default function SeeProfile({ handleCloseModal, student }) {
       }
       return 0;
     });
+    if (remarks.length === 0) {
+      return (
+        <div>
+          <p>You have not returned any remarks yet.</p>
+        </div>
+      );
+    } else {
+      return (<div>
+        {sortedRemarks.map((remark, index) => (
+          <Remark
+            key={index}
+            remark={remark.remarks}
+            step={remark.step}
+            date={remark.date.slice(0, 10)}
+            commenter={username}
+          />
+        ))}
+      </div>);
+    }
+  }
+  // remarks of adviser to student
+  function viewRemarks(remarks) {
+
 
     return (
       <div className="whole-container">
@@ -140,17 +162,7 @@ export default function SeeProfile({ handleCloseModal, student }) {
         <h5>Returned Remarks</h5>
 
         <div className="remark-container">
-          <div>
-            {sortedRemarks.map((remark, index) => (
-              <Remark
-                key={index}
-                remark={remark.remarks}
-                step={remark.step}
-                date={remark.date.slice(0, 10)}
-                commenter={username}
-              />
-            ))}
-          </div>
+          {viewRemarksIfElse(remarks)}
         </div>
       </div>
     );
@@ -239,7 +251,7 @@ export default function SeeProfile({ handleCloseModal, student }) {
 
       <div className="whole-container">
         <br></br>
-        <h4>Student Information</h4>
+        <h4 className="mx-0">Student Information</h4>
         <div>
           <strong>Name:</strong> {student.first_name} {student.last_name}
         </div>
@@ -250,7 +262,7 @@ export default function SeeProfile({ handleCloseModal, student }) {
           <strong>Email:</strong> {student.email}
         </div>
         <br />
-        <h4>Student Clearance Application</h4>
+        <h4 className="mx-0">Student Clearance Application</h4>
         <div>
           <strong>Date Submitted:</strong> {formattedDateTime}
         </div>
