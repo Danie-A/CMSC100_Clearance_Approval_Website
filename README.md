@@ -7,8 +7,10 @@ Jerico Sabile
 CMSC 100 - UV2L    
 
 
+
 ## Program Description:
 ClearMe is a software program designed to streamline and automate the clearance approval process for students within the institute. The system facilitates the efficient issuance of clearances by allowing students to obtain approvals from specific sections of the institute in a predetermined order. It also ensures that students provide the necessary proof of completion where required.
+
 
 
 ## Project Features:
@@ -27,8 +29,10 @@ ClearMe is a software program designed to streamline and automate the clearance 
 7. Administrative Interface: An administrative interface is provided for authorized staff members to manage the approval workflow, define the order of approvals, set requirements for proof of completion, and monitor the overall system performance. Administrators can also generate reports and perform other administrative tasks as needed.
 
 
+
 ## Screenshots:
 - Figma Layout: https://www.figma.com/file/PooqpMu5OhUnmvKPjSVp5P/CLEAR-ME?type=design&node-id=0%3A1&t=WuIZnhRGnPJGlTmr-1
+
 
 
 ## Usage Guidelines:
@@ -71,6 +75,7 @@ Usage Guidelines for ClearMe:
 
 8. Technical Support:
    a. If you encounter any technical difficulties or require assistance, contact the system administrator or designated support personnel for help.
+
 
 
 ## How to Run:
