@@ -30,7 +30,7 @@ function AdminHome() {
         id="welcome-admin"
         className="container d-flex flex-column align-items-start"
       >
-        <h3 className="my-4">{"Welcome admin"}</h3>
+        <h3 className="my-4">{"Welcome Admin!"}</h3>
         <span>CSV File to Map Students with their Adviser: </span>
         <label className="custom-file-upload">
           <input

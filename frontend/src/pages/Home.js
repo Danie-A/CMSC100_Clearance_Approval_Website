@@ -181,7 +181,7 @@ export default function Home() {
 
           localStorage.setItem("username", body.username);
         } else {
-          alert("Log In for Admin Failed");
+          alert("Log In for Admin Failed.");
           document.getElementById("lad-email").value = "";
           document.getElementById("lad-password").value = "";
         }
@@ -274,7 +274,7 @@ export default function Home() {
       <footer>
         <p>
           Unlock the Path to Success with Effortless Efficiency: Experience
-          Seamless Clearance Approval in the Institute of Computer Science
+          Seamless Clearance Approval in the Institute of Computer Science.
         </p>
       </footer>
     </>
