@@ -89,6 +89,11 @@ export default function Root() {
       return (
         <nav id="manage-approver">
           <ul>
+            <li className={`${location.pathname === "/admin" ? "active" : ""}`}>
+              <Link to="/admin" className="nav-link">
+                Home
+              </Link>
+            </li>
             <li className={`${location.pathname === "/admin/view-pending-accounts" ? "active" : ""}`}>
               <Link to="/admin/view-pending-accounts" className="nav-link">
                 View Pending Accounts
@@ -116,6 +121,11 @@ export default function Root() {
       return (
         <nav id="manage-adviser">
           <ul>
+            <li className={`${location.pathname === "/adviser" ? "active" : ""}`}>
+              <Link to="/adviser" className="nav-link">
+                Home
+              </Link>
+            </li>
             <li className={`${location.pathname === "/adviser/search-students" ? "active" : ""}`}>
               <Link to="/adviser/search-students" className="nav-link">
                 Advisees

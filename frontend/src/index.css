@@ -19,14 +19,6 @@ nav {
   background-color: #101223;
 }
 
-/* #welcome-page {
-  background-image: url('https://i.pinimg.com/originals/13/9a/88/139a8872eeb9dfca447eb241afd2274e.png');
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  border: none;
-  padding: 0%;
-} */
-
 h5 {
   padding-top: 15px;
   padding-bottom: 18px;
@@ -34,21 +26,18 @@ h5 {
 }
 
 .header-container {
-    display: flex;
-    background-color: #28283A;
-    padding-top: 10px;
-    /*main axis*/
-    flex-direction: row;
-    justify-content: flex-start;
-    /*cross axis*/
-    align-items: flex-start;
-    width: 100%;
-    /* margin-bottom: 20px;*/
-} 
+  display: flex;
+  background-color: #28283A;
+  padding-top: 10px;
+  /*main axis*/
+  flex-direction: row;
+  justify-content: flex-start;
+  /*cross axis*/
+  align-items: flex-start;
+  width: 100%;
+  /* margin-bottom: 20px;*/
+}
 
-/* .header-welcome {
-  margin-bottom: 20px;   
-} */
 
 .sign-upforstudents {
   margin-top: 20px;
@@ -142,9 +131,7 @@ input {
 
 thead {
   background-color: #404252;
-  /* Replace with your desired header color */
   color: #ffffff;
-  /* Replace with your desired text color */
 }
 
 .notif-container {
@@ -164,7 +151,6 @@ thead {
 
   margin-bottom: 10px;
   gap: 1em;
-  /* background-color: #D2D4DA; */
   background-color: #30313d;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.614);
   color: white;
@@ -172,7 +158,6 @@ thead {
 }
 
 .notif-item:hover {
-  /* background-color: #d2d3d6; */
   background-color: rgb(40, 42, 58);
   transition: 0.4s;
   border-radius: 10px;
@@ -268,11 +253,9 @@ thead {
   margin-bottom: 10px;
   gap: 1em;
   border-radius: 20px;
-  /* background-color: #D2D4DA; */
   background-color: #30313d;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.614);
   color: white;
-  /* color: black; */
 }
 
 .student-item:hover {
@@ -328,6 +311,14 @@ input[type="password"] {
   background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
+}
+
+.search-input {
+  width: 25%;
+}
+
+.github-input {
+  width: 50%;
 }
 
 button {
@@ -407,21 +398,21 @@ p10 {
   border-radius: 0px 0px 20px 20px;
 }
 
-  h2 {
-    font-size: 60px;
-  }
+h2 {
+  font-size: 60px;
+}
 
-  h3 {
-    font-size: 60px;
-  }
+h3 {
+  font-size: 60px;
+}
 
-  big-font {
-    font-size: 3em;
-  }
+big-font {
+  font-size: 3em;
+}
 
-  .welcome-adviser {
-    font-size: 3eam;
-  }
+.welcome-adviser {
+  font-size: 3eam;
+}
 
 #image-admin {
   position: absolute;
@@ -664,13 +655,13 @@ h3:hover {
   color: #00838f;
 }
 
-  h2:hover {
-    color: #00838F;
-  }
+h2:hover {
+  color: #00838F;
+}
 
-  p9:hover {
-    color: #00838F;
-  }
+p9:hover {
+  color: #00838F;
+}
 
 p10:hover {
   color: #00838f;
@@ -697,10 +688,12 @@ p10:hover {
 }
 
 #glass-background {
-  background-color: rgba(255, 255, 255, 0.5); /* Glass background color with opacity */
+  background-color: rgba(255, 255, 255, 0.5);
+  /* Glass background color with opacity */
   padding: 30px;
   border-radius: 50px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  /* Shadow effect */
 }
 
 #header {

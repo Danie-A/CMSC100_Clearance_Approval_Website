@@ -38,19 +38,17 @@ export default function CreateApplication() {
     }
 
     return (
-       
+
         <div className="whole-container">
             <div className="view-app-container">
-                <h12 id= "create-application">Create Clearance Application</h12>
+                <h12 id="create-application">Create Clearance Application</h12>
 
                 <p>Status: Open</p>
                 <p>Step 1: Pre-Adviser</p>
                 <form>
                     <label htmlFor="link">GitHub Link:</label><br />
-                    <input type="text" id="link" name="link" required /><br />
-
-                    {/* <label htmlFor="student-remark">Student Remark:</label><br />
-                    <input type="text" id="student-remark" name="student-remark" /><br /><br /> */}
+                    <input type="text" id="link" name="link" className="github-input" required /><br />
+                    <br />
 
                     <input type="submit" onClick={handleSubmit} className="btn btn-primary" value="Submit" />
                     <br />

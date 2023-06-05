@@ -101,11 +101,11 @@ function ViewPendingApplications() {
             <option value="studNum_desc">{"Student Number (Descending)"}</option>
           </select>
         </div>
-        <div className="my-2">
+        <div className="container my-2">
           {studentsList?.map((student, index) => (
             <div className="card glass-effect-4 p-2 py-sm-3 px-sm-5 m-2 d-flex flex-row justify-content-between align-items-center" key={index}>
-              <div className="fw-semibold">{student.first_name + " " + student.middle_name + " " + student.last_name}</div>
-              <div>{student.student_number}</div>
+              <div className="fw-semibold col-3">{student.first_name + " " + student.middle_name + " " + student.last_name}</div>
+              <div className="col-3">{student.student_number}</div>
               <div className="d-flex flex-row gap-2">
                 <button onClick={() => preApprove(student)}>{"Approve"}</button>
                 <button onClick={() => handleReject(student._id)}>{"Reject"}</button>

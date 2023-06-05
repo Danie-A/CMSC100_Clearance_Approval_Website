@@ -4,38 +4,6 @@ import * as React from 'react';
 
 export default function ApproverHome() {
 
-    // const [sortNames, setSortNames] = useState(['DATE', 'INCLUDES', '5-5-23', 'REMOVE', 'ADD', 'APPLY'])
-
-    // const ButtonComponent = () => {
-    //     const [showButtons, setShowButtons] = useState(false);
-    //     const handleClick = () => {
-    //         setShowButtons(!showButtons);
-    //       };
-    // }
-
-    // return(
-    //     <>
-    //     <h3>SEARCH STUDENTS</h3>
-    //     <input placeholder="SEARCH"/>
-    //     <button onClick={ButtonComponent}>SORT</button>{
-    //         showButtons && (
-    //             <div>
-    //                 <button>DATE</button>
-    //                 <button>INCLUDES</button>
-    //                 <button>5-5-23</button>
-    //                 <button>REMOVE</button>
-    //                 <button>ADD</button>
-    //                 <button>APPLY</button>
-    //             </div>
-    //         )
-    //     }
-    //     <button>FILTER</button>
-    //     <table>
-
-    //     </table>
-    //     </>
-    // );
-
     const App = () => {
         const [open, setOpen] = React.useState(false);
 
@@ -79,7 +47,7 @@ export default function ApproverHome() {
                     <ul className="menu">
                         {menu.map((menuItem, index) => (
                             <li key={index} className="menu-item">{menuItem}</li>
-                            
+
                         ))}
                     </ul>
                 ) : null}
@@ -88,10 +56,11 @@ export default function ApproverHome() {
         );
     };
 
-    return(
+    return (
         <>
-        <h2>Welcome Adviser!</h2>
-        <img id="image" src="https://i.pinimg.com/originals/1b/0f/b0/1b0fb0ed95b7ee77ac662af8adcc29e7.png" alt="admin-home"></img>
+            <h2 className="my-2">{"Welcome Adviser!"}</h2>
+            <p className="mx-3">Click on the other tabs to start.</p>
+            <img id="image" src="https://i.pinimg.com/originals/1b/0f/b0/1b0fb0ed95b7ee77ac662af8adcc29e7.png" alt="admin-home"></img>
         </>
     )
 }

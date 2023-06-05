@@ -1,53 +1,51 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <title>Approved Clearance Application</title>
     <style>
-        header {
-            text-align: center;
-        }
+      header {
+        text-align: center;
+      }
 
-        .section {
-            margin: 20;
+      .section {
+        margin: 20;
+      }
 
-        }
-
-        p {
-            font-size: 25px;
-        }
+      p {
+        font-size: 25px;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>
-        <h1>University of the Philippines Los Baños</h1>
-        <h2>College of Arts and Sciences</h2>
-        <h3>Institute of Computer Science</h3>
+      <h1>University of the Philippines Los Baños</h1>
+      <h2>College of Arts and Sciences</h2>
+      <h3>Institute of Computer Science</h3>
     </header>
 
-    <hr>
+    <hr />
     <section>
-        <br>
-        <p>Application ID: {{application_id}}</p>
-        <br>
-        <p>Date Generated: {{date_generated}}</p>
-        <br>
+      <br />
+      <p>Application ID: {{application_id}}</p>
+      <br />
+      <p>Date Generated: {{date_generated}}</p>
+      <br />
 
-        <article class="certifies">
-            <p>This document certifies that {{student_name}} ({{student_number}}) has satisfied
-                the clearance requirements of the institute.</p>
-        </article>
-        <br><br>
-        <p>Verified:</p>
+      <article class="certifies">
+        <p>
+          This document certifies that {{student_name}} ({{student_number}}) has
+          satisfied the clearance requirements of the institute.
+        </p>
+      </article>
+      <br /><br />
+      <p>Verified:</p>
 
-        <article class="signatures">
-            <p>Academic Adviser: {{adviser}}</p>
-            <p>Clearance Officer: {{clearance_officer}}</p>
-        </article>
-
+      <article class="signatures">
+        <p>Academic Adviser: {{adviser}}</p>
+        <p>Clearance Officer: {{clearance_officer}}</p>
+      </article>
     </section>
-</body>
-
+  </body>
 </html>

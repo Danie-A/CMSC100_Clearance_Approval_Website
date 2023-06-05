@@ -148,11 +148,11 @@ function AdviserViewPendingApplications() {
             <button onClick={() => setSortBy("date_desc")}>↓</button>
           </div>
           <br />
-          <div className="d-flex flex-row">
-            <div className="flex-fill text-center">{"Name"}</div>
-            <div className="flex-fill text-center">{"Student Number"}</div>
-            <div className="flex-fill text-center">{"Adviser"}</div>
-            <div className="flex-fill text-center">{"Step"}</div>
+          <div className="p-2 py-sm-3 px-sm-5 m-2 d-flex flex-row">
+            <div className="flex-fill text-left">{"Name"}</div>
+            <div className="flex-fill text-left">{"Student Number"}</div>
+            <div className="flex-fill text-left">{"Adviser"}</div>
+            <div className="flex-fill text-left">{"Step"}</div>
             <div className="flex-fill" />
             <div className="flex-fill" />
           </div>
@@ -193,17 +193,17 @@ function AdviserViewPendingApplications() {
             .map((student, index) => (
               <div
                 key={index}
-                className="glass-effect-1 d-flex flex-row align-items-center px-5 py-3 my-2"
+                className="card glass-effect-4 p-2 py-sm-3 px-sm-5 m-2 d-flex flex-row justify-content-between align-items-center"
               >
                 {/* Student Name */}
-                <div className="flex-fill">
+                <div className="flex-fill col-3">
                   {student.first_name} {student.last_name}
                 </div>
-                <div className="flex-fill">{student.student_number}</div>
-                <div className="flex-fill">
+                <div className="flex-fill col-3">{student.student_number}</div>
+                <div className="flex-fill col-3">
                   {localStorage.getItem("username")}
                 </div>
-                <div className="flex-fill">
+                <div className="flex-fill col-3">
                   {
                     student.open_application.student_submissions[
                       student.open_application.student_submissions.length - 1
@@ -212,7 +212,7 @@ function AdviserViewPendingApplications() {
                 </div>
 
                 {/* View Application Button */}
-                <div>
+                <div className="flex-fill col-2">
                   <button
                     className="glass-effect-3"
                     onClick={() => handleOpenModal(index)}

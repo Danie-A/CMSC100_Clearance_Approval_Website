@@ -33,6 +33,23 @@ function ViewAllApplications() {
     setShowModal(true);
   };
 
+  function showStudentRemark(submission) {
+    if (submission.step === 2 || submission.step === 3) { // won't show student remark when submission is at step 1 -- only github link is shown
+      return (<div>{`Student Remark: ${submission.student_remark}`}</div>);
+    }
+  }
+
+  function showGitHubLink(submission) {
+    if (submission.step === 2 || submission.step === 1) { // only github link is shown
+      return (<div>
+        {"Github Link: "}
+        <a href={submission.github_link} target="_blank" rel="noreferrer">
+          {submission.github_link}
+        </a>
+      </div>);
+    }
+  }
+
   return (
     <div className="container">
       <h3 className="my-5">{"View Application Details"}</h3>
@@ -55,12 +72,8 @@ function ViewAllApplications() {
               {currentStudent?.open_application.student_submissions.map((submission, index) => (
                 <div className="card glass-effect-4 m-1 p-2 px-sm-4 py-sm-3" key={index}>
                   <div>{`Step: ${submission.step}`}</div>
-                  <div>
-                    {"Github Link: "}
-                    <a href={submission.github_link} target="_blank" rel="noreferrer">
-                      {submission.github_link}
-                    </a>
-                  </div>
+                  {showGitHubLink(submission)}
+                  {showStudentRemark(submission)}
                   <div>{`Date: ${new Date(submission.date).toLocaleString("en-US", options)}`}</div>
                 </div>
               ))}
@@ -69,8 +82,9 @@ function ViewAllApplications() {
               <h6 className="mx-auto fw-semibold">Remarks</h6>
               {currentStudent?.open_application.remarks.map((remark, index) => (
                 <div className="card glass-effect-4 my-2 p-2 px-sm-4 py-sm-3" key={index}>
-                  <div>{`Step ${remark.step}`}</div>
+                  <div>{`Step: ${remark.step}`}</div>
                   <div>{`Remarks: ${remark.remarks}`}</div>
+                  <div>{`Commenter: ${remark.commenter}`}</div>
                   <div>{`Date: ${new Date(remark.date).toLocaleString("en-US", options)}`}</div>
                 </div>
               ))}

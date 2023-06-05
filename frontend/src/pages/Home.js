@@ -37,11 +37,15 @@ export default function Home() {
 
     if (!emailRegex.test(email)) {
       // Display an error message or perform any desired actions
-      alert("ERROR: Invalid Email Address! Make sure it is a UP Mail: @up.edu.ph");
+      alert(
+        "ERROR: Invalid Email Address! Make sure it is a UP Mail: @up.edu.ph"
+      );
       return false; // Prevent form submission
     } else if (!snoRegex.test(sno)) {
       // Display an error message or perform any desired actions
-      alert("ERROR: Invalid Student Number Format. Please enter in the format: ____-_____");
+      alert(
+        "ERROR: Invalid Student Number Format. Please enter in the format: ____-_____"
+      );
       return false; // Prevent form submission
     }
     // form validation goes here
@@ -59,8 +63,8 @@ export default function Home() {
         password: document.getElementById("s-password").value,
       }),
     })
-      .then(response => response.json())
-      .then(body => {
+      .then((response) => response.json())
+      .then((body) => {
         if (body.success) {
           alert("SUCCESS: You have successfully signed up!");
           clearSignUpFields();
@@ -88,8 +92,8 @@ export default function Home() {
         password: document.getElementById("ls-password").value,
       }),
     })
-      .then(response => response.json())
-      .then(body => {
+      .then((response) => response.json())
+      .then((body) => {
         if (body.success) {
           setIsLoggedIn("student");
           console.log("logged in");
@@ -127,8 +131,8 @@ export default function Home() {
         password: document.getElementById("la-password").value,
       }),
     })
-      .then(response => response.json())
-      .then(body => {
+      .then((response) => response.json())
+      .then((body) => {
         if (body.success) {
           setIsLoggedIn("adviser");
           // successful log in. store the token as a cookie
@@ -141,14 +145,16 @@ export default function Home() {
 
           localStorage.setItem("username", body.username);
         } else {
-          alert("Log In for Adviser Failed. You may have entered the wrong credentials.");
+          alert(
+            "Log In for Adviser Failed. You may have entered the wrong credentials."
+          );
           document.getElementById("la-email").value = "";
           document.getElementById("la-password").value = "";
         }
       });
   }
 
-  const logInAdmin = e => {
+  const logInAdmin = (e) => {
     e.preventDefault();
 
     fetch("http://localhost:3001/login-admin", {
@@ -161,8 +167,8 @@ export default function Home() {
         password: document.getElementById("lad-password").value,
       }),
     })
-      .then(response => response.json())
-      .then(body => {
+      .then((response) => response.json())
+      .then((body) => {
         if (body.success) {
           setIsLoggedIn("admin");
           // successful log in. store the token as a cookie
@@ -175,7 +181,7 @@ export default function Home() {
 
           localStorage.setItem("username", body.username);
         } else {
-          alert("Log In for Admin Failed");
+          alert("Log In for Admin Failed.");
           document.getElementById("lad-email").value = "";
           document.getElementById("lad-password").value = "";
         }
@@ -202,23 +208,53 @@ export default function Home() {
         <input id="s-fname" placeholder="First Name" required />
         <input id="s-mname" placeholder="Middle Name" required />
         <input id="s-lname" placeholder="Last Name" required />
-        <input id="s-sno" pattern="\d{4}-\d{5}" placeholder="Student Number" required />
+        <input
+          id="s-sno"
+          pattern="\d{4}-\d{5}"
+          placeholder="Student Number"
+          required
+        />
         <input type="email" id="s-email" placeholder="UP Mail" required />
-        <input id="s-password" type="password" placeholder="Password" required />
+        <input
+          id="s-password"
+          type="password"
+          placeholder="Password"
+          required
+        />
         <button onClick={signUp}>Sign Up</button>
       </form>
       <br />
       <h1>Log In for Students</h1>
       <form id="log-in-student">
-        <input type="email" id="ls-email" placeholder="Student Email" required />
-        <input id="ls-password" type="password" placeholder="Student Password" required />
+        <input
+          type="email"
+          id="ls-email"
+          placeholder="Student Email"
+          required
+        />
+        <input
+          id="ls-password"
+          type="password"
+          placeholder="Student Password"
+          required
+        />
         <button onClick={logInStudent}>Log In</button>
       </form>
       <br />
       <h1>Log In for Advisers</h1>
       <form id="log-in-approver">
-        <input type="email" id="la-email" placeholder="Adviser Email" required />
-        <input id="la-password" type="password" placeholder="Adviser Password" required />
+        <input
+          type="email"
+          id="la-email"
+          placeholder="Adviser Email"
+          required
+        />
+        <input
+          id="la-password"
+          type="password"
+          placeholder="Adviser Password"
+          required
+        />
         <button onClick={logInApprover}>Log In</button>
       </form>
       <br />
@@ -229,14 +265,16 @@ export default function Home() {
         <button onClick={logInAdmin}>Log In</button>
       </form>
 
-      <p class="note">Note: Coordinate with the Admin to create an Adviser account.</p>
+      <p className="note">
+        Note: Coordinate with the Admin to create an Adviser account.
+      </p>
       <br />
       <br />
       <br />
       <footer>
         <p>
-          Unlock the Path to Success with Effortless Efficiency: Experience Seamless Clearance Approval in the Institute
-          of Computer Science
+          Unlock the Path to Success with Effortless Efficiency: Experience
+          Seamless Clearance Approval in the Institute of Computer Science.
         </p>
       </footer>
     </>
