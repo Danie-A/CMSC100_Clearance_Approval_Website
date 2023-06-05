@@ -27,6 +27,8 @@ ClearMe is a software program designed to streamline and automate the clearance 
 
 ## Screenshots:
 - Figma Layout: https://www.figma.com/file/PooqpMu5OhUnmvKPjSVp5P/CLEAR-ME?type=design&node-id=0%3A1&t=WuIZnhRGnPJGlTmr-1
+   
+**SIGN UP | LOG IN** 
 ![6 - BMSnmmc](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/5d898572-142b-45f2-ae30-bd84ac43aa31)
 
 **ADMIN**
