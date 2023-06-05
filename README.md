@@ -27,26 +27,26 @@ ClearMe is a software program designed to streamline and automate the clearance 
 
 ## Screenshots:
 - Figma Layout: https://www.figma.com/file/PooqpMu5OhUnmvKPjSVp5P/CLEAR-ME?type=design&node-id=0%3A1&t=WuIZnhRGnPJGlTmr-1
-![Sign Up/ Log In Page](https://imgur.com/BMSnmmc)
+![6 - BMSnmmc](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/5d898572-142b-45f2-ae30-bd84ac43aa31)
 
 **ADMIN**
-![Admin Homepage](https://imgur.com/SjtkYpd)
-![Admin's View Pending Accounts](https://imgur.com/RNA9gRg)
-![Admin's View Application](https://imgur.com/zYmnuNt)
-![Admin's View Application Information](https://imgur.com/aFvbJsK)
-![Admin's Manage Advisers](https://imgur.com/aFvbJsK)
+![1 - SjtkYpd](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/28029f63-a3ef-45df-b069-404b23b9fca7)
+![2 - RNA9gRg](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/5eb6c929-57d3-4c0b-b902-c46af6d49819)
+![3 - zYmnuNt](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/0814da99-888d-4bbe-b671-247a80130f85)
+![4 - aFvbJsK](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/86ef60f1-40b0-465d-931e-f60bd0708eca)
+![5 - GToOd5E](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/c6f4c024-d506-4400-aaff-bb461cd7e348)
 
 **STUDENT**
-![Student Homepage](https://imgur.com/McKfIr2)
-![Student's List of Applications](https://imgur.com/dPipZtx)
-![Student's Notification Tab](https://imgur.com/GPey56z)
-![Student's Application Information](https://imgur.com/C9X1gEt)
+![7 - McKfIr2](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/54737f1b-3384-46ab-bdb1-25a448742bc8)
+![12 - dPipZtx](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/87cb3110-2457-4bfc-9756-7fd87c0f94f3)
+![13 - GPey56z](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/e575b68b-abe9-46c8-a243-3afd41e22df9)
+![14 - C9X1gEt](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/547002a5-5bc1-4991-9d7c-3a45bdc02225)
 
 **ADVISER**
-![Adviser Homepage](https://imgur.com/SjtkYpd)
-![Adviser's Advisees Page](https://imgur.com/zXGrgTH)
-![Adviser's View of Pending Applications](https://imgur.com/NWCj2LO)
-![Adviser's View of Application Information](https://imgur.com/x2M5sgI)
+![8 - JRqYlIv](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/2cb6bfef-14d8-4c71-a6e9-1bd04b4f7217)
+![9 - zXGrgTH](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/74653c1e-603e-4b64-a7a3-8adbf3979e27)
+![10 - NWCj2LO](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/054751bb-5c04-4e25-894c-0da6279e3f83)
+![11 - x2M5sgI](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/15b3f9c1-bc9a-4290-8a6e-e21477a2f6c5)
 
 
 ## Usage Guidelines:
