@@ -1,6 +1,12 @@
 
 # ClearMe
-
+   
+## Authors: 
+Danielle Lei Araez   
+Katrina Gonzales   
+Laurenz Repaso  
+Jerico Sabile  
+CMSC 100 Project - UV2L 
 
 
 ## Program Description:
