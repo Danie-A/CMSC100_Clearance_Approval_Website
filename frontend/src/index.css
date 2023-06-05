@@ -1,38 +1,35 @@
 body {
-    margin: 40px;
-    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-image: url('https://i.pinimg.com/564x/16/e2/69/16e2699ba8c7b8ad8e690310092e43c6.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    /* background-color: rgb(255, 236, 179); */
-    color:rgb(66,66,66);
-  }  
+  margin: 40px;
+  font-family: "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url("https://i.pinimg.com/564x/16/e2/69/16e2699ba8c7b8ad8e690310092e43c6.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-color: rgb(255, 236, 179); */
+  color: rgb(66, 66, 66);
+}
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 nav {
   background-color: #101223;
-
 }
 
 /* #welcome-page {
-    background-image: url('https://i.pinimg.com/originals/13/9a/88/139a8872eeb9dfca447eb241afd2274e.png');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    border: none;
-    padding: 0%;
+  background-image: url('https://i.pinimg.com/originals/13/9a/88/139a8872eeb9dfca447eb241afd2274e.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border: none;
+  padding: 0%;
 } */
 
 h5 {
   padding-top: 15px;
-  padding-bottom: 20px;
+  padding-bottom: 18px;
   font-weight: 700;
 }
 
@@ -50,11 +47,18 @@ h5 {
 } 
 
 /* .header-welcome {
-    margin-bottom: 20px;   
+  margin-bottom: 20px;   
 } */
 
 .sign-upforstudents {
-    margin-top: 20px;
+  margin-top: 20px;
+}
+
+#sign-up input,
+#log-in-student input,
+#log-in-admin input,
+#log-in-approver input {
+  margin-right: 8px;
 }
 
 .header-text {
@@ -81,11 +85,9 @@ h5 {
   padding-top: 8px;
 }
 
-
 .align-items-center {
   padding-right: 10px;
 }
-
 
 ul {
   color: #b3cde0;
@@ -133,9 +135,9 @@ input {
 }
 
 .table-colored {
-    background-color: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(5px);
-    /* border-radius: 30px; */
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  /* border-radius: 30px; */
 }
 
 thead {
@@ -143,7 +145,6 @@ thead {
   /* Replace with your desired header color */
   color: #ffffff;
   /* Replace with your desired text color */
-
 }
 
 .notif-container {
@@ -186,18 +187,18 @@ thead {
 }
 
 .view-app-container {
-    display: flex;
-    flex-direction: column;
-    width: 75%;
-    border-radius: 40px;
-    border-color: #B3B5BD;
-    border-width: 2px;
-    border-style: solid;
-    margin: 20px 0px 10px 0px;
-    padding: 40px 80px 40px 80px;
-    background-color: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(5px);
-    color: black;
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  border-radius: 40px;
+  border-color: #b3b5bd;
+  border-width: 2px;
+  border-style: solid;
+  margin: 20px 0px 10px 0px;
+  padding: 40px 80px 40px 80px;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  color: black;
 }
 
 .remark-item {
@@ -238,11 +239,9 @@ thead {
   border-radius: 20px;
 }
 
-
 .notifBtn {
   margin-right: 20px;
 }
-
 
 .form-container {
   display: flex;
@@ -283,7 +282,6 @@ thead {
   scale: 1.009;
 }
 
-
 .btn-right {
   position: absolute;
   top: 20px;
@@ -301,20 +299,20 @@ thead {
 }
 
 /* #sign-up {
-    display: flex;
-    flex-direction: row;
-    /* align-items: center; 
-  } 
-  
-  /* #sign-up-btn {
-    border-radius: 40px;
-    font-family: 'Raleway', sans-serif;
-  } */
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; 
+} 
+
+/* #sign-up-btn {
+  border-radius: 40px;
+  font-family: 'Raleway', sans-serif;
+} */
 /* #sign-up {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  } */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
 
 input[id="s-fname"],
 input[id="s-mname"],
@@ -342,7 +340,7 @@ button {
 
 button:hover {
   border: none;
-  border-radius: 25px;
+  border-radius: 22px;
   transition: 0.3s;
   background-color: rgb(242, 242, 242);
   box-shadow: 0 2px 14px rgba(0, 0, 0, 0.218);
@@ -355,62 +353,59 @@ button:hover {
 
 h1 {
   font-size: xx-large;
-
 }
 
-  .glass-effect-10:hover {
-    background-color: #00838F;
-  }
-   
-  p9 {
-    font-size: 40px;
-    margin-bottom: 1%;
-  }
+.glass-effect-10:hover {
+  background-color: #00838f;
+}
 
-  p10 {
-    font-size: 40px;
-    margin-bottom: 1%;
-  }
+p9 {
+  font-size: 40px;
+  margin-bottom: 1%;
+}
 
-  .h10 {
-    font-size: 40px;
-    margin-bottom: 1%;
-  }
+p10 {
+  font-size: 40px;
+  margin-bottom: 1%;
+}
 
-  #clearance-applications-heading {
-    font-size: 40px; 
-  }
+.h10 {
+  font-size: 40px;
+  margin-bottom: 1%;
+}
 
-  #header-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
-    margin-bottom: 10px;
+#clearance-applications-heading {
+  font-size: 40px;
+}
 
-
-  }
+#header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  margin-bottom: 10px;
+}
 
 #manage-approver {
-  background-color: #00838F;
+  background-color: #00838f;
   backdrop-filter: blur(80px);
   /* padding: 10px; */
   border-radius: 0px 0px 20px 20px;
 }
 
 #manage-adviser {
-  background-color: #00838F;
+  background-color: #00838f;
   backdrop-filter: blur(80px);
   /* padding: 10px; */
   border-radius: 0px 0px 20px 20px;
 }
 
-  #manage-student {
-    background-color: #00838F;
-    backdrop-filter: blur(80px);
-    /* padding: 10px; */
-    border-radius: 0px 0px 20px 20px;
-  }
+#manage-student {
+  background-color: #00838f;
+  backdrop-filter: blur(80px);
+  /* padding: 10px; */
+  border-radius: 0px 0px 20px 20px;
+}
 
   h2 {
     font-size: 60px;
@@ -436,90 +431,102 @@ h1 {
 }
 
 nav#manage-approver ul li:hover {
-  background-color: #FFA000;
+  background-color: #ffa000;
   border-radius: 40px;
 }
 
 nav#manage-adviser ul li:hover {
-  background-color: #FFA000;
+  background-color: #ffa000;
   border-radius: 40px;
 }
 
-  nav#manage-student ul li:hover {
-    background-color: #FFA000; 
-    border-radius: 40px;
-  }
+nav#manage-student ul li:hover {
+  background-color: #ffa000;
+  border-radius: 40px;
+}
 
-  nav#manage-approver ul li:hover a {
-    color: rgb(66,66,66); 
-  }
+nav#manage-approver ul li:hover a {
+  color: rgb(66, 66, 66);
+}
 
 nav#manage-adviser ul li:hover a {
   color: rgb(66, 66, 66);
 }
 
-  nav#manage-student ul li:hover a {
-    color: rgb(66,66,66); 
-  }
+nav#manage-student ul li:hover a {
+  color: rgb(66, 66, 66);
+}
 
-  #dashboard {
-    background-color: #424242;
-    backdrop-filter: blur(80px);
-    /* padding: 10px; */
-    border-radius: 20px 20px 0px 0px;
-  }
-  
-  .glass-effect {
-    background-color: rgba(255, 255, 255, 0.5);
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 6px 6px;
-    font-size: 16px;
-    color: rgb(0, 131, 143);
-  }
+#dashboard {
+  background-color: #424242;
+  backdrop-filter: blur(80px);
+  /* padding: 10px; */
+  border-radius: 20px 20px 0px 0px;
+}
 
-  input[type="file"] {
-    opacity: 0; /* Hide the default file input button */
-    position: absolute; /* Position it on top of the styled button */
-    z-index: -1; /* Move it behind the styled button */
-  }
-  
-  .button-stylee {
-    display: inline-block;
-    padding: 10px 10px;
-    background-color: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(5px);
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    color: black;
-    margin-bottom: 5px;
-    width: 200px;
-  }
-  
-  .button-stylee::before {
-    content: "Choose File";
-  }
-  
-  .button-stylee:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
+.glass-effect {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 6px 6px;
+  font-size: 16px;
+  color: rgb(0, 131, 143);
+}
 
-  #csv{
-    font-size: 25px;
-  }
+input[type="file"] {
+  display: none;
+}
 
-  .glass-effect-5 {
-    background-color: rgba(255, 255, 255, 0.5);
-    border: none;
-    border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px 10px;
-    font-size: 16px;
-    color: #424242;
-  }
+.custom-file-upload {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
 
+.custom-file-upload:hover {
+  background-color: rgba(238, 238, 238, 0.41);
+}
+
+.button-stylee {
+  display: inline-block;
+  padding: 10px 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  color: black;
+  margin-bottom: 5px;
+  width: 200px;
+}
+
+.button-stylee::before {
+  content: "Choose File";
+}
+
+.button-stylee:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#csv {
+  font-size: 25px;
+}
+
+.glass-effect-5 {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 10px;
+  font-size: 16px;
+  color: #424242;
+}
 
 .glass-effect-3 {
   background-color: rgba(255, 255, 255, 0.5);
@@ -541,7 +548,7 @@ nav#manage-adviser ul li:hover a {
   color: #424242;
   /* width: 8%; */
   /* margin-top: 10%;
-    margin-bottom: 10%; */
+  margin-bottom: 10%; */
 }
 
 .glass-effect-2 {
@@ -552,61 +559,71 @@ nav#manage-adviser ul li:hover a {
   padding: 8px 8px;
   font-size: 16px;
   color: #424242;
+  width: 10%;
+}
+
+.glass-effect-13 {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 13px 13px;
+  font-size: 16px;
+  color: #424242;
   width: 4%;
 }
 
-  .glass-effect-13 {
-    background-color: rgba(255, 255, 255, 0.5);
-    border: none;
-    border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 13px 13px;
-    font-size: 16px;
-    color: #424242;
-    width: 4%;
-   
-  }
+.glass-effect-1 {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 10px;
+  font-size: 16px;
+  color: #2a2a2a;
+  margin-top: 0.5%;
+  margin-bottom: 2%;
+}
 
-  .glass-effect-1 {
-    background-color: rgba(255, 255, 255, 0.5);
-    border: none;
-    border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px 10px;
-    font-size: 16px;
-    color: #2a2a2a;
-    margin-top: .5%;
-    margin-bottom: 2%;
-  }
+.glass-effect-1a {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* padding: 10px 10px; */
+  font-size: 16px;
+  color: #2a2a2a;
+  /* margin-top: .5%;
+    margin-bottom: 2%; */
+}
 
-  .glass-effect-10 {
-    background-color: rgba(255, 255, 255, 0.5);
-    border: none;
-    border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px 10px;
-    font-size: 16px;
-    color: #2a2a2a;
-    margin-top: -0.8%;
-    margin-bottom: -0.8%;
-  }
-  
-  .name-manage-approver {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
-    padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .name-manage-approver span {
-    font-size: 20px;
-    color: rgba(0, 0, 0, 0.87);
-  }
-  
+.glass-effect-10 {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 10px;
+  font-size: 16px;
+  color: #2a2a2a;
+  margin-top: -0.8%;
+  margin-bottom: -0.8%;
+}
+
+.name-manage-approver {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.name-manage-approver span {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.87);
+}
 
 select {
   background-color: rgba(255, 255, 255, 0.5);
@@ -635,18 +652,17 @@ option {
   max-height: 30%;
 }
 
-
 /* #welcome-admin {
-    background-image: url("https://i.pinimg.com/originals/9b/0e/bb/9b0ebbf56da228fa54b2c57c18163c94.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 20px;
-    border-radius: 8px;
-  }   */
+  background-image: url("https://i.pinimg.com/originals/9b/0e/bb/9b0ebbf56da228fa54b2c57c18163c94.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px;
+  border-radius: 8px;
+}   */
 
-  h3:hover {
-    color: #00838F;
-  }
+h3:hover {
+  color: #00838f;
+}
 
   h2:hover {
     color: #00838F;
@@ -656,58 +672,57 @@ option {
     color: #00838F;
   }
 
-  p10:hover {
-    color: #00838F;
-  }
+p10:hover {
+  color: #00838f;
+}
 
-  #clearance-applications-heading:hover {
-    color: #00838F;
-  }
-  
-  #notification:hover {
-    color: #00838F;
-  }
+#clearance-applications-heading:hover {
+  color: #00838f;
+}
 
-  #notification {
-    font-size:40px;
-  }
+#notification:hover {
+  color: #00838f;
+}
 
-  #create-application:hover {
-    color: #00838F;
-  }
+#notification {
+  font-size: 40px;
+}
 
-  #create-application {
-    font-size:40px;
-  }
-  
+#create-application:hover {
+  color: #00838f;
+}
 
-  #glass-background {
-    background-color: rgba(255, 255, 255, 0.5); /* Glass background color with opacity */
-    padding: 30px;
-    border-radius: 50px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
-  }
+#create-application {
+  font-size: 40px;
+}
 
-  #header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 60px;
-    color: rgb(255, 160, 0);
-    transition: color 0.3s;
-    /* margin-bottom: 20px; */
-  }
-  
-  #header:hover {
-    color: rgb(173, 20, 87);
-  }
-  
-  #image {
-    display: block;
-    margin: 0 auto;
-    width: 300px;
-    height: auto;
-  }
+#glass-background {
+  background-color: rgba(255, 255, 255, 0.5); /* Glass background color with opacity */
+  padding: 30px;
+  border-radius: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
+}
+
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+  color: rgb(255, 160, 0);
+  transition: color 0.3s;
+  /* margin-bottom: 20px; */
+}
+
+#header:hover {
+  color: rgb(173, 20, 87);
+}
+
+#image {
+  display: block;
+  margin: 0 auto;
+  width: 300px;
+  height: auto;
+}
 
 footer {
   background-color: rgba(255, 255, 255, 0.5);

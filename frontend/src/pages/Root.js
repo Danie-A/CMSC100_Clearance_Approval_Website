@@ -19,8 +19,8 @@ export default function Root() {
         method: "POST",
         credentials: "include",
       })
-        .then((response) => response.json())
-        .then((body) => {
+        .then(response => response.json())
+        .then(body => {
           setOpenApplication(body.open_application);
         });
     }
@@ -104,9 +104,9 @@ export default function Root() {
                 View Application Details
               </Link>
             </li>
-            <li className={`${location.pathname === "/admin/manage-approvers" ? "active" : ""}`}>
-              <Link to="/admin/manage-approvers" className="nav-link">
-                Manage Approvers
+            <li className={`${location.pathname === "/admin/manage-advisers" ? "active" : ""}`}>
+              <Link to="/admin/manage-advisers" className="nav-link">
+                Manage Advisers
               </Link>
             </li>
           </ul>
