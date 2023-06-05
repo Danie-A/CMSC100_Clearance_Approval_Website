@@ -55,7 +55,7 @@ export default function SingleApp(props) {
                         Cleared
                     </button></td>
                     <td>                    <div>
-                        <PDFDownloadLink document={<PDFDocument applicationId={appId} dateGenerated={date} studentName={student_name} studentNumber={student.student_number} adviser={adviser_name} clearanceOfficer={"Josephine Batumbakal Dipapakabog"} />} fileName="approved_clearance.pdf">
+                        <PDFDownloadLink document={<PDFDocument applicationId={appId} dateGenerated={date} studentName={student_name} studentNumber={student.student_number} adviser={adviser_name} clearanceOfficer={"Admin"} />} fileName="approved_clearance.pdf">
                             {({ blob, url, loading, error }) => (loading ? 'Generating PDF...' : <button className="btn btn-danger notifBtn">
                                 <AiFillFilePdf className="mr-2" style={{ marginRight: '8px' }} />
                                 Print PDF

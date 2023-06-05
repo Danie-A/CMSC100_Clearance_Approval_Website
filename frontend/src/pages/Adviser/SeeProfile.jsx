@@ -148,8 +148,6 @@ export default function SeeProfile({ handleCloseModal, student }) {
   }
   // remarks of adviser to student
   function viewRemarks(remarks) {
-
-
     return (
       <div className="whole-container">
         <button
