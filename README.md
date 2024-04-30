@@ -1,5 +1,7 @@
 # ClearMe
 
+> :warning: **Disclaimer**: This web development project was created by students for educational and testing purposes only. It is not yet implemented in real-life scenarios. While it can serve as a starting point for real-life applications, please use it responsibly and be aware of its limitations.
+
 ## Authors:
 
 Danielle Lei Araez  
