@@ -1,23 +1,20 @@
-
 # ClearMe
-   
-## Authors: 
-![2 - jPwWtuo](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/bf56b464-0593-422f-b104-b0ca12359712)
-![3 - 9H5ZC4l](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/1b83da2f-c696-4ee0-82b9-9dc2284273c1)
-![1 - uiK0Yr9](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/a97a8865-a5d4-4697-9aa2-1cd7db15a6f9)
-Danielle Lei Araez   
-Katrina Gonzales   
+
+## Authors:
+
+Danielle Lei Araez  
+Katrina Gonzales  
 Laurenz Repaso  
 Jerico Sabile  
-CMSC 100 Project - UV2L 
-
+CMSC 100 Project - UV2L
+<img src="https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/a97a8865-a5d4-4697-9aa2-1cd7db15a6f9" width="500">
 
 ## Program Description:
+
 ClearMe is a software program designed to streamline and automate the clearance approval process for students within the institute. The system facilitates the efficient issuance of clearances by allowing students to obtain approvals from specific sections of the institute in a predetermined order. It also ensures that students provide the necessary proof of completion where required.
 
-
-
 ## Project Features:
+
 1. User Registration: The system allows students to register their accounts using their unique student identification numbers and other relevant information.
 
 2. Clearance Application: Once registered, students can initiate the clearance application process by providing the necessary details, such as their name, academic program, and expected graduation date.
@@ -32,12 +29,11 @@ ClearMe is a software program designed to streamline and automate the clearance 
 
 7. Administrative Interface: An administrative interface is provided for authorized staff members to manage the approval workflow, define the order of approvals, set requirements for proof of completion, and monitor the overall system performance. Administrators can also generate reports and perform other administrative tasks as needed.
 
-
-
 ## Screenshots:
+
 - Figma Layout: https://www.figma.com/file/PooqpMu5OhUnmvKPjSVp5P/CLEAR-ME?type=design&node-id=0%3A1&t=WuIZnhRGnPJGlTmr-1
-   
-**SIGN UP | LOG IN** 
+
+**SIGN UP | LOG IN**
 ![6 - BMSnmmc](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/5d898572-142b-45f2-ae30-bd84ac43aa31)
 
 **ADMIN**
@@ -59,66 +55,78 @@ ClearMe is a software program designed to streamline and automate the clearance 
 ![10 - NWCj2LO](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/054751bb-5c04-4e25-894c-0da6279e3f83)
 ![11 - x2M5sgI](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/15b3f9c1-bc9a-4290-8a6e-e21477a2f6c5)
 
-
 ## Usage Guidelines:
+
 Usage Guidelines for ClearMe:
+
 1. Account Registration:
+
    - Use your unique student identification number and provide accurate and up-to-date information during the registration process.
    - Keep your login credentials confidential and do not share them with anyone else.
    - Notify the system administrator immediately if you suspect unauthorized access to your account.
 
 2. Clearance Application:
+
    - Initiate the clearance application process by providing the required details accurately.
    - Follow the instructions provided by the system regarding the order of approvals and any necessary proof of completion.
    - Ensure that all supporting documents are clear, legible, and relevant to the clearance requirements.
    - Double-check your application details before submitting to avoid errors or omissions.
 
 3. Approval Workflow:
+
    - Follow the designated order of approvals as specified by the system.
    - Seek approval from the required sections in a timely manner to prevent delays in the clearance process.
    - Complete any necessary tasks or requirements before proceeding to the next section for approval.
    - Be prepared to provide additional information or documentation if requested by any section during the approval process.
 
 4. Proof of Completion:
+
    - Submit the required proof of completion, such as transcripts, project reports, or other relevant documents, as specified by the system.
    - Ensure that the uploaded documents are accurate, complete, and in a format acceptable to the system.
    - Clearly label and organize the submitted documents for easy identification by the approving sections.
 
 5. Notifications and Reminders:
+
    - Regularly check your account and email for notifications and reminders from the system.
    - Respond promptly to any notifications or requests for action to avoid delays in the clearance process.
    - Keep track of approaching deadlines to ensure timely completion of the clearance application.
 
 6. System Etiquette:
+
    - Use the system responsibly and refrain from engaging in any activities that may disrupt its functionality or compromise its security.
    - Respect the privacy of other users and do not access or tamper with their accounts or information.
    - Report any system issues, bugs, or concerns to the system administrator promptly.
 
 7. Compliance with Institute Policies:
+
    - Adhere to the policies, rules, and regulations of the Institute of Computer Science throughout the clearance process.
    - Any attempts to manipulate or falsify information may lead to disciplinary actions as per institute guidelines.
 
 8. Technical Support:
    - If you encounter any technical difficulties or require assistance, contact the system administrator or designated support personnel for help.
 
-
-
 ## How to Run:
+
 To run the ClearMe program, please follow these steps:
+
 1. Follow the program's user interface or command-line instructions:
+
    - The ClearMe program should present you with a user interface or provide command-line options.
    - Enter the necessary information, such as your student identification number, personal details, and any other required data.
    - Follow the prompts or instructions provided by the program to navigate through the clearance approval process.
 
 2. Submit necessary documents or proof of completion:
+
    - If the program requires you to submit any documents or proof of completion, follow the provided instructions to upload or attach the required files.
    - Ensure that the documents are in a compatible format and meet the specified requirements.
 
 3. Review and confirm your clearance application:
+
    - Before finalizing your application, carefully review all the information you have entered to ensure its accuracy and completeness.
    - Make any necessary corrections or additions if required.
 
 4. Submit your clearance application:
+
    - Once you are satisfied with your application, submit it through the ClearMe program.
    - The program may provide a confirmation message or notification to acknowledge the successful submission of your application.
 
