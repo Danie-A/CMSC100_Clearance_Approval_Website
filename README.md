@@ -7,7 +7,6 @@ Katrina Gonzales
 Laurenz Repaso  
 Jerico Sabile  
 CMSC 100 Project - UV2L
-<img src="https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/a97a8865-a5d4-4697-9aa2-1cd7db15a6f9" width="500">
 
 ## Program Description:
 
