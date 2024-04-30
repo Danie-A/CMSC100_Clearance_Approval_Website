@@ -84,13 +84,12 @@ ClearMe is a software program designed to streamline and automate the clearance 
 
 5. If you are an `adviser`, you need to coordinate with the admin in order to create an adviser account in order for the adviser to log in successfully.
 
-6. There are three steps before the student can successfully generate a clearance completion document. 
+6. There are three steps before the student can successfully generate a clearance completion document.
 
-`Step 1`: The student must create a clearance application by filling out the necessary details.
-`Step 2`: The student must wait for the adviser to approve the clearance application.
+`Step 1`: The student must create a clearance application by filling out the necessary details.<br>
+`Step 2`: The student must wait for the adviser to approve the clearance application.<br>
 `Step 3`: The student must wait for the clearance officer (admin) to approve the clearance application.
 
 If you encounter any issues during the process or have specific questions about the ClearMe program, you may contact one of the authors through this email address:
 
 Danielle Lei Araez: `draraez@up.edu.ph`
-
