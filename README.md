@@ -95,3 +95,5 @@ ClearMe is a software program designed to streamline and automate the clearance 
 If you encounter any issues during the process or have specific questions about the ClearMe program, you may contact one of the authors through this email address:
 
 Danielle Lei Araez: `draraez@up.edu.ph`
+
+Hi! I'm Danie!

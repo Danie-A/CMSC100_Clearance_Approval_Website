@@ -7,12 +7,12 @@ import setUpRoutes from "./routes.js";
 const app = express();
 
 // connect to Mongo DB
-// await mongoose.connect("mongodb://127.0.0.1:27017/AUTH");
-const DATABASE_URI = "mongodb://127.0.0.1:27017/AUTH";
-await mongoose
-  .connect(DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("Connect to MongoDB"))
-  .catch((err) => console.log(err));
+await mongoose.connect("mongodb://127.0.0.1:27017/AUTH");
+// const DATABASE_URI = "mongodb://127.0.0.1:27017/AUTH";
+// await mongoose
+//   .connect(DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+//   .then(() => console.log("Connect to MongoDB"))
+//   .catch((err) => console.log(err));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
