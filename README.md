@@ -38,7 +38,7 @@ ClearMe is a software program designed to streamline and automate the clearance 
 ![6 - BMSnmmc](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/5d898572-142b-45f2-ae30-bd84ac43aa31)
 
 **ADMIN**
-![1 - SjtkYpd](../assets/125255934/28029f63-a3ef-45df-b069-404b23b9fca7)
+<img src="../assets/125255934/28029f63-a3ef-45df-b069-404b23b9fca7">
 ![2 - RNA9gRg](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/5eb6c929-57d3-4c0b-b902-c46af6d49819)
 ![3 - zYmnuNt](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/0814da99-888d-4bbe-b671-247a80130f85)
 ![4 - aFvbJsK](https://github.com/CMSC100/project-araez_gonzales_repaso_sabile/assets/125255934/86ef60f1-40b0-465d-931e-f60bd0708eca)
